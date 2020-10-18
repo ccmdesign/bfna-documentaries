@@ -43,7 +43,7 @@
     z-index: 100;
 
     &.opened {
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: #01121AD9;
     }
 
     &__section {

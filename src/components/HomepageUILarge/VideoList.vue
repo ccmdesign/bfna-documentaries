@@ -15,16 +15,19 @@
         <h2>Digital Economy</h2>
       </div>
     </div>
+
     <carousel ref="videoList" class="video-list__carousel" :perPage="4" :paginationEnabled="false" :loop="true" :scrollPerPage="false">
       <slide class="video-list__episode" v-for="(video, index) in videoList" :key="index" @slideclick="selectEpisode(index)">
         <!-- <div class="video-list__episode-thumbnail" :style="{ backgroundImage: `url('${getVideoThumbnail(video)}')`}" /> -->
         <div class="video-list__episode-thumbnail" :style="{ backgroundImage: `url('${video.backgroundImage}')`}" />
 
-        <h4>Episode {{ video.order }} | Workstream {{ video.workstream }}</h4>
-        <h3>{{ video.title }}</h3>
-        <p>{{ video.backgroundImage }}</p>
+        <div class="video-list__episode-info">
+          <h4>{{ video.title }}</h4>
+          <h3>{{ video.subtitle }}</h3>
+        </div>
       </slide>
     </carousel>
+
     <div class="video-list__controls video-list__controls--left" @click="previousEpisode" v-show="videoList.length > 4">arrow_back</div>
     <div class="video-list__controls video-list__controls--right" @click="nextEpisode" v-show="videoList.length > 4">arrow_forward</div>
   </div>
@@ -41,50 +44,66 @@
 
   &__episode {
     cursor: pointer;
+    box-shadow: 0px 8px 32px #00000026;
+    border: 1px solid #FFFFFF33;
+    width: 20vw;
+    margin-left: 2vw;
+
+    &:first-child {
+      margin-left: 0;
+    }
 
     &-thumbnail {
-      width: 20vw;
       height: 11.25vw;
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
     }
 
+    &-info {
+      padding: 16px 30px;
+      background-color: #00000059;
+    }
+
     h4 {
-      color: #fc8b00;
-      font-size: 0.875em;
+      color: #ffffff;
+      font-size: 1.25em;
       font-weight: 700;
-      letter-spacing: 1px;
-      line-height: 12px;
-      text-transform: uppercase;
-      margin: 18px 0 0 0;
+      letter-spacing: 0.21px;
+      line-height: 18px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      // text-transform: uppercase;
+      // margin: 18px 0 0 0;
     }
 
     h3 {
       color: #ffffff;
-      font-size: 1.5em;
-      font-weight: 300;
-      letter-spacing: 1.85px;
-      line-height: 20px;
-      text-transform: uppercase;
-      margin: 9px 0 0 0;
-      padding-right: 32px;
+      font-size: 0.875em;
+      // font-weight: 300;
+      letter-spacing: 0.21px;
+      line-height: 16px;
+      // text-transform: uppercase;
+      // margin: 9px 0 0 0;
+      // padding-right: 32px;
     }
 
-    p {
-      color: #ffffff;
-      font-size: 0.875em;
-      font-weight: 300;
-      line-height: 16px;
-      margin: 14px 0 0 0;
-      padding-right: 32px;
-    }
+    // p {
+    //   color: #ffffff;
+    //   font-size: 0.875em;
+    //   font-weight: 300;
+    //   line-height: 16px;
+    //   margin: 14px 0 0 0;
+    //   padding-right: 32px;
+    // }
   }
 
   &__workstreams-section {
     padding-bottom: 32px;
     display: flex;
 
+    justify-content: center;
     .child {
       margin-right: 32px;
       cursor: pointer;
@@ -180,9 +199,9 @@ export default {
     currentVideo () {
       return this.hasVideos ? this.videoList[this.currentIndex] : this.$store.getters.emptyEpisode
     },
-    workstreams () {
-      return new Set(this.$store.state.videoList.map(x => x.workstream))
-    }
+    // workstreams () {
+    //   return new Set(this.$store.state.videoList.map(x => x.workstream))
+    // }
   },
   methods: {
     getVideoThumbnail (video) {
