@@ -4,8 +4,8 @@ import ContentfulVue from 'contentful-vue'
 
 Vue.use(Vuex)
 Vue.use(ContentfulVue, {
-  space: 'k2z0yol3ki4m',
-  accessToken: 'WiebAe9c8ObSMl8xUcV1YKi-W-EZK_NhNUffGZaMNAk'
+  space: 'sskjmxwce76z',
+  accessToken: 'dcyMYpzq-OPLZ_OlZMtdVVPGoULhPI9pJ3YacXN-ypo'
 })
 
 const store = new Vuex.Store({
@@ -15,7 +15,7 @@ const store = new Vuex.Store({
     navigation: true,
     homepageVideoEffect: false,
     menuVisibility: false,
-    showSuggestedTweetOnHomepage: false
+    // showSuggestedTweetOnHomepage: false
   },
   mutations: {
     setCurrentVideo (state, index) {
@@ -33,9 +33,9 @@ const store = new Vuex.Store({
     setVideoList (state, videoList) {
       state.videoList = videoList
     },
-    setSuggestedTweetHomepageVisibility (state, suggestedTweetVisibility) {
-      state.showSuggestedTweetOnHomepage = suggestedTweetVisibility
-    }
+    // setSuggestedTweetHomepageVisibility (state, suggestedTweetVisibility) {
+    //   state.showSuggestedTweetOnHomepage = suggestedTweetVisibility
+    // }
   },
   getters: {
     hasVideos (state) {
@@ -43,18 +43,24 @@ const store = new Vuex.Store({
     },
     emptyEpisode () {
       return {
-        order: -1,
-        season: -1,
-        videoUrl: '',
+        // order: -1,
+        // season: -1,
+        // videoUrl: '',
+        // title: '',
+        // description: '',
+        // authors: [],
+        // googlePodcastsUrl: '',
+        // itunesUrl: '',
+        // spotifyUrl: '',
+        // suggestedTweet: '',
+        // transcript: '',
+        // tags: []
         title: '',
+        subtitle: '',
         description: '',
-        authors: [],
-        googlePodcastsUrl: '',
-        itunesUrl: '',
-        spotifyUrl: '',
-        suggestedTweet: '',
-        transcript: '',
-        tags: []
+        videoUrl: '',
+        workstream: '',
+        backgroundImage: ''
       }
     }
   }

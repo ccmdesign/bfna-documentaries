@@ -1,19 +1,30 @@
 export default function (instance) {
   instance.$contentful.getEntries({
-    content_type: 'episode',
-    locale: 'en-US',
-    order: '-fields.season,-fields.order',
+    content_type: 'documentary',
+    // locale: 'en-US',
+    // order: '-fields.season,-fields.order',
     include: 1
-  }).then((episodeEntries) => {
-    const episodes = episodeEntries.items.map((entry) => {
-      const authors = entry.fields.authors.map((author) => ({ name: author.fields.name, picture: author.fields.picture.fields.file }))
-      const { authors: rawAuthors, ...episode } = entry.fields
-      episode.authors = authors
-      return episode
+  }).then((documentaryEntries) => {
+    const documentaries = documentaryEntries.items.map(({fields}) => {
+      return {
+        title: fields.title,
+        subtitle: fields.subtitle,
+        description: fields.description,
+        videoUrl: fields.video_url,
+        workstream: fields.workstream,
+        backgroundImage: fields.background_image
+      }
     })
 
-    instance.$store.commit('setVideoList', episodes)
+    // const episodes = documentaryEntries.items.map((entry) => {
+    //   const authors = entry.fields.authors.map((author) => ({ name: author.fields.name, picture: author.fields.picture.fields.file }))
+    //   const { authors: rawAuthors, ...episode } = entry.fields
+    //   episode.authors = authors
+    //   return episode
+    // })
+
+    instance.$store.commit('setVideoList', documentaries)
   }).catch((err) => {
-    alert(`Ìt wasn't possible to load the episodes.\n\n${err}`)
+    alert(`Ìt wasn't possible to load the documentaries.\n\n${err}`)
   })
 }
