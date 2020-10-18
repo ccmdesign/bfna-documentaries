@@ -4,11 +4,11 @@
       <ul class="episodes-view__list">
         <li v-for="(video, index) in videoList" :key="index" @click="setCurrentVideo(index)">
           <div class="episodes-view__episode">
-            <div class="episodes-view__author-wrapper">
+            <!-- <div class="episodes-view__author-wrapper">
               <div class="episodes-view__author" :style="{ backgroundImage: `url('${getAuthorPicture(video)}')` }"></div>
-            </div>
+            </div> -->
             <div class="episodes-view__description">
-              <h4>Episode {{ video.order }} | Season {{ video.season }}</h4>
+              <!-- <h4>Episode {{ video.order }} | Season {{ video.season }}</h4> -->
               <h3>{{ video.title }}</h3>
               <p>{{ video.description }}</p>
             </div>

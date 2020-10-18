@@ -1,17 +1,28 @@
 <template>
 
   <div class="video-list">
-    <div class="video-list__seasons-section">
-      <div class="child" v-for="season in seasons" :key="season" @click="selectSeason(season)" :class="{ selected : isSeasonSelected(season) }">
-        <h2>Season {{ season }}</h2>
+    <div class="video-list__workstreams-section">
+      <div class="child workstream--democracy" @click="selectWorkstream('democracy')" :class="{ selected : isWorkstreamSelected('democracy') }">
+        <h2>Democracy</h2>
+      </div>
+      <div class="child workstream--politics-society" @click="selectWorkstream('politics-society')" :class="{ selected : isWorkstreamSelected('politics-society') }">
+        <h2>Politics &amp; Society</h2>
+      </div>
+      <div class="child workstream--future-of-work" @click="selectWorkstream('future-of-work')" :class="{ selected : isWorkstreamSelected('future-of-work') }">
+        <h2>Future of Work</h2>
+      </div>
+      <div class="child workstream--digital-economy" @click="selectWorkstream('digital-economy')" :class="{ selected : isWorkstreamSelected('digital-economy') }">
+        <h2>Digital Economy</h2>
       </div>
     </div>
     <carousel ref="videoList" class="video-list__carousel" :perPage="4" :paginationEnabled="false" :loop="true" :scrollPerPage="false">
       <slide class="video-list__episode" v-for="(video, index) in videoList" :key="index" @slideclick="selectEpisode(index)">
-        <div class="video-list__episode-thumbnail" :style="{ backgroundImage: `url('${getVideoThumbnail(video)}')`}" />
-        <h4>Episode {{ video.order }} | Season {{ video.season }}</h4>
+        <!-- <div class="video-list__episode-thumbnail" :style="{ backgroundImage: `url('${getVideoThumbnail(video)}')`}" /> -->
+        <div class="video-list__episode-thumbnail" :style="{ backgroundImage: `url('${video.backgroundImage}')`}" />
+
+        <h4>Episode {{ video.order }} | Workstream {{ video.workstream }}</h4>
         <h3>{{ video.title }}</h3>
-        <p>{{ video.description }}</p>
+        <p>{{ video.backgroundImage }}</p>
       </slide>
     </carousel>
     <div class="video-list__controls video-list__controls--left" @click="previousEpisode" v-show="videoList.length > 4">arrow_back</div>
@@ -70,30 +81,43 @@
     }
   }
 
-  &__seasons-section {
+  &__workstreams-section {
     padding-bottom: 32px;
     display: flex;
 
     .child {
       margin-right: 32px;
+      cursor: pointer;
+      opacity: 0.5;
+
+      &.workstream--democracy {
+        background-color: #4F8D71;
+      }
+
+      &.workstream--politics-society {
+        background-color: #FC8B00;
+      }
+
+      &.workstream--future-of-work {
+        background-color: #C73540;
+      }
+
+      &.workstream--digital-economy {
+        background-color: #631764;
+      }
 
       h2 {
+        margin: 0;
+        padding: 2px 5px;
         color: #ffffff;
-        font-size: 1.5em;
-        font-weight: 300;
-        letter-spacing: 1.85px;
+        font-size: 1em;
+        letter-spacing: 0.23px;
         line-height: 20px;
         text-transform: uppercase;
       }
 
       &.selected {
-        border-bottom: 1px solid #fc8b00;
-        margin-bottom: -2px;
-
-        h2 {
-          color: #fc8b00;
-          font-weight: 500;
-        }
+        opacity: 1
       }
     }
   }
@@ -129,7 +153,7 @@ export default {
   data () {
     return {
       currentEpisode: 0,
-      selectedSeason: null
+      selectedWorkstreams: []
     }
   },
   props: {
@@ -140,7 +164,7 @@ export default {
   },
   computed: {
     videoList () {
-      const filter = item => { return this.selectedSeason === null || item.season === this.selectedSeason }
+      const filter = item => { return this.selectedWorkstreams.length === 0 || this.selectedWorkstreams.includes(item.workstream) }
 
       return this.$store.state.videoList.filter(filter)
     },
@@ -156,8 +180,8 @@ export default {
     currentVideo () {
       return this.hasVideos ? this.videoList[this.currentIndex] : this.$store.getters.emptyEpisode
     },
-    seasons () {
-      return new Set(this.$store.state.videoList.map(x => x.season))
+    workstreams () {
+      return new Set(this.$store.state.videoList.map(x => x.workstream))
     }
   },
   methods: {
@@ -177,18 +201,28 @@ export default {
         this.closeAction()
       }
     },
-    selectSeason (season) {
-      if (this.selectedSeason !== season) {
-        this.selectedSeason = season
+    selectWorkstream (workstream) {
+      const index = this.selectedWorkstreams.indexOf(workstream);
 
-        this.$refs.videoList.goToPage(0)
-      } else if (this.selectedSeason !== null) {
-        this.selectedSeason = null
-        this.$refs.videoList.goToPage(0)
+      if (index > -1) {
+        this.selectedWorkstreams.splice(index, 1);
+
+      } else {
+        this.selectedWorkstreams.push(workstream)
       }
+
+
+      // if (this.selectedWorkstream !== workstream) {
+      //   this.selectedWorkstream = workstream
+
+      //   this.$refs.videoList.goToPage(0)
+      // } else if (this.selectedWorkstream !== null) {
+      //   this.selectedWorkstream = null
+      //   this.$refs.videoList.goToPage(0)
+      // }
     },
-    isSeasonSelected (season) {
-      return this.selectedSeason === season
+    isWorkstreamSelected (workstream) {
+      return this.selectedWorkstreams.includes(workstream)
     }
   }
 }

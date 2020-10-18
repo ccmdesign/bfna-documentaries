@@ -12,7 +12,7 @@ export default function (instance) {
         description: fields.description,
         videoUrl: fields.video_url,
         workstream: fields.workstream,
-        backgroundImage: fields.background_image
+        backgroundImage: fields.background_image.fields.file.url
       }
     })
 
