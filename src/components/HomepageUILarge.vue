@@ -1,6 +1,7 @@
 <template>
   <div class="homepage">
-    <suggested-tweet />
+    <HomeHeader />
+    <!-- <suggested-tweet /> -->
     <carousel class="homepage__slider" :per-page="1" :paginationEnabled="false" @pageChange="onPageChange" :value="currentIndex" :navigateTo="currentIndex">
       <slide v-for="(video, index) in videoList" :key="index" :video="video" />
     </carousel>
@@ -104,6 +105,7 @@
   }
 
   &__controls {
+    z-index: 2;
     @extend .material-icons;
     position: absolute;
     background-color: #08415C;
@@ -146,10 +148,11 @@ import VideoList from '@/components/HomepageUILarge/VideoList'
 import NavigationBar from '@/components/HomepageUILarge/NavigationBar'
 import MenuUI from '@/components/HomepageUILarge/Menu'
 import SuggestedTweet from '@/components/HomepageUILarge/SuggestedTweet'
+import HomeHeader from '@/components/HomepageUILarge/HomeHeader'
 
 export default {
   name: 'HomepageUILargeComponent',
-  components: { Carousel, Slide, VideoList, NavigationBar, 'menu-ui': MenuUI, SuggestedTweet },
+  components: { Carousel, Slide, VideoList, NavigationBar, 'menu-ui': MenuUI, SuggestedTweet, HomeHeader },
   data () {
     return {
       videoListMenu: false,

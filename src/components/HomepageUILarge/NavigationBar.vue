@@ -12,6 +12,7 @@
 
 <style lang="scss">
 .large-navigation-bar {
+  z-index: 2;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -94,13 +95,13 @@
 export default {
   computed: {
     hasMenu () {
-      return this.$store.state.menuVisibility;
-    },
+      return this.$store.state.menuVisibility
+    }
   },
   methods: {
     toggleMenu () {
-      this.$store.commit("setMenuVisibility", !this.hasMenu);
-    },
-  },
-};
+      this.$store.commit('setMenuVisibility', !this.hasMenu)
+    }
+  }
+}
 </script>

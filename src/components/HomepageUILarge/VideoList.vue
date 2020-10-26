@@ -38,10 +38,6 @@
   position: relative;
   padding: 32px 80px 64px 80px;
 
-  &__carousel {
-    // background:blue;
-  }
-
   &__episode {
     cursor: pointer;
     box-shadow: 0px 8px 32px #00000026;
