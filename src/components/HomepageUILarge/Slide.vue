@@ -1,6 +1,7 @@
 <template>
   <slide class="homepage__slider__slide">
     <background :videoUrl="video.videoUrl" />
+    <VideoDescription />
   </slide>
 </template>
 
@@ -14,9 +15,10 @@
 <script>
 import { Slide } from 'vue-carousel'
 import Background from '@/components/HomepageUILarge/Background'
+import VideoDescription from '@/components/HomepageUILarge/VideoDescription'
 
 export default {
-  components: { Slide, Background },
+  components: { Slide, Background, VideoDescription },
   props: {
     video: {
       type: Object,
