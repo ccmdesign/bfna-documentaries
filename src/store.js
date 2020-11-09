@@ -14,8 +14,7 @@ const store = new Vuex.Store({
     videoList: [],
     navigation: true,
     homepageVideoEffect: false,
-    menuVisibility: false,
-    // showSuggestedTweetOnHomepage: false
+    menuVisibility: false
   },
   mutations: {
     setCurrentVideo (state, index) {
@@ -32,10 +31,7 @@ const store = new Vuex.Store({
     },
     setVideoList (state, videoList) {
       state.videoList = videoList
-    },
-    // setSuggestedTweetHomepageVisibility (state, suggestedTweetVisibility) {
-    //   state.showSuggestedTweetOnHomepage = suggestedTweetVisibility
-    // }
+    }
   },
   getters: {
     hasVideos (state) {
@@ -43,18 +39,6 @@ const store = new Vuex.Store({
     },
     emptyEpisode () {
       return {
-        // order: -1,
-        // season: -1,
-        // videoUrl: '',
-        // title: '',
-        // description: '',
-        // authors: [],
-        // googlePodcastsUrl: '',
-        // itunesUrl: '',
-        // spotifyUrl: '',
-        // suggestedTweet: '',
-        // transcript: '',
-        // tags: []
         title: '',
         subtitle: '',
         description: '',

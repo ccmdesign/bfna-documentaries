@@ -21,19 +21,13 @@ import utils from '../../utils'
 export default {
   data () {
     return {
-      backgroundImage: `url('${this.getThumbnailMax()}')`
+      backgroundImage: `url('${this.imageUrl}')`
     }
   },
   props: {
-    videoUrl: {
+    imageUrl: {
       type: String,
       required: true
-    }
-  },
-  methods: {
-    getThumbnailMax () {
-      const videoId = utils.getVideoIdFromYoutubeUrl(this.videoUrl)
-      return videoId ? `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg` : ''
     }
   }
 }

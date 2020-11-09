@@ -57,7 +57,7 @@ export default {
   },
   metaInfo () {
     return {
-      title: 'How To Fix Democracy',
+      title: 'BFNA Documentaries',
       meta: [
         {
           vmid: 'description',
@@ -67,7 +67,7 @@ export default {
         {
           vmid: 'og:title',
           property: 'og:title',
-          content: 'How To Fix Democracy'
+          content: 'BFNA Documentaries'
         },
         {
           vmid: 'og:description',
