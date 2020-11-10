@@ -1,4 +1,4 @@
-# how-to-fix-democracy
+# BFNA Documentaries
 
 ## Project setup
 ```
