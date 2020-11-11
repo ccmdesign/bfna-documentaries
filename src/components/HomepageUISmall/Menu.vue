@@ -19,8 +19,9 @@
         <h4 class="menu-small__section-title">Navigation</h4>
       </div>
       <ul class="menu-small__list">
-        <router-link tag="li" to="/about">About</router-link>
-        <router-link tag="li" to="/host">Host</router-link>
+        <!-- <router-link tag="li" to="/about">About</router-link>
+        <router-link tag="li" to="/host">Host</router-link> -->
+        <li><a href="www.bfna.org" target="_blank">Visit Our Homepage</a></li>
       </ul>
     </div>
   </div>

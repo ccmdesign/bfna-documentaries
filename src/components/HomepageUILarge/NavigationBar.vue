@@ -4,8 +4,9 @@
       <div class="large-navigation-bar__button">menu</div>
     </div>
     <ul class="large-navigation-bar__menu">
-      <router-link tag="li" to="/about">About</router-link>
-      <router-link tag="li" to="/host">Host</router-link>
+      <!-- <router-link tag="li" to="/about">About</router-link>
+      <router-link tag="li" to="/host">Host</router-link> -->
+      <li><a href="https://www.bfna.org">Visit Our Homepage</a></li>
     </ul>
   </div>
 </template>
@@ -55,7 +56,8 @@
     justify-content: flex-end;
     transform-origin: left top;
     transform: rotate(-90deg);
-    margin-top: 235px;
+    margin-top: 60vh;
+    width: 330px;
 
     @media (min-width: 100em) {
       margin-top: 331px;
@@ -85,6 +87,14 @@
 
       &:last-child {
         margin-left: 16px;
+      }
+
+      & > a {
+        color: inherit;
+
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }

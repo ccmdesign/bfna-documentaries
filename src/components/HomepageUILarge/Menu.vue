@@ -9,8 +9,9 @@
         close
       </div>
       <ul class="menu-large__list">
-        <router-link tag="li" to="/about">About</router-link>
-        <router-link tag="li" to="/host">Host</router-link>
+        <!-- <router-link tag="li" to="/about">About</router-link>
+        <router-link tag="li" to="/host">Host</router-link> -->
+        <li><a href="www.bfna.org" target="_blank">Visit Our Homepage</a></li>
       </ul>
       <div class="menu-large__section-wrapper">
         <h4 class="menu-large__section-title">Newsletter</h4>

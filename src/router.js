@@ -6,9 +6,9 @@ import store from './store'
 
 import Home from './views/Home.vue'
 import searchView from './views/Search.vue'
-import hostView from './views/Host.vue'
-import aboutUsView from './views/AboutUs.vue'
-import episodesView from './views/Episodes.vue'
+// import hostView from './views/Host.vue'
+// import aboutUsView from './views/AboutUs.vue'
+// import episodesView from './views/Episodes.vue'
 import watchView from './views/Watch.vue'
 
 Vue.use(Router)
@@ -28,21 +28,21 @@ const router = new Router({
       name: 'search',
       component: searchView
     },
-    {
-      path: '/host',
-      name: 'host',
-      component: hostView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: aboutUsView
-    },
-    {
-      path: '/episodes',
-      name: 'episodes',
-      component: episodesView
-    },
+    // {
+    //   path: '/host',
+    //   name: 'host',
+    //   component: hostView
+    // },
+    // {
+    //   path: '/about',
+    //   name: 'about',
+    //   component: aboutUsView
+    // },
+    // {
+    //   path: '/episodes',
+    //   name: 'episodes',
+    //   component: episodesView
+    // },
     {
       path: '/watch',
       name: 'watch',
