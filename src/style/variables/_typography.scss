@@ -1,6 +1,6 @@
-@import url('https://use.typekit.net/avm2fbd.css');
+@import url("https://use.typekit.net/avm2fbd.css");
 
-$font-family-primary: futura-pt, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+$font-family-primary: trade-gothic-next, sans-serif;
 $default-font-color: $colors-white !default;
 
 /* fallback */
@@ -14,12 +14,12 @@ $default-font-color: $colors-white !default;
 //   // src: url(https://fonts.gstatic.com/s/materialicons/v43/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
 // }
 
-$material-design-icons-font-path: '~material-design-icons-iconfont/dist/fonts/';
+$material-design-icons-font-path: "~material-design-icons-iconfont/dist/fonts/";
 
-@import '~material-design-icons-iconfont/src/material-design-icons';
+@import "~material-design-icons-iconfont/src/material-design-icons";
 
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
   font-size: 1.5em;
@@ -30,6 +30,6 @@ $material-design-icons-font-path: '~material-design-icons-iconfont/dist/fonts/';
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
-  -webkit-font-feature-settings: 'liga';
+  -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
 }

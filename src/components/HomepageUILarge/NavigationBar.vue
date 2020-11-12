@@ -57,7 +57,7 @@
     transform-origin: left top;
     transform: rotate(-90deg);
     margin-top: 60vh;
-    width: 330px;
+    width: 450px;
 
     @media (min-width: 100em) {
       margin-top: 331px;
