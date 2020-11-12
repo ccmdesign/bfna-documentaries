@@ -126,10 +126,10 @@ import utils from '../../utils'
 export default {
   computed: {
     hasVideos () {
-      return this.$store.getters.hasVideos
+        return this.$store.getters.hasVideos
     },
     currentVideo () {
-      return this.hasVideos ? this.$store.state.videoList[this.$store.state.currentVideo] : this.$store.getters.emptyEpisode
+        return this.hasVideos ? this.$store.state.videoList[this.$store.state.currentVideo] : this.$store.getters.emptyEpisode
     },
     workstream () {
         return `video-workstream--${this.currentVideo.workstream}`

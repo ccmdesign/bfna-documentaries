@@ -57,7 +57,8 @@
 
   &.hidden {
     pointer-events: none;
-
+    z-index: 10;
+    
     .menu-large__content {
       transform: translateX(-100%);
     }
@@ -96,7 +97,7 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   &--updates {
     flex: 1; 
     text-align: left;

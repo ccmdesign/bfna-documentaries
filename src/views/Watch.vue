@@ -257,9 +257,8 @@
     position: absolute;
     bottom: 48px;
     right: 48px;
-    background-color: #fc8b00;
+    background-color: rgb(8,67,94);
     font-size: 2em;
-    border-radius: 50%;
     padding: 12px;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
     cursor: pointer;

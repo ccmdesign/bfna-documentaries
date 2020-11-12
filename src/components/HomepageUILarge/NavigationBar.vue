@@ -58,6 +58,7 @@
     transform: rotate(-90deg);
     margin-top: 60vh;
     width: 450px;
+    pointer-events: none;
 
     @media (min-width: 100em) {
       margin-top: 331px;
@@ -72,6 +73,7 @@
       letter-spacing: 1.48px;
       text-transform: uppercase;
       transition: background-color 0.13s ease-in-out;
+      pointer-events: all;
 
       @media (min-width: 100em) {
         padding: 0 64px;
