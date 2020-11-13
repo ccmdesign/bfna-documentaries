@@ -1,65 +1,6 @@
 <template>
   <div class="watch-view" @mousemove="timeoutNavigation" @click="timeoutNavigation" @mouseover="timeoutNavigation">
     <router-link ref="backButton" tag="div" to="/" class="watch-view__back" :class="{ visible: navigationVisible }" @mousemove="timeoutNavigation" @click="timeoutNavigation" @mouseover="timeoutNavigation">close</router-link>
-    <div class="watch-view__panel-wrapper">
-      <div class="watch-view__panel" :class="{ visible: navigationVisible && showSuggestedTweet }" @mousemove="keepNavigation" @click="keepNavigation" @mouseover="keepNavigation" @mouseleave="timeoutNavigation">
-      <!-- <div class="watch-view__panel" :class="{ visible: true }"> -->
-        <div class="watch-view__suggested-tweet" v-show="hasSuggestedTweet()">
-          <p>
-            {{ getSuggestedTweet() }}
-          </p>
-          <div class="watch-view__tweet-this-wrapper">
-            <a class="watch-view__tweet-this" :href="`https://twitter.com/intent/tweet?text=${getFormattedSuggestedTweet()}`" target="_blank" rel="noopener">
-              <span><img src="/img/icons/twitter.svg" /></span><span style="margin-left:14px;padding-bottom:1px">Tweet this</span>
-            </a>
-          </div>
-        </div>
-        <div class="watch-view__subscribe">
-          <div class="watch-view__subscribe-newsletter">
-            <p>Subscribe to our newsletter</p>
-            <div id="mc_embed_signup">
-              <form action="https://bfna.us20.list-manage.com/subscribe/post?u=53fc7e266c23506906a0a602f&amp;id=4447bf4515"
-                method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank"
-                novalidate>
-                <div id="mc_embed_signup_scroll">
-                  <div id="mergeRow-gdpr" class="mergeRow gdpr-mergeRow content__gdprBlock mc-field-group" aria-hidden="true">
-                    <div class="content__gdpr">
-                      <fieldset class="mc_fieldset gdprRequired mc-field-group" name="interestgroup_field">
-                        <label class="checkbox subfield" for="gdpr_1657"><input type="checkbox" id="gdpr_1657" name="gdpr[1657]"
-                            value="Y" class="av-checkbox" checked><span>Email</span> </label>
-                      </fieldset>
-                    </div>
-                  </div>
-                  <div id="mergeRow-interests" class="mc-field-group input-group" aria-hidden="true">
-                    <strong>I'm interested in </strong>
-                    <ul>
-                      <li><input type="checkbox" value="1" name="group[3633][1]" id="mce-group[3633]-3633-0" checked><label
-                          for="mce-group[3633]-3633-0">How to Fix Democracy</label></li>
-                    </ul>
-                  </div>
-                  <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                  <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
-                      name="b_53fc7e266c23506906a0a602f_4447bf4515" tabindex="-1" value=""></div>
-                  <div class="mc-field-group watch-view__subscribe-newsletter__inputs-wrapper">
-                    <input type="email" value="" name="EMAIL" class="required email watch-view__subscribe-email" id="mce-EMAIL" placeholder="E-mail">
-                    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
-                      class="button watch-view__subscribe-submit">
-                  </div>
-                  <div id="mce-responses" class="clear">
-                    <div class="response" id="mce-error-response" style="display:none"></div>
-                    <div class="response" id="mce-success-response" style="display:none"></div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="watch-view__subscribe-channel">
-            <p>Subscribe to our Youtube channel</p>
-            <a href="https://www.youtube.com/channel/UCZZdgI5F7KjUCW0fCKUOAAg?sub_confirmation=1" target="_blank" rel="noopener">Subscribe</a>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="watch-view__wrapper" :class="{ show }" @mousemove="timeoutNavigation" @click="timeoutNavigation" @mouseover="timeoutNavigation">
       <youtube class="watch-view__player" :video-id="videoId" ref="youtube" @playing="showPlayer" @mousemove="timeoutNavigation" @click="timeoutNavigation" @mouseover="timeoutNavigation" @paused="keepNavigation" @ended="endVideo"></youtube>
     </div>
@@ -118,14 +59,6 @@
     p {
       font-size: 1.25em;
       font-weight: 300;
-    }
-
-    &-newsletter {
-      flex: 1;
-
-      &__inputs-wrapper {
-        display: flex;
-      }
     }
 
     &-email {
@@ -300,10 +233,7 @@ export default {
       videoObject: null,
       show: false,
       navigationVisible: true,
-      showSuggestedTweet: false,
-      currentTimeout: null,
-      newsletterSubscribed: 0,
-      newsletterFeedback: ''
+      currentTimeout: null
     }
   },
   computed: {
@@ -317,7 +247,6 @@ export default {
   methods: {
     showPlayer () {
       this.show = true
-      this.showSuggestedTweet = false
       this.timeoutNavigation()
     },
     timeoutNavigation () {
@@ -330,9 +259,6 @@ export default {
       this.currentTimeout = setTimeout(() => {
         this.navigationVisible = false
         this.currentTimeout = null
-        if (!this.showSuggestedTweet) {
-          this.showSuggestedTweet = true
-        }
       }, 5000)
     },
     keepNavigation () {
@@ -345,23 +271,6 @@ export default {
     endVideo () {
       this.show = false
       this.keepNavigation()
-    },
-    hasSuggestedTweet () {
-      return this.videoObject && this.videoObject.suggestedTweet
-    },
-    getSuggestedTweet () {
-      return this.videoObject && this.videoObject.suggestedTweet ? this.videoObject.suggestedTweet : ''
-    },
-    getFormattedSuggestedTweet () {
-      return encodeURI(this.getSuggestedTweet()).replace(/#/g, '%23').replace(/@/g, '%40')
-    },
-    submitNewsletter (event) {
-      event.preventDefault()
-      utils.registerNewsletter(null, this.$refs.newsletter_email, (pairs) => {
-        for (const pair of pairs) {
-          this[pair[0]] = pair[1]
-        }
-      })
     },
     holdLoading (cb) {
       if (this.videoList.length === 0) {
@@ -419,12 +328,12 @@ export default {
   },
   metaInfo () {
     return {
-      title: this.videoObject ? `${this.videoObject.title} on How To Fix Democracy` : 'Watch | How To Fix Democracy',
+      title: this.videoObject ? `${this.videoObject.title} on BFNA Documentaries` : 'Watch | BFNA Documentaries',
       meta: [
         {
           vmid: 'description',
           name: 'description',
-          content: this.videoObject && this.videoObject.transcript ? this.videoObject.transcript : utils.getDefaultDescription()
+          content: this.videoObject && this.videoObject.description ? this.videoObject.description : utils.getDefaultDescription()
         },
         {
           vmid: 'keywords',
@@ -434,12 +343,12 @@ export default {
         {
           vmid: 'og:title',
           property: 'og:title',
-          content: this.videoObject ? `${this.videoObject.title} on How To Fix Democracy` : 'Watch | How To Fix Democracy'
+          content: this.videoObject ? `${this.videoObject.title} on BFNA Documentaries` : 'Watch | BFNA Documentaries'
         },
         {
           vmid: 'og:description',
           property: 'og:description',
-          content: this.videoObject && this.videoObject.transcript ? this.videoObject.transcript : utils.getDefaultDescription()
+          content: this.videoObject && this.videoObject.description ? this.videoObject.description : utils.getDefaultDescription()
         }
       ]
     }

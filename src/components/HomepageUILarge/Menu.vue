@@ -146,9 +146,6 @@ export default {
   },
   methods: {
     setMenuVisibility(menuVisibility) {
-      if (menuVisibility) {
-        this.newsletterFeedback = "";
-      }
       this.$store.commit("setMenuVisibility", menuVisibility);
     },
     closeMenu(ifBackground, event) {

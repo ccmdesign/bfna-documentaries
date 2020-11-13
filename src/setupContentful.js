@@ -1,8 +1,6 @@
 export default function (instance) {
   instance.$contentful.getEntries({
     content_type: 'documentary',
-    // locale: 'en-US',
-    // order: '-fields.season,-fields.order',
     include: 1
   }).then((documentaryEntries) => {
     const documentaries = documentaryEntries.items.map(({ fields }) => {
@@ -12,6 +10,7 @@ export default function (instance) {
         description: fields.description,
         videoUrl: fields.video_url,
         workstream: fields.workstream,
+        tags: fields.tags,
         backgroundImage: fields.background_image.fields.file.url
       }
     })

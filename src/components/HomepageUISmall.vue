@@ -6,15 +6,11 @@
     <div class="homepage__info">
       <div class="homepage__header">
         <div class="homepage__header__logo">
-          <img src="../assets/logo.png" width="128" />
-          <h2>Season {{ currentVideo.season }}</h2>
+          <h2>{{ currentVideo }}</h2>
         </div>
         <div class="homepage__header__logos" style="text-align:right;">
           <div class="homepage__header__logo">
             <img src="../assets/bertelsmann-logo.png" width="80"/>
-          </div>
-          <div class="homepage__header__logo">
-            <img src="../assets/HIA_Logo-white.png" width="80"/>
           </div>
         </div>
       </div>
@@ -72,7 +68,6 @@
     top: 0;
     pointer-events: none;
     user-select: none;
-    // background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 47%, #0a0a0a 100%);
     background-color: rgba(0, 0, 0, 0.48);
   }
 
@@ -121,7 +116,6 @@
   &__description {
     flex: 1;
     padding-top: 8px;
-    // margin-left: 32px;
 
     h2 {
       color: #fc8b00;
@@ -252,13 +246,6 @@ export default {
         this.setCurrentVideo(this.videoList.length - 1)
       } else {
         this.setCurrentVideo(this.currentIndex - 1)
-      }
-    },
-    getAuthorPicture (episode) {
-      if (this.hasVideos && episode.authors.length > 0) {
-        return episode.authors[0].picture.url
-      } else {
-        return ''
       }
     }
   }

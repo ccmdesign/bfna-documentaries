@@ -4,8 +4,8 @@ import ContentfulVue from 'contentful-vue'
 
 Vue.use(Vuex)
 Vue.use(ContentfulVue, {
-  space: 'sskjmxwce76z',
-  accessToken: 'dcyMYpzq-OPLZ_OlZMtdVVPGoULhPI9pJ3YacXN-ypo'
+  space: 'i3vkqp3u3738',
+  accessToken: 'djZF2h9Zs1hLxuj2cjN7544QiqZjeotwa3CDWPm2iyc'
 })
 
 const store = new Vuex.Store({

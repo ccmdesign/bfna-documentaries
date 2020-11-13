@@ -118,17 +118,9 @@
 </style>
 
 <script>
-import NewsletterSubscription from "../NewsletterSubscription";
 import utils from "../../utils";
 
 export default {
-  components: { NewsletterSubscription },
-  data() {
-    return {
-      newsletterSubscribed: 0,
-      newsletterFeedback: "",
-    };
-  },
   computed: {
     hasMenu() {
       return this.$store.state.menuVisibility;
@@ -153,22 +145,10 @@ export default {
     },
     scrollToBottom() {
       this.$refs.menuContent.scrollTo(0, this.$refs.menuContent.scrollHeight);
-    },
-    submitNewsletter(event) {
-      event.preventDefault();
-      utils.registerNewsletter(
-        this.$refs.newsletter_name,
-        this.$refs.newsletter_email,
-        (pairs) => {
-          for (const pair of pairs) {
-            this[pair[0]] = pair[1];
-          }
-        }
-      );
-    },
+    }
   },
   mounted() {
     this.scrollToBottom();
-  },
+  }
 };
 </script>
