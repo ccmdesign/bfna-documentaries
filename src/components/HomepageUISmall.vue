@@ -1,5 +1,6 @@
 <template>
   <div class="homepage">
+    <VideoDescription />
     <carousel ref="carousel" class="homepage__slider" :per-page="1" :paginationEnabled="false" @pageChange="onPageChange" :value="currentIndex" :navigateTo="currentIndex">
       <slide v-for="(video, index) in videoList" :key="index" :video="video" />
     </carousel>

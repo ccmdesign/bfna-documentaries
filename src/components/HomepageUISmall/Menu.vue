@@ -5,24 +5,37 @@
     @click="closeMenu(true, $event)"
   >
     <div class="menu-small__content" ref="menuContent">
-      <div class="menu-small__section-wrapper">
-        <h4 class="menu-small__section-title">Newsletter</h4>
-        <p
-          class="menu-small__section-description"
-          v-show="newsletterSubscribed === 0"
-        >
-          Subscribe to our newsletter.
-        </p>
-        <newsletter-subscription />
-      </div>
-      <div class="menu-small__section-wrapper">
-        <h4 class="menu-small__section-title">Navigation</h4>
-      </div>
-      <ul class="menu-small__list">
-        <!-- <router-link tag="li" to="/about">About</router-link>
-        <router-link tag="li" to="/host">Host</router-link> -->
-        <li><a href="www.bfna.org" target="_blank">Visit Our Homepage</a></li>
-      </ul>
+      <section class="menu-small__col">
+        <nav class="menu-small__nav menu-small--updates">
+          <h2 class="menu-small__heading">Updates</h2>
+          <a href="https://www.bfna.org/updates/index.html#publications" class="menu-small__item">Publications</a><br>
+          <a href="https://www.bfna.org/updates/index.html#infographics" class="menu-small__item">Infographics</a><br>
+          <a href="https://www.bfna.org/updates/index.html#videos" class="menu-small__item">Videos</a><br>
+        </nav>
+
+        <nav class="menu-small__nav menu-small--about">
+          <h2 class="menu-small__heading">The Foundation</h2>
+          <a href="https://www.bfna.org/about" class="menu-small__item">About the Foundation</a><br>
+          <a href="https://www.bfna.org/team" class="menu-small__item">Board of Directors | Team</a><br>
+          <a href="https://www.bfna.org/bertelsmann-stiftung" class="menu-small__item">Bertelsmann Stiftung</a><br>
+          <a href="mailto: info@bfna.org" target="_blank" class="menu-small__item">Contact</a><br>
+          <a href="https://www.bfna.org/privacy-policy" class="menu-small__item">Privacy Policy</a>
+        </nav>
+      </section>
+      
+      <section class="menu-small__col menu-small--right-col">
+        <nav class="menu-small__nav menu-small--topics">
+          <h2 class="menu-small__heading">Topics</h2>
+          <a href="https://www.bfna.org/democracy" class="menu-small__item">Democracy</a><br>
+          <a href="https://www.bfna.org/future-of-work" class="menu-small__item">Future of Work</a><br>
+          <a href="https://www.bfna.org/digital-economy" class="menu-small__item">Digital Economy</a><br>
+          <a href="https://www.bfna.org/politics-society" class="menu-small__item">Politics & Society</a><br>
+        </nav>
+        
+        <nav class="menu-small__nav menu-small--archive">
+          <a href="/" class="menu-small__item">BFNA Documentaries</a><br>
+        </nav>
+      </section>
     </div>
   </div>
 </template>
@@ -44,7 +57,7 @@
       padding: 20px 24px;
       text-align: center;
 
-      @include media-breakpoint-large {
+      @include media-breakpoint-small {
         padding: 20px 64px 20px 64px;
       }
     }
@@ -77,11 +90,10 @@
     width: 100%;
     left: 0;
     bottom: 0;
-    padding: 64px 0 128px 0;
-    background-color: rgba(0, 0, 0, 0.95);
+    padding: 25px 0 128px 20px;
+    background-color: rgba(8,67,94,0.95);
     transition: transform 0.33s ease-in-out;
-    overflow: auto;
-    max-height: 100%;
+    height: 100%;
 
     &::after {
       position: fixed;
@@ -90,23 +102,6 @@
       left: 0;
       width: 100%;
       height: 96px;
-      background: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.33) 16.67%,
-        rgba(0, 0, 0, 0.75) 100%
-      );
-    }
-
-    li {
-      color: #ffffff;
-      font-size: 1.25em;
-      font-weight: 300;
-      letter-spacing: 3.7px;
-      line-height: 20px;
-      padding: 20px 64px;
-      cursor: pointer;
-      user-select: none;
     }
   }
 
@@ -114,6 +109,10 @@
     list-style: none;
     padding: 0;
   }
+}
+
+.menu-small--archive {
+  padding: 35px 0;
 }
 </style>
 
