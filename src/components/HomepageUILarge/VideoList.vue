@@ -45,7 +45,6 @@
         :key="index"
         @slideclick="selectEpisode(index)"
       >
-        <!-- <div class="video-list__episode-thumbnail" :style="{ backgroundImage: `url('${getVideoThumbnail(video)}')`}" /> -->
         <div
           class="video-list__episode-thumbnail"
           :style="{ backgroundImage: `url('${video.backgroundImage}')` }"
@@ -112,29 +111,14 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      // text-transform: uppercase;
-      // margin: 18px 0 0 0;
     }
 
     h3 {
       color: #ffffff;
       font-size: 0.875em;
-      // font-weight: 300;
       letter-spacing: 0.21px;
       line-height: 16px;
-      // text-transform: uppercase;
-      // margin: 9px 0 0 0;
-      // padding-right: 32px;
     }
-
-    // p {
-    //   color: #ffffff;
-    //   font-size: 0.875em;
-    //   font-weight: 300;
-    //   line-height: 16px;
-    //   margin: 14px 0 0 0;
-    //   padding-right: 32px;
-    // }
   }
 
   &__workstreams-section {

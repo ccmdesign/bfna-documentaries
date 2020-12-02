@@ -25,12 +25,6 @@
 
       <VideoDescription />
       <div class="homepage__footer" v-show="hasVideos">
-        <!-- <div class="homepage__description">
-          <h2>Episode {{ currentVideo.order }}</h2>
-          <h1>{{ currentVideo.title }}</h1>
-          <p>{{ currentVideo.description }}</p>
-          <div class="homepage__play-video"><span class="homepage__play-video__icon"></span>Play</div>
-        </div> -->
       </div>
     </div>
     <div

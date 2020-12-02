@@ -4,8 +4,6 @@
       <div class="large-navigation-bar__button">menu</div>
     </div>
     <ul class="large-navigation-bar__menu">
-      <!-- <router-link tag="li" to="/about">About</router-link>
-      <router-link tag="li" to="/host">Host</router-link> -->
       <li><a href="https://www.bfna.org">Visit Our Homepage</a></li>
     </ul>
   </div>
