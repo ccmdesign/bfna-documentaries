@@ -41,7 +41,7 @@
     border-bottom: solid 1px grey;
 
     &:hover {
-      background-color: lighten(#08415C, 5);
+      background-color: lighten(#08415c, 5);
     }
 
     &-wrapper {
@@ -106,14 +106,14 @@
 <script>
 export default {
   computed: {
-    hasMenu () {
-      return this.$store.state.menuVisibility
-    }
+    hasMenu() {
+      return this.$store.state.menuVisibility;
+    },
   },
   methods: {
-    toggleMenu () {
-      this.$store.commit('setMenuVisibility', !this.hasMenu)
-    }
-  }
-}
+    toggleMenu() {
+      this.$store.commit("setMenuVisibility", !this.hasMenu);
+    },
+  },
+};
 </script>

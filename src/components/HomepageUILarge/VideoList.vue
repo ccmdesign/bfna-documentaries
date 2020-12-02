@@ -1,25 +1,55 @@
 <template>
-
   <div class="video-list">
     <div class="video-list__workstreams-section">
-      <div class="child workstream--democracy" @click="selectWorkstream('democracy')" :class="{ selected : isWorkstreamSelected('democracy') }">
+      <div
+        class="child workstream--democracy"
+        @click="selectWorkstream('democracy')"
+        :class="{ selected: isWorkstreamSelected('democracy') }"
+      >
         <h2>Democracy</h2>
       </div>
-      <div class="child workstream--politics-society" @click="selectWorkstream('politics-society')" :class="{ selected : isWorkstreamSelected('politics-society') }">
+      <div
+        class="child workstream--politics-society"
+        @click="selectWorkstream('politics-society')"
+        :class="{ selected: isWorkstreamSelected('politics-society') }"
+      >
         <h2>Politics &amp; Society</h2>
       </div>
-      <div class="child workstream--future-of-work" @click="selectWorkstream('future-of-work')" :class="{ selected : isWorkstreamSelected('future-of-work') }">
+      <div
+        class="child workstream--future-of-work"
+        @click="selectWorkstream('future-of-work')"
+        :class="{ selected: isWorkstreamSelected('future-of-work') }"
+      >
         <h2>Future of Work</h2>
       </div>
-      <div class="child workstream--digital-economy" @click="selectWorkstream('digital-economy')" :class="{ selected : isWorkstreamSelected('digital-economy') }">
+      <div
+        class="child workstream--digital-economy"
+        @click="selectWorkstream('digital-economy')"
+        :class="{ selected: isWorkstreamSelected('digital-economy') }"
+      >
         <h2>Digital Economy</h2>
       </div>
     </div>
 
-    <carousel ref="videoList" class="video-list__carousel" :perPage="4" :paginationEnabled="false" :loop="true" :scrollPerPage="false">
-      <slide class="video-list__episode" v-for="(video, index) in videoList" :key="index" @slideclick="selectEpisode(index)">
+    <carousel
+      ref="videoList"
+      class="video-list__carousel"
+      :perPage="4"
+      :paginationEnabled="false"
+      :loop="true"
+      :scrollPerPage="false"
+    >
+      <slide
+        class="video-list__episode"
+        v-for="(video, index) in videoList"
+        :key="index"
+        @slideclick="selectEpisode(index)"
+      >
         <!-- <div class="video-list__episode-thumbnail" :style="{ backgroundImage: `url('${getVideoThumbnail(video)}')`}" /> -->
-        <div class="video-list__episode-thumbnail" :style="{ backgroundImage: `url('${video.backgroundImage}')`}" />
+        <div
+          class="video-list__episode-thumbnail"
+          :style="{ backgroundImage: `url('${video.backgroundImage}')` }"
+        />
 
         <div class="video-list__episode-info">
           <h4>{{ video.title }}</h4>
@@ -28,8 +58,20 @@
       </slide>
     </carousel>
 
-    <div class="video-list__controls video-list__controls--left" @click="previousEpisode" v-show="videoList.length > 4">arrow_back</div>
-    <div class="video-list__controls video-list__controls--right" @click="nextEpisode" v-show="videoList.length > 4">arrow_forward</div>
+    <div
+      class="video-list__controls video-list__controls--left"
+      @click="previousEpisode"
+      v-show="videoList.length > 4"
+    >
+      arrow_back
+    </div>
+    <div
+      class="video-list__controls video-list__controls--right"
+      @click="nextEpisode"
+      v-show="videoList.length > 4"
+    >
+      arrow_forward
+    </div>
   </div>
 </template>
 
@@ -41,7 +83,7 @@
   &__episode {
     cursor: pointer;
     box-shadow: 0px 8px 32px #00000026;
-    border: 1px solid #FFFFFF33;
+    border: 1px solid #ffffff33;
     width: 20vw;
     margin-left: 2vw;
 
@@ -106,15 +148,15 @@
       opacity: 0.5;
 
       &.workstream--democracy {
-        background-color: #4F8D71;
+        background-color: #4f8d71;
       }
 
       &.workstream--politics-society {
-        background-color: #FC8B00;
+        background-color: #fc8b00;
       }
 
       &.workstream--future-of-work {
-        background-color: #C73540;
+        background-color: #c73540;
       }
 
       &.workstream--digital-economy {
@@ -132,7 +174,7 @@
       }
 
       &.selected {
-        opacity: 1
+        opacity: 1;
       }
     }
   }
@@ -140,7 +182,7 @@
   &__controls {
     @extend .material-icons;
     position: absolute;
-    background-color: #08415C;
+    background-color: #08415c;
     padding: 12px;
     font-size: 36px;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
@@ -160,72 +202,79 @@
 </style>
 
 <script>
-import { Carousel, Slide } from 'vue-carousel'
-import utils from '../../utils'
+import { Carousel, Slide } from "vue-carousel";
+import utils from "../../utils";
 
 export default {
   components: { Carousel, Slide },
-  data () {
+  data() {
     return {
       currentEpisode: 0,
-      selectedWorkstreams: []
-    }
+      selectedWorkstreams: [],
+    };
   },
   props: {
     closeAction: {
       type: Function,
-      required: false
-    }
+      required: false,
+    },
   },
   computed: {
-    videoList () {
-      const filter = item => { return this.selectedWorkstreams.length === 0 || this.selectedWorkstreams.includes(item.workstream) }
+    videoList() {
+      const filter = (item) => {
+        return (
+          this.selectedWorkstreams.length === 0 ||
+          this.selectedWorkstreams.includes(item.workstream)
+        );
+      };
 
-      return this.$store.state.videoList.filter(filter)
+      return this.$store.state.videoList.filter(filter);
     },
-    maxPages () {
-      return Math.floor(this.videoList.length / 4)
+    maxPages() {
+      return Math.floor(this.videoList.length / 4);
     },
-    currentIndex () {
-      return this.$store.state.currentVideo
+    currentIndex() {
+      return this.$store.state.currentVideo;
     },
-    hasVideos () {
-      return this.$store.getters.hasVideos
+    hasVideos() {
+      return this.$store.getters.hasVideos;
     },
-    currentVideo () {
-      return this.hasVideos ? this.videoList[this.currentIndex] : this.$store.getters.emptyEpisode
+    currentVideo() {
+      return this.hasVideos
+        ? this.videoList[this.currentIndex]
+        : this.$store.getters.emptyEpisode;
     },
     // workstreams () {
     //   return new Set(this.$store.state.videoList.map(x => x.workstream))
     // }
   },
   methods: {
-    getVideoThumbnail (video) {
-      const videoId = utils.getVideoIdFromYoutubeUrl(video.videoUrl)
-      return videoId ? `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg` : ''
+    getVideoThumbnail(video) {
+      const videoId = utils.getVideoIdFromYoutubeUrl(video.videoUrl);
+      return videoId
+        ? `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`
+        : "";
     },
-    nextEpisode () {
-      this.$refs.videoList.handleNavigation('forward')
+    nextEpisode() {
+      this.$refs.videoList.handleNavigation("forward");
     },
-    previousEpisode () {
-      this.$refs.videoList.handleNavigation('backward')
+    previousEpisode() {
+      this.$refs.videoList.handleNavigation("backward");
     },
-    selectEpisode (index) {
-      this.$store.commit('setCurrentVideo', index)
+    selectEpisode(index) {
+      this.$store.commit("setCurrentVideo", index);
       if (this.closeAction) {
-        this.closeAction()
+        this.closeAction();
       }
     },
-    selectWorkstream (workstream) {
+    selectWorkstream(workstream) {
       const index = this.selectedWorkstreams.indexOf(workstream);
 
       if (index > -1) {
         this.selectedWorkstreams.splice(index, 1);
-
       } else {
-        this.selectedWorkstreams.push(workstream)
+        this.selectedWorkstreams.push(workstream);
       }
-
 
       // if (this.selectedWorkstream !== workstream) {
       //   this.selectedWorkstream = workstream
@@ -236,9 +285,9 @@ export default {
       //   this.$refs.videoList.goToPage(0)
       // }
     },
-    isWorkstreamSelected (workstream) {
-      return this.selectedWorkstreams.includes(workstream)
-    }
-  }
-}
+    isWorkstreamSelected(workstream) {
+      return this.selectedWorkstreams.includes(workstream);
+    },
+  },
+};
 </script>

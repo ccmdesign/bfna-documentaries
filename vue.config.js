@@ -13,9 +13,7 @@ module.exports = {
       registry: undefined,
       renderRoutes: [
         '/',
-        // '/host',
-        // '/about',
-        // '/episodes'
+        '/documentaries'
       ],
       useRenderEvent: true,
       headless: true,

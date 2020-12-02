@@ -1,21 +1,61 @@
 <template>
   <div class="homepage">
     <VideoDescription />
-    <carousel class="homepage__slider" :per-page="1" :paginationEnabled="false" @pageChange="onPageChange" :value="currentIndex" :navigateTo="currentIndex">
+    <carousel
+      class="homepage__slider"
+      :per-page="1"
+      :paginationEnabled="false"
+      @pageChange="onPageChange"
+      :value="currentIndex"
+      :navigateTo="currentIndex"
+    >
       <slide v-for="(video, index) in videoList" :key="index" :video="video" />
     </carousel>
     <navigation-bar />
-    <div class="homepage__controls homepage__controls--left" @click="previousSlide" :class="{ hidden: videoListMenu }" v-show="videoList.length > 1">arrow_back</div>
-    <div class="homepage__controls homepage__controls--right" @click="nextSlide" :class="{ hidden: videoListMenu }" v-show="videoList.length > 1">arrow_forward</div>
+    <div
+      class="homepage__controls homepage__controls--left"
+      @click="previousSlide"
+      :class="{ hidden: videoListMenu }"
+      v-show="videoList.length > 1"
+    >
+      arrow_back
+    </div>
+    <div
+      class="homepage__controls homepage__controls--right"
+      @click="nextSlide"
+      :class="{ hidden: videoListMenu }"
+      v-show="videoList.length > 1"
+    >
+      arrow_forward
+    </div>
     <menu-ui />
     <div class="homepage__list-bar" :class="{ opened: videoListMenu }">
       <div class="homepage__list-bar__section button-section">
-        <div class="homepage__list-bar__button" :class="{ opened: videoListMenu }" @click="toggleVideoList">arrow_upward</div>
-        <div class="homepage__list-bar__by">by <a href="https://www.ccmdesign.ca" target="_blank" rel="noopener">ccm.design</a></div>
+        <div
+          class="homepage__list-bar__button"
+          :class="{ opened: videoListMenu }"
+          @click="toggleVideoList"
+        >
+          arrow_upward
+        </div>
+        <div class="homepage__list-bar__by">
+          by
+          <a href="https://www.ccmdesign.ca" target="_blank" rel="noopener"
+            >ccm.design</a
+          >
+        </div>
       </div>
 
-      <div class="homepage__list-bar__section videos-section" :style="{ maxHeight: videoListHeight }" :class="{ closed: !videoListMenu }">
-        <video-list class="child" ref="videoListWrapper" :closeAction="closeVideoList" />
+      <div
+        class="homepage__list-bar__section videos-section"
+        :style="{ maxHeight: videoListHeight }"
+        :class="{ closed: !videoListMenu }"
+      >
+        <video-list
+          class="child"
+          ref="videoListWrapper"
+          :closeAction="closeVideoList"
+        />
       </div>
     </div>
   </div>
@@ -43,7 +83,7 @@
     z-index: 100;
 
     &.opened {
-      background-color: #01121AD9;
+      background-color: #01121ad9;
     }
 
     &__section {
@@ -77,7 +117,7 @@
     &__button {
       @extend .material-icons;
       display: inline-block;
-      background-color: #08415C;
+      background-color: #08415c;
       padding: 12px;
       cursor: pointer;
       transform: translateY(-50%);
@@ -107,7 +147,7 @@
     z-index: 2;
     @extend .material-icons;
     position: absolute;
-    background-color: #08415C;
+    background-color: #08415c;
     padding: 12px;
     font-size: 36px;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
@@ -141,68 +181,81 @@
 </style>
 
 <script>
-import { Carousel } from 'vue-carousel'
-import Slide from '@/components/HomepageUILarge/Slide'
-import VideoList from '@/components/HomepageUILarge/VideoList'
-import NavigationBar from '@/components/HomepageUILarge/NavigationBar'
-import MenuUI from '@/components/HomepageUILarge/Menu'
-import VideoDescription from '@/components/HomepageUILarge/VideoDescription'
+import { Carousel } from "vue-carousel";
+import Slide from "@/components/HomepageUILarge/Slide";
+import VideoList from "@/components/HomepageUILarge/VideoList";
+import NavigationBar from "@/components/HomepageUILarge/NavigationBar";
+import MenuUI from "@/components/HomepageUILarge/Menu";
+import VideoDescription from "@/components/HomepageUILarge/VideoDescription";
 
 export default {
-  name: 'HomepageUILargeComponent',
-  components: { Carousel, Slide, VideoList, NavigationBar, 'menu-ui': MenuUI, VideoDescription },
-  data () {
+  name: "HomepageUILargeComponent",
+  components: {
+    Carousel,
+    Slide,
+    VideoList,
+    NavigationBar,
+    "menu-ui": MenuUI,
+    VideoDescription,
+  },
+  data() {
     return {
       videoListMenu: false,
-      videoListHeight: 0
-    }
+      videoListHeight: 0,
+    };
   },
   computed: {
-    videoList () {
-      return this.$store.state.videoList
+    videoList() {
+      return this.$store.state.videoList;
     },
-    currentIndex () {
-      return this.$store.state.currentVideo
+    currentIndex() {
+      return this.$store.state.currentVideo;
     },
-    hasVideos () {
-      return this.$store.getters.hasVideos
+    hasVideos() {
+      return this.$store.getters.hasVideos;
     },
-    currentVideo () {
-      return this.hasVideos ? this.videoList[this.currentIndex] : this.$store.getters.emptyEpisode
-    }
+    currentVideo() {
+      return this.hasVideos
+        ? this.videoList[this.currentIndex]
+        : this.$store.getters.emptyEpisode;
+    },
   },
   methods: {
-    onPageChange (newSlide) {
-      this.setCurrentVideo(newSlide)
+    onPageChange(newSlide) {
+      this.setCurrentVideo(newSlide);
     },
-    setCurrentVideo (index) {
-      this.$store.commit('setCurrentVideo', index)
+    setCurrentVideo(index) {
+      this.$store.commit("setCurrentVideo", index);
     },
-    nextSlide () {
-      if ((this.currentIndex + 1) >= this.videoList.length) {
-        this.setCurrentVideo(0)
+    nextSlide() {
+      if (this.currentIndex + 1 >= this.videoList.length) {
+        this.setCurrentVideo(0);
       } else {
-        this.setCurrentVideo(this.currentIndex + 1)
+        this.setCurrentVideo(this.currentIndex + 1);
       }
     },
-    previousSlide () {
-      if ((this.currentIndex - 1) < 0) {
-        this.setCurrentVideo(this.videoList.length - 1)
+    previousSlide() {
+      if (this.currentIndex - 1 < 0) {
+        this.setCurrentVideo(this.videoList.length - 1);
       } else {
-        this.setCurrentVideo(this.currentIndex - 1)
+        this.setCurrentVideo(this.currentIndex - 1);
       }
     },
-    toggleVideoList () {
-      this.videoListMenu = !this.videoListMenu
+    toggleVideoList() {
+      this.videoListMenu = !this.videoListMenu;
     },
-    closeVideoList () {
-      this.videoListMenu = false
-    }
+    closeVideoList() {
+      this.videoListMenu = false;
+    },
   },
-  mounted () {
+  mounted() {
     requestAnimationFrame(() => {
-      this.videoListHeight = Math.max(this.$refs.videoListWrapper.$el.getBoundingClientRect().height, 510) + 'px'
-    })
-  }
-}
+      this.videoListHeight =
+        Math.max(
+          this.$refs.videoListWrapper.$el.getBoundingClientRect().height,
+          510
+        ) + "px";
+    });
+  },
+};
 </script>

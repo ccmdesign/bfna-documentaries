@@ -1,7 +1,6 @@
 <template>
-  <div class="full_content">
-    <HomeHeader />
-    <div class="video__description" :class="workstream">
+  <div class="video__description" :class="workstream">
+    <div class="video__header">
       <span class="video__workstream__tag">
         {{ currentVideo.workstream }}
       </span>
@@ -9,6 +8,9 @@
         <h2 class="video__title">{{ currentVideo.title }}</h2>
         <p class="video__subtitle">{{ currentVideo.subtitle }}</p>
       </div>
+    </div>
+
+    <div class="video__body">
       <div class="video__excerpt">
         <p>{{ currentVideo.description }}</p>
       </div>
@@ -18,36 +20,23 @@
 </template>
 
 <style lang="scss">
-.full_content {
-  z-index: 1;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  max-height: 100%;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background-color: rgba(17, 24, 41, 0.65);
-  padding: 70px 100px;
-}
-
 .video {
   &__description {
-    width: 55%;
-  }
-  &__heading {
-    padding-bottom: 60px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
   &__title {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 500;
     margin-bottom: 0;
+    line-height: normal;
   }
   &__subtitle {
     opacity: 1;
-  }
-  &__excerpt {
-    padding-right: 150px;
+    line-height: normal;
   }
   &__workstream__tag {
     display: inline-block;
@@ -78,21 +67,21 @@
   }
 }
 .video-workstream--democracy {
-  & > .video__workstream__tag,
-  & > .video__play {
+  & .video__workstream__tag,
+  & .video__play {
     background-color: #4f8d71;
   }
-  & > .video__play:hover {
+  & .video__play:hover {
     background-color: lighten(#4f8d71, 9);
   }
 }
 
 .video-workstream--politics-society {
-  & > .video__workstream__tag,
-  & > .video__play {
+  & .video__workstream__tag,
+  & .video__play {
     background-color: #fc8b00;
   }
-  & > .video__play:hover {
+  & .video__play:hover {
     background-color: lighten(#fc8b00, 9);
   }
 }

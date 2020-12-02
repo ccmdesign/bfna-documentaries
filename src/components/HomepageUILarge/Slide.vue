@@ -12,16 +12,16 @@
 </style>
 
 <script>
-import { Slide } from 'vue-carousel'
-import Background from '@/components/HomepageUILarge/Background'
+import { Slide } from "vue-carousel";
+import Background from "@/components/HomepageUILarge/Background";
 
 export default {
   components: { Slide, Background },
   props: {
     video: {
       type: Object,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>

@@ -39,9 +39,11 @@ $app-body-limit: 960px;
 }
 
 .media-breakpoint-hidden-large {
-  @include media-breakpoint-hidden-large () {}
+  @include media-breakpoint-hidden-large() {
+  }
 }
 
 .media-breakpoint-hidden-small {
-  @include media-breakpoint-hidden-small () {}
+  @include media-breakpoint-hidden-small() {
+  }
 }

@@ -1,7 +1,21 @@
 <template>
   <ul class="navigation-bar" :class="{ show: hasNavigation }">
-    <router-link tag="li" to="/" class="navigation-bar__item" :class="{ active: isCurrentRoute('home') }"><b class="navigation-bar__icon">home</b><p class="navigation-bar__label">Home</p></router-link>
-    <router-link tag="li" to="/episodes" class="navigation-bar__item" :class="{ active: isCurrentRoute('episodes') }"><b class="navigation-bar__icon">play_arrow</b><p class="navigation-bar__label">Episodes</p></router-link>
+    <router-link
+      tag="li"
+      to="/"
+      class="navigation-bar__item"
+      :class="{ active: isCurrentRoute('home') }"
+      ><b class="navigation-bar__icon">home</b>
+      <p class="navigation-bar__label">Home</p></router-link
+    >
+    <router-link
+      tag="li"
+      to="/documentaries"
+      class="navigation-bar__item"
+      :class="{ active: isCurrentRoute('documentaries') }"
+      ><b class="navigation-bar__icon">play_arrow</b>
+      <p class="navigation-bar__label">Documentaries</p></router-link
+    >
     <li class="navigation-bar__item--0" @click="toggleMenu">
       <div class="navigation-bar__menu" :class="{ hasMenu }">menu</div>
     </li>
@@ -52,10 +66,10 @@
 
     &::before {
       position: absolute;
-      content: '';
+      content: "";
       width: 64px;
       height: 4px;
-      background-color: #fc8b00;
+      background-color: #08415c;
       bottom: 0;
       left: calc(50% - 32px);
       transition: transform 0.13s ease-in-out;
@@ -80,11 +94,11 @@
     height: 55px;
     text-align: center;
     line-height: 55px;
-    background-color: #fc8b00;
+    background-color: #08415c;
     cursor: pointer;
 
     &.hasMenu {
-      background-color: lighten(#fc8b00, 7);
+      background-color: lighten(#08415c, 7);
     }
   }
 }
@@ -92,31 +106,31 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      currentRoute: this.$router.history.current.name
-    }
+      currentRoute: this.$router.history.current.name,
+    };
   },
   computed: {
-    hasNavigation () {
-      return this.$store.state.navigation
+    hasNavigation() {
+      return this.$store.state.navigation;
     },
-    hasMenu () {
-      return this.$store.state.menuVisibility
-    }
+    hasMenu() {
+      return this.$store.state.menuVisibility;
+    },
   },
   watch: {
-    '$route' (to, from) {
-      this.currentRoute = to.name
-    }
+    $route(to, from) {
+      this.currentRoute = to.name;
+    },
   },
   methods: {
-    isCurrentRoute (routeName) {
-      return this.currentRoute === routeName
+    isCurrentRoute(routeName) {
+      return this.currentRoute === routeName;
     },
-    toggleMenu () {
-      this.$store.commit('setMenuVisibility', !this.hasMenu)
-    }
-  }
-}
+    toggleMenu() {
+      this.$store.commit("setMenuVisibility", !this.hasMenu);
+    },
+  },
+};
 </script>

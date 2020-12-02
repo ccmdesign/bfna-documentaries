@@ -8,7 +8,9 @@
 </template>
 
 <style lang="scss">
-html, body, #app {
+html,
+body,
+#app {
   position: relative;
   width: 100%;
   height: 100%;
@@ -16,15 +18,15 @@ html, body, #app {
 </style>
 
 <script>
-import MobileNavigation from '@/components/HomepageUISmall/NavigationBar'
-import MenuUI from '@/components/HomepageUISmall/Menu'
+import MobileNavigation from "@/components/HomepageUISmall/NavigationBar";
+import MenuUI from "@/components/HomepageUISmall/Menu";
 
 export default {
-  components: { MobileNavigation, 'menu-ui': MenuUI },
+  components: { MobileNavigation, "menu-ui": MenuUI },
   methods: {
-    getUIType () {
-      return document.documentElement.clientWidth >= 768 ? 'large' : 'small'
-    }
-  }
-}
+    getUIType() {
+      return document.documentElement.clientWidth >= 768 ? "large" : "small";
+    },
+  },
+};
 </script>

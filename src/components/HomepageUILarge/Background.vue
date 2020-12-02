@@ -1,5 +1,8 @@
 <template>
-  <div class="homepage__slider__background--large" :style="{ backgroundImage }"></div>
+  <div
+    class="homepage__slider__background--large"
+    :style="{ backgroundImage }"
+  ></div>
 </template>
 
 <style lang="scss">
@@ -15,19 +18,19 @@
 </style>
 
 <script>
-import utils from '../../utils'
+import utils from "../../utils";
 
 export default {
-  data () {
+  data() {
     return {
-      backgroundImage: `url('${this.imageUrl}')`
-    }
+      backgroundImage: `url('${this.imageUrl}')`,
+    };
   },
   props: {
     imageUrl: {
       type: String,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>

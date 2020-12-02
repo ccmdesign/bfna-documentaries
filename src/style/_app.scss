@@ -19,7 +19,7 @@ body {
       &::before {
         @extend .material-icons;
         position: absolute;
-        content: 'close';
+        content: "close";
         font-size: 32px;
         top: 8px;
         left: 8px;
@@ -40,7 +40,7 @@ body {
         @include media-breakpoint-large {
           max-width: 240px;
         }
-      } 
+      }
     }
 
     &__title {
@@ -57,7 +57,7 @@ body {
 
       &::after {
         position: absolute;
-        content: '';
+        content: "";
         background-color: $colors-orange;
         width: 4px;
         height: 48px;

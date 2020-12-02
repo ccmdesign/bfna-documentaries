@@ -1,8 +1,39 @@
 <template>
-  <div class="watch-view" @mousemove="timeoutNavigation" @click="timeoutNavigation" @mouseover="timeoutNavigation">
-    <router-link ref="backButton" tag="div" to="/" class="watch-view__back" :class="{ visible: navigationVisible }" @mousemove="timeoutNavigation" @click="timeoutNavigation" @mouseover="timeoutNavigation">close</router-link>
-    <div class="watch-view__wrapper" :class="{ show }" @mousemove="timeoutNavigation" @click="timeoutNavigation" @mouseover="timeoutNavigation">
-      <youtube class="watch-view__player" :video-id="videoId" ref="youtube" @playing="showPlayer" @mousemove="timeoutNavigation" @click="timeoutNavigation" @mouseover="timeoutNavigation" @paused="keepNavigation" @ended="endVideo"></youtube>
+  <div
+    class="watch-view"
+    @mousemove="timeoutNavigation"
+    @click="timeoutNavigation"
+    @mouseover="timeoutNavigation"
+  >
+    <router-link
+      ref="backButton"
+      tag="div"
+      to="/"
+      class="watch-view__back"
+      :class="{ visible: navigationVisible }"
+      @mousemove="timeoutNavigation"
+      @click="timeoutNavigation"
+      @mouseover="timeoutNavigation"
+      >close</router-link
+    >
+    <div
+      class="watch-view__wrapper"
+      :class="{ show }"
+      @mousemove="timeoutNavigation"
+      @click="timeoutNavigation"
+      @mouseover="timeoutNavigation"
+    >
+      <youtube
+        class="watch-view__player"
+        :video-id="videoId"
+        ref="youtube"
+        @playing="showPlayer"
+        @mousemove="timeoutNavigation"
+        @click="timeoutNavigation"
+        @mouseover="timeoutNavigation"
+        @paused="keepNavigation"
+        @ended="endVideo"
+      ></youtube>
     </div>
   </div>
 </template>
@@ -52,7 +83,8 @@
       flex-direction: row;
     }
 
-    #mergeRow-gdpr, #mergeRow-interests {
+    #mergeRow-gdpr,
+    #mergeRow-interests {
       display: none;
     }
 
@@ -190,7 +222,7 @@
     position: absolute;
     bottom: 48px;
     right: 48px;
-    background-color: rgb(8,67,94);
+    background-color: rgb(8, 67, 94);
     font-size: 2em;
     padding: 12px;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
@@ -224,134 +256,156 @@
 </style>
 
 <script>
-import utils from '../utils'
+import utils from "../utils";
 
 export default {
-  data () {
+  data() {
     return {
-      videoId: '',
+      videoId: "",
       videoObject: null,
       show: false,
       navigationVisible: true,
-      currentTimeout: null
-    }
+      currentTimeout: null,
+    };
   },
   computed: {
-    videoList () {
-      return this.$store.state.videoList
+    videoList() {
+      return this.$store.state.videoList;
     },
-    currentVideo () {
-      return this.$store.state.currentVideo
-    }
+    currentVideo() {
+      return this.$store.state.currentVideo;
+    },
   },
   methods: {
-    showPlayer () {
-      this.show = true
-      this.timeoutNavigation()
+    showPlayer() {
+      this.show = true;
+      this.timeoutNavigation();
     },
-    timeoutNavigation () {
-      if (!this.show) return
-      this.navigationVisible = true
+    timeoutNavigation() {
+      if (!this.show) return;
+      this.navigationVisible = true;
       if (this.currentTimeout) {
-        clearTimeout(this.currentTimeout)
-        this.currentTimeout = null
+        clearTimeout(this.currentTimeout);
+        this.currentTimeout = null;
       }
       this.currentTimeout = setTimeout(() => {
-        this.navigationVisible = false
-        this.currentTimeout = null
-      }, 5000)
+        this.navigationVisible = false;
+        this.currentTimeout = null;
+      }, 5000);
     },
-    keepNavigation () {
-      this.navigationVisible = true
+    keepNavigation() {
+      this.navigationVisible = true;
       if (this.currentTimeout) {
-        clearTimeout(this.currentTimeout)
-        this.currentTimeout = null
+        clearTimeout(this.currentTimeout);
+        this.currentTimeout = null;
       }
     },
-    endVideo () {
-      this.show = false
-      this.keepNavigation()
+    endVideo() {
+      this.show = false;
+      this.keepNavigation();
     },
-    holdLoading (cb) {
+    holdLoading(cb) {
       if (this.videoList.length === 0) {
-        setTimeout(() => this.holdLoading(cb), 300)
+        setTimeout(() => this.holdLoading(cb), 300);
       } else {
-        cb()
+        cb();
       }
-    }
+    },
   },
-  mounted () {
-    const paramVideoId = this.$route.params.videoId
+  mounted() {
+    const paramVideoId = this.$route.params.videoId;
     this.holdLoading(() => {
       if (paramVideoId) {
-        const matchedVideo = this.videoList.find((video) => utils.getVideoIdFromYoutubeUrl(video.videoUrl) === paramVideoId)
+        const matchedVideo = this.videoList.find(
+          (video) =>
+            utils.getVideoIdFromYoutubeUrl(video.videoUrl) === paramVideoId
+        );
         if (matchedVideo) {
-          this.videoObject = matchedVideo
-          this.videoId = paramVideoId
+          this.videoObject = matchedVideo;
+          this.videoId = paramVideoId;
         } else {
-          this.$router.replace('/')
-          return
+          this.$router.replace("/");
+          return;
         }
       } else {
-        const currentVideo = this.videoList[this.currentVideo]
+        const currentVideo = this.videoList[this.currentVideo];
         if (currentVideo) {
-          const videoId = utils.getVideoIdFromYoutubeUrl(currentVideo.videoUrl)
+          const videoId = utils.getVideoIdFromYoutubeUrl(currentVideo.videoUrl);
           if (videoId) {
-            this.videoObject = currentVideo
-            this.videoId = videoId
+            this.videoObject = currentVideo;
+            this.videoId = videoId;
           } else {
-            alert(`Couldn't play video:\nvideo ID not found in "${currentVideo.videoUrl}".`)
-            return
+            alert(
+              `Couldn't play video:\nvideo ID not found in "${currentVideo.videoUrl}".`
+            );
+            return;
           }
         } else {
-          alert(`Couldn't play video:\nvideo object not found.`)
-          return
+          alert(`Couldn't play video:\nvideo object not found.`);
+          return;
         }
         if (!this.videoId) {
-          alert(`Couldn't play video:\nvideo ID not found in "${currentVideo.videoUrl}".`)
-          return
+          alert(
+            `Couldn't play video:\nvideo ID not found in "${currentVideo.videoUrl}".`
+          );
+          return;
         }
       }
-      this.$store.commit('setHomepageVideoEffect', true)
-      this.$store.commit('setNavigation', false)
+      this.$store.commit("setHomepageVideoEffect", true);
+      this.$store.commit("setNavigation", false);
       setTimeout(() => {
-        this.$refs.youtube.player.playVideo()
+        this.$refs.youtube.player.playVideo();
         setTimeout(() => {
           this.$refs.youtube.player.getPlayerState().then((status) => {
             if (status !== 1) {
-              this.show = true
+              this.show = true;
             }
-          })
-        }, 1000)
-      }, 1000)
-    })
+          });
+        }, 1000);
+      }, 1000);
+    });
   },
-  metaInfo () {
+  metaInfo() {
     return {
-      title: this.videoObject ? `${this.videoObject.title} on BFNA Documentaries` : 'Watch | BFNA Documentaries',
+      title: this.videoObject
+        ? `${this.videoObject.title} on BFNA Documentaries`
+        : "Watch | BFNA Documentaries",
       meta: [
         {
-          vmid: 'description',
-          name: 'description',
-          content: this.videoObject && this.videoObject.description ? this.videoObject.description : utils.getDefaultDescription()
+          vmid: "description",
+          name: "description",
+          content:
+            this.videoObject && this.videoObject.description
+              ? this.videoObject.description
+              : utils.getDefaultDescription(),
         },
         {
-          vmid: 'keywords',
-          name: 'keywords',
-          content: this.videoObject && this.videoObject.tags && this.videoObject.tags.length > 0 ? this.videoObject.tags.join(',') : ''
+          vmid: "keywords",
+          name: "keywords",
+          content:
+            this.videoObject &&
+            this.videoObject.tags &&
+            this.videoObject.tags.length > 0
+              ? this.videoObject.tags.join(",")
+              : "",
         },
         {
-          vmid: 'og:title',
-          property: 'og:title',
-          content: this.videoObject ? `${this.videoObject.title} on BFNA Documentaries` : 'Watch | BFNA Documentaries'
+          vmid: "og:title",
+          property: "og:title",
+          content: this.videoObject
+            ? `${this.videoObject.title} on BFNA Documentaries`
+            : "Watch | BFNA Documentaries",
         },
         {
-          vmid: 'og:description',
-          property: 'og:description',
-          content: this.videoObject && this.videoObject.description ? this.videoObject.description : utils.getDefaultDescription()
-        }
-      ]
-    }
-  }
-}
+          vmid: "og:description",
+          property: "og:description",
+          content:
+            this.videoObject && this.videoObject.description
+              ? this.videoObject.description
+              : utils.getDefaultDescription(),
+        },
+      ],
+    };
+  },
+};
 </script>

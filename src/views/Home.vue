@@ -33,49 +33,49 @@
 </style>
 
 <script>
-import utils from '../utils'
+import utils from "../utils";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
-    'ui-large': () => import('@/components/HomepageUILarge.vue'),
-    'ui-small': () => import('@/components/HomepageUISmall.vue')
+    "ui-large": () => import("@/components/HomepageUILarge.vue"),
+    "ui-small": () => import("@/components/HomepageUISmall.vue"),
   },
   computed: {
-    showVideoLoad () {
-      return this.$store.state.homepageVideoEffect
-    }
+    showVideoLoad() {
+      return this.$store.state.homepageVideoEffect;
+    },
   },
   methods: {
-    getUIType () {
-      return document.documentElement.clientWidth >= 768 ? 'large' : 'small'
-    }
+    getUIType() {
+      return document.documentElement.clientWidth >= 768 ? "large" : "small";
+    },
   },
-  mounted () {
-    this.$store.commit('setHomepageVideoEffect', false)
-    this.$store.commit('setNavigation', true)
+  mounted() {
+    this.$store.commit("setHomepageVideoEffect", false);
+    this.$store.commit("setNavigation", true);
   },
-  metaInfo () {
+  metaInfo() {
     return {
-      title: 'BFNA Documentaries',
+      title: "BFNA Documentaries",
       meta: [
         {
-          vmid: 'description',
-          name: 'description',
-          content: utils.getDefaultDescription()
+          vmid: "description",
+          name: "description",
+          content: utils.getDefaultDescription(),
         },
         {
-          vmid: 'og:title',
-          property: 'og:title',
-          content: 'BFNA Documentaries'
+          vmid: "og:title",
+          property: "og:title",
+          content: "BFNA Documentaries",
         },
         {
-          vmid: 'og:description',
-          property: 'og:description',
-          content: utils.getDefaultDescription()
-        }
-      ]
-    }
-  }
-}
+          vmid: "og:description",
+          property: "og:description",
+          content: utils.getDefaultDescription(),
+        },
+      ],
+    };
+  },
+};
 </script>

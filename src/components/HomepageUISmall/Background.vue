@@ -1,5 +1,8 @@
 <template>
-  <div class="homepage__slider__background--large" :style="{ backgroundImage }"></div>
+  <div
+    class="homepage__slider__background--large"
+    :style="{ backgroundImage }"
+  ></div>
 </template>
 
 <style lang="scss">
@@ -16,25 +19,19 @@
 </style>
 
 <script>
-import utils from '../../utils'
+import utils from "../../utils";
 
 export default {
-  data () {
+  data() {
     return {
-      backgroundImage: `url('${this.getThumbnailMax()}')`
-    }
+      backgroundImage: `url('${this.imageUrl}')`,
+    };
   },
   props: {
-    videoUrl: {
+    imageUrl: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  methods: {
-    getThumbnailMax () {
-      const videoId = utils.getVideoIdFromYoutubeUrl(this.videoUrl)
-      return videoId ? `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg` : ''
-    }
-  }
-}
+};
 </script>

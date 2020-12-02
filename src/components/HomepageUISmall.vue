@@ -1,37 +1,52 @@
 <template>
   <div class="homepage">
-    <VideoDescription />
-    <carousel ref="carousel" class="homepage__slider" :per-page="1" :paginationEnabled="false" @pageChange="onPageChange" :value="currentIndex" :navigateTo="currentIndex">
+    <carousel
+      ref="carousel"
+      class="homepage__slider"
+      :per-page="1"
+      :paginationEnabled="false"
+      @pageChange="onPageChange"
+      :value="currentIndex"
+      :navigateTo="currentIndex"
+    >
       <slide v-for="(video, index) in videoList" :key="index" :video="video" />
     </carousel>
     <div class="homepage__info">
       <div class="homepage__header">
-        <div class="homepage__header__logo">
-          <h2>{{ currentVideo }}</h2>
-        </div>
-        <div class="homepage__header__logos" style="text-align:right;">
+        <div class="homepage__header__logos">
           <div class="homepage__header__logo">
-            <img src="../assets/bertelsmann-logo.png" width="80"/>
+            <img src="../assets/bertelsmann-logo.png" width="80" />
+          </div>
+          <div class="homepage__header__title">
+            <h3>Documentaries</h3>
           </div>
         </div>
       </div>
-      <div class="homepage__slogan">
-        Interviews on democracy’s<br />past, present, and future.
-      </div>
+
+      <VideoDescription />
       <div class="homepage__footer" v-show="hasVideos">
-        <div class="homepage__author-wrapper">
-          <div class="homepage__author" :style="{ backgroundImage: `url('${getAuthorPicture(currentVideo)}')` }"></div>
-        </div>
-        <div class="homepage__description">
+        <!-- <div class="homepage__description">
           <h2>Episode {{ currentVideo.order }}</h2>
           <h1>{{ currentVideo.title }}</h1>
           <p>{{ currentVideo.description }}</p>
           <div class="homepage__play-video"><span class="homepage__play-video__icon"></span>Play</div>
-        </div>
+        </div> -->
       </div>
     </div>
-    <div class="homepage__controls homepage__controls--left" @click="previousSlide" v-show="videoList.length > 1">arrow_back</div>
-    <div class="homepage__controls homepage__controls--right" @click="nextSlide" v-show="videoList.length > 1">arrow_forward</div>
+    <div
+      class="homepage__controls homepage__controls--left"
+      @click="previousSlide"
+      v-show="videoList.length > 1"
+    >
+      arrow_back
+    </div>
+    <div
+      class="homepage__controls homepage__controls--right"
+      @click="nextSlide"
+      v-show="videoList.length > 1"
+    >
+      arrow_forward
+    </div>
   </div>
 </template>
 
@@ -45,16 +60,6 @@
   &__slider {
     width: 100%;
     height: 100vh;
-  }
-
-  &__slogan {
-    position: absolute;
-    top: 18%;
-    left: 32px;
-    font-size: 1.25em;
-    font-weight: 300;
-    letter-spacing: 1.33px;
-    line-height: 27px;
   }
 
   &__info {
@@ -75,13 +80,19 @@
   &__header {
     display: flex;
     justify-content: space-between;
-    padding: 0 16px;
+
+    &__logos {
+      display: flex;
+      width: 100%;
+    }
 
     &__logo {
       display: block;
       width: 100%;
 
-      & + & { margin-top: 10px; }
+      & + & {
+        margin-top: 10px;
+      }
       h2 {
         padding-top: 8px;
         color: #fc8b00;
@@ -91,27 +102,19 @@
         text-transform: uppercase;
       }
     }
+
+    &__title {
+      color: #fc8b00;
+      text-transform: uppercase;
+      font-size: 1rem;
+      font-weight: 500;
+    }
   }
 
   &__footer {
     display: flex;
     flex-direction: column;
     padding: 0 16px;
-  }
-
-  &__author {
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    margin-left: -8px;
-
-    &-wrapper {
-      flex: 0;
-      padding-top: 14px;
-    }
   }
 
   &__description {
@@ -148,7 +151,7 @@
   &__controls {
     @extend .material-icons;
     position: absolute;
-    background-color: #fc8b00;
+    background-color: #08415c;
     padding: 12px;
     font-size: 36px;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
@@ -185,7 +188,7 @@
 
       &::before {
         position: absolute;
-        content: '';
+        content: "";
         background-color: #fc8b00;
         width: 29px;
         height: 29px;
@@ -197,7 +200,7 @@
       &::after {
         @extend .material-icons;
         position: absolute;
-        content: 'play_arrow';
+        content: "play_arrow";
         bottom: -5px;
         left: 2px;
         font-size: 1.25em;
@@ -208,47 +211,50 @@
 </style>
 
 <script>
-import { Carousel } from 'vue-carousel'
-import Slide from '@/components/HomepageUISmall/Slide'
+import { Carousel } from "vue-carousel";
+import Slide from "@/components/HomepageUISmall/Slide";
+import VideoDescription from "@/components/HomepageUISmall/VideoDescription";
 
 export default {
-  name: 'HomepageUILargeComponent',
-  components: { Carousel, Slide },
+  name: "HomepageUILargeComponent",
+  components: { Carousel, Slide, VideoDescription },
   computed: {
-    videoList () {
-      return this.$store.state.videoList
+    videoList() {
+      return this.$store.state.videoList;
     },
-    currentIndex () {
-      return this.$store.state.currentVideo
+    currentIndex() {
+      return this.$store.state.currentVideo;
     },
-    hasVideos () {
-      return this.$store.getters.hasVideos
+    hasVideos() {
+      return this.$store.getters.hasVideos;
     },
-    currentVideo () {
-      return this.hasVideos ? this.videoList[this.currentIndex] : this.$store.getters.emptyEpisode
-    }
+    currentVideo() {
+      return this.hasVideos
+        ? this.videoList[this.currentIndex]
+        : this.$store.getters.emptyEpisode;
+    },
   },
   methods: {
-    onPageChange (newSlide) {
-      this.setCurrentVideo(newSlide)
+    onPageChange(newSlide) {
+      this.setCurrentVideo(newSlide);
     },
-    setCurrentVideo (index) {
-      this.$store.commit('setCurrentVideo', index)
+    setCurrentVideo(index) {
+      this.$store.commit("setCurrentVideo", index);
     },
-    nextSlide () {
-      if ((this.currentIndex + 1) >= this.videoList.length) {
-        this.setCurrentVideo(0)
+    nextSlide() {
+      if (this.currentIndex + 1 >= this.videoList.length) {
+        this.setCurrentVideo(0);
       } else {
-        this.setCurrentVideo(this.currentIndex + 1)
+        this.setCurrentVideo(this.currentIndex + 1);
       }
     },
-    previousSlide () {
-      if ((this.currentIndex - 1) < 0) {
-        this.setCurrentVideo(this.videoList.length - 1)
+    previousSlide() {
+      if (this.currentIndex - 1 < 0) {
+        this.setCurrentVideo(this.videoList.length - 1);
       } else {
-        this.setCurrentVideo(this.currentIndex - 1)
+        this.setCurrentVideo(this.currentIndex - 1);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>

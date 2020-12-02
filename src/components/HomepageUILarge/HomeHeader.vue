@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <img src="../../assets/bertelsmann-logo.png" width="150"/>
+    <img src="../../assets/bertelsmann-logo.png" width="150" />
     <div class="header__title">
       <h3>Documentaries</h3>
     </div>
@@ -8,17 +8,17 @@
 </template>
 
 <style lang="scss">
-  .header {
-    display: flex;
-    align-items: flex-start;
-    width: fit-content;
+.header {
+  display: flex;
+  align-items: flex-start;
+  width: fit-content;
 
-    &__title {
-      color: #FC8B00;
-      text-transform: uppercase;
-      font-size: 34px;
-      font-weight: 500;
-      padding-left: 45px;
-    }
+  &__title {
+    color: #fc8b00;
+    text-transform: uppercase;
+    font-size: 34px;
+    font-weight: 500;
+    padding-left: 45px;
   }
+}
 </style>

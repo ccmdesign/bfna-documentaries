@@ -8,32 +8,71 @@
       <section class="menu-small__col">
         <nav class="menu-small__nav menu-small--updates">
           <h2 class="menu-small__heading">Updates</h2>
-          <a href="https://www.bfna.org/updates/index.html#publications" class="menu-small__item">Publications</a><br>
-          <a href="https://www.bfna.org/updates/index.html#infographics" class="menu-small__item">Infographics</a><br>
-          <a href="https://www.bfna.org/updates/index.html#videos" class="menu-small__item">Videos</a><br>
+          <a
+            href="https://www.bfna.org/updates/index.html#publications"
+            class="menu-small__item"
+            >Publications</a
+          ><br />
+          <a
+            href="https://www.bfna.org/updates/index.html#infographics"
+            class="menu-small__item"
+            >Infographics</a
+          ><br />
+          <a
+            href="https://www.bfna.org/updates/index.html#videos"
+            class="menu-small__item"
+            >Videos</a
+          ><br />
         </nav>
 
         <nav class="menu-small__nav menu-small--about">
           <h2 class="menu-small__heading">The Foundation</h2>
-          <a href="https://www.bfna.org/about" class="menu-small__item">About the Foundation</a><br>
-          <a href="https://www.bfna.org/team" class="menu-small__item">Board of Directors | Team</a><br>
-          <a href="https://www.bfna.org/bertelsmann-stiftung" class="menu-small__item">Bertelsmann Stiftung</a><br>
-          <a href="mailto: info@bfna.org" target="_blank" class="menu-small__item">Contact</a><br>
-          <a href="https://www.bfna.org/privacy-policy" class="menu-small__item">Privacy Policy</a>
+          <a href="https://www.bfna.org/about" class="menu-small__item"
+            >About the Foundation</a
+          ><br />
+          <a href="https://www.bfna.org/team" class="menu-small__item"
+            >Board of Directors | Team</a
+          ><br />
+          <a
+            href="https://www.bfna.org/bertelsmann-stiftung"
+            class="menu-small__item"
+            >Bertelsmann Stiftung</a
+          ><br />
+          <a
+            href="mailto: info@bfna.org"
+            target="_blank"
+            class="menu-small__item"
+            >Contact</a
+          ><br />
+          <a href="https://www.bfna.org/privacy-policy" class="menu-small__item"
+            >Privacy Policy</a
+          >
         </nav>
       </section>
-      
+
       <section class="menu-small__col menu-small--right-col">
         <nav class="menu-small__nav menu-small--topics">
           <h2 class="menu-small__heading">Topics</h2>
-          <a href="https://www.bfna.org/democracy" class="menu-small__item">Democracy</a><br>
-          <a href="https://www.bfna.org/future-of-work" class="menu-small__item">Future of Work</a><br>
-          <a href="https://www.bfna.org/digital-economy" class="menu-small__item">Digital Economy</a><br>
-          <a href="https://www.bfna.org/politics-society" class="menu-small__item">Politics & Society</a><br>
+          <a href="https://www.bfna.org/democracy" class="menu-small__item"
+            >Democracy</a
+          ><br />
+          <a href="https://www.bfna.org/future-of-work" class="menu-small__item"
+            >Future of Work</a
+          ><br />
+          <a
+            href="https://www.bfna.org/digital-economy"
+            class="menu-small__item"
+            >Digital Economy</a
+          ><br />
+          <a
+            href="https://www.bfna.org/politics-society"
+            class="menu-small__item"
+            >Politics & Society</a
+          ><br />
         </nav>
-        
+
         <nav class="menu-small__nav menu-small--archive">
-          <a href="/" class="menu-small__item">BFNA Documentaries</a><br>
+          <a href="/" class="menu-small__item">BFNA Documentaries</a><br />
         </nav>
       </section>
     </div>
@@ -91,7 +130,7 @@
     left: 0;
     bottom: 0;
     padding: 25px 0 128px 20px;
-    background-color: rgba(8,67,94,0.95);
+    background-color: rgba(8, 67, 94, 0.95);
     transition: transform 0.33s ease-in-out;
     height: 100%;
 
@@ -144,10 +183,10 @@ export default {
     },
     scrollToBottom() {
       this.$refs.menuContent.scrollTo(0, this.$refs.menuContent.scrollHeight);
-    }
+    },
   },
   mounted() {
     this.scrollToBottom();
-  }
+  },
 };
 </script>
