@@ -33,7 +33,7 @@
 
 .video {
   &__description {
-    width: 55%;
+    max-width: 70ch;
   }
   &__heading {
     padding-bottom: 60px;
@@ -47,7 +47,7 @@
     opacity: 1;
   }
   &__excerpt {
-    padding-right: 150px;
+    
   }
   &__workstream__tag {
     display: inline-block;
