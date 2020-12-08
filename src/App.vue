@@ -11,6 +11,7 @@
 html,
 body,
 #app {
+  @import url("https://use.typekit.net/tsd2tcy.css");
   position: relative;
   width: 100%;
   height: 100%;
