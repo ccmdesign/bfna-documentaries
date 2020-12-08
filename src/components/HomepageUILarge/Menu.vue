@@ -76,7 +76,7 @@
         </nav>
 
         <nav class="menu-large__nav menu-large--archive">
-          <a href="/" class="menu-large__item">BFNA Documentaries</a><br />
+          <!--<a href="/" class="menu-large__item">BFNA Documentaries</a><br />-->
         </nav>
       </section>
     </div>
@@ -153,7 +153,7 @@
     color: #ffffff;
     font-weight: 600;
     padding: 0 1rem;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 
   &__item {
@@ -163,7 +163,7 @@
     font-weight: 300;
     padding: 0 1rem 0.3rem;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.3rem;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.05);
