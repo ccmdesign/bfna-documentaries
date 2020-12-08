@@ -66,13 +66,11 @@
     // }
 
     li {
-      display: inline-block;
-      // line-height: 60px;
       padding: 16px 32px;
-      margin-left: -104px;
-      margin-top: -10rem;
-      align-self: center;
+      display: inline-block;
+      transform-origin: 1px 0;
       transform: rotate(-90deg);
+      align-self: center;
       cursor: pointer;
       font-weight: bold;
       letter-spacing: 1.48px;
