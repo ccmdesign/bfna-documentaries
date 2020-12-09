@@ -124,33 +124,28 @@
   &__workstreams-section {
     padding-bottom: 32px;
     display: flex;
-
     justify-content: center;
+    .child + .child { margin-left: 2rem;}
+
     .child {
-      margin-right: 32px;
+      --button-color: #ffffff;
+      --bg-color: transparent;
+
+
+      padding: .4rem .8rem .5rem;
       cursor: pointer;
-      opacity: 0.5;
+      border: 2px solid var(--button-color);
+      background-color: var(--bg-color);
 
-      &.workstream--democracy {
-        background-color: #4f8d71;
-      }
-
-      &.workstream--politics-society {
-        background-color: #fc8b00;
-      }
-
-      &.workstream--future-of-work {
-        background-color: #c73540;
-      }
-
-      &.workstream--digital-economy {
-        background-color: #631764;
-      }
+      &.workstream--democracy { --button-color: #4f8d71; }
+      &.workstream--politics-society { --button-color: #fc8b00; }
+      &.workstream--future-of-work { --button-color: #c73540; }
+      &.workstream--digital-economy { --button-color: #631764; }
 
       h2 {
         margin: 0;
         padding: 2px 5px;
-        color: #ffffff;
+        color: white;
         font-size: 1em;
         letter-spacing: 0.23px;
         line-height: 20px;
@@ -158,7 +153,7 @@
       }
 
       &.selected {
-        opacity: 1;
+        --bg-color: var(--button-color);
       }
     }
   }
