@@ -62,18 +62,18 @@ export default {
         {
           vmid: "description",
           name: "description",
-          content: utils.getDefaultDescription(),
+          content: (this.$store.getters.hasVideos ? this.$store.state.videoList[this.$store.state.currentVideo] : this.$store.getters.emptyEpisode).description,
         },
         {
           vmid: "og:title",
           property: "og:title",
-          content: "BFNA Documentaries",
+          content:  `BFNA - Docs | ${(this.$store.getters.hasVideos ? this.$store.state.videoList[this.$store.state.currentVideo] : this.$store.getters.emptyEpisode).title}`  ,
         },
         {
           vmid: "og:description",
           property: "og:description",
-          content: utils.getDefaultDescription(),
-        },
+          content: (this.$store.getters.hasVideos ? this.$store.state.videoList[this.$store.state.currentVideo] : this.$store.getters.emptyEpisode).description,
+        }
       ],
     };
   },
