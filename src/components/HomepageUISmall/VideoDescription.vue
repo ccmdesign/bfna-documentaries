@@ -1,43 +1,88 @@
 <template>
   <div class="video__description" :class="workstream">
     <div class="video__header">
-      <span class="video__workstream__tag">
-        {{ currentVideo.workstream }}
-      </span>
+      
       <div class="video__heading">
         <h2 class="video__title">{{ currentVideo.title }}</h2>
         <p class="video__subtitle">{{ currentVideo.subtitle }}</p>
+        <span class="video__workstream__tag">
+        {{ currentVideo.workstream }}
+      </span>
       </div>
     </div>
 
     <div class="video__body">
-      <div class="video__excerpt">
-        <p>{{ currentVideo.description }}</p>
+      <div>
+        <button class="video__play" @click="openVideo(currentVideo)">play</button>
+
+        <div class="video__excerpt">
+          <p>{{ currentVideo.description }}</p>
+        </div>
       </div>
-      <button class="video__play" @click="openVideo(currentVideo)">play</button>
     </div>
+    <ul class="dots">
+      <li></li>
+      <li active></li>
+      <li></li>
+      <li></li>
+    </ul>
   </div>
 </template>
 
 <style lang="scss">
+.video__body {
+  height: 55vh;
+  overflow: scroll;
+
+  > div { height: auto; }
+  > div > :first-child { margin-top: 25vh; }
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+
+  li {
+    display: inline-block;
+    list-style: none;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    opacity: .5;
+  }
+
+  li[active] { opacity: 1; }
+
+  li + li { margin-left: .75rem; }
+}
+
 .video {
   &__description {
-    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
   }
+
   &__title {
     font-size: 36px;
     font-weight: 500;
     margin-bottom: 0;
     line-height: normal;
   }
+
   &__subtitle {
     opacity: 1;
     line-height: normal;
   }
+
+  &__excerpt {
+    margin-top: 2rem;
+  }
+
   &__workstream__tag {
     display: inline-block;
     padding: 1px 8px 1px;

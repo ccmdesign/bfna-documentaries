@@ -70,10 +70,6 @@
             >Politics & Society</a
           ><br />
         </nav>
-
-        <nav class="menu-small__nav menu-small--archive">
-          <a href="/" class="menu-small__item">BFNA Documentaries</a><br />
-        </nav>
       </section>
     </div>
   </div>
@@ -115,6 +111,9 @@
       user-select: none;
     }
   }
+
+  &__nav { padding-top: 2rem; }
+  &__nav a { color: #fff; }
 
   &.hidden {
     pointer-events: none;

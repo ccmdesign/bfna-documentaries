@@ -27,20 +27,6 @@
       <div class="homepage__footer" v-show="hasVideos">
       </div>
     </div>
-    <div
-      class="homepage__controls homepage__controls--left"
-      @click="previousSlide"
-      v-show="videoList.length > 1"
-    >
-      arrow_back
-    </div>
-    <div
-      class="homepage__controls homepage__controls--right"
-      @click="nextSlide"
-      v-show="videoList.length > 1"
-    >
-      arrow_forward
-    </div>
   </div>
 </template>
 
@@ -61,7 +47,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    padding: 32px 16px 80px 16px;
+    padding: 32px 16px 40px 16px;
     width: 100%;
     height: 100%;
     left: 0;

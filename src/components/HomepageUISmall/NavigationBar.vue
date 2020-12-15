@@ -6,18 +6,18 @@
       class="navigation-bar__item"
       :class="{ active: isCurrentRoute('home') }"
       ><b class="navigation-bar__icon">home</b>
-      <p class="navigation-bar__label">Home</p></router-link
+    </router-link
     >
     <router-link
       tag="li"
       to="/documentaries"
       class="navigation-bar__item"
       :class="{ active: isCurrentRoute('documentaries') }"
-      ><b class="navigation-bar__icon">play_arrow</b>
-      <p class="navigation-bar__label">Documentaries</p></router-link
+      ><b class="navigation-bar__icon">list</b>
+    </router-link
     >
-    <li class="navigation-bar__item--0" @click="toggleMenu">
-      <div class="navigation-bar__menu" :class="{ hasMenu }">menu</div>
+    <li class="navigation-bar__item" @click="toggleMenu">
+      <div class="navigation-bar__icon" :class="{ hasMenu }">more_vert</div>
     </li>
   </ul>
 </template>
@@ -59,10 +59,7 @@
     height: 100%;
     align-items: center;
     justify-content: center;
-
-    &--0 {
-      flex: 0;
-    }
+    background-color: #08415c;
 
     &::before {
       position: absolute;
@@ -86,20 +83,6 @@
 
   &__icon {
     @extend .material-icons;
-  }
-
-  &__menu {
-    @extend .material-icons;
-    width: 55px;
-    height: 55px;
-    text-align: center;
-    line-height: 55px;
-    background-color: #08415c;
-    cursor: pointer;
-
-    &.hasMenu {
-      background-color: lighten(#08415c, 7);
-    }
   }
 }
 </style>
