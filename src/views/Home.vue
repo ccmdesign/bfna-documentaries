@@ -33,49 +33,49 @@
 </style>
 
 <script>
-import utils from "../utils";
+import utils from '../utils';
 
 export default {
-  name: "home",
+  name: 'home',
   components: {
-    "ui-large": () => import("@/components/HomepageUILarge.vue"),
-    "ui-small": () => import("@/components/HomepageUISmall.vue"),
+    'ui-large': () => import('@/components/HomepageUILarge.vue'),
+    'ui-small': () => import('@/components/HomepageUISmall.vue'),
   },
   computed: {
-    showVideoLoad() {
+    showVideoLoad () {
       return this.$store.state.homepageVideoEffect;
     },
   },
   methods: {
-    getUIType() {
-      return document.documentElement.clientWidth >= 768 ? "large" : "small";
+    getUIType () {
+      return document.documentElement.clientWidth >= 768 ? 'large' : 'small'
     },
   },
-  mounted() {
-    this.$store.commit("setHomepageVideoEffect", false);
-    this.$store.commit("setNavigation", true);
+  mounted () {
+    this.$store.commit('setHomepageVideoEffect', false)
+    this.$store.commit('setNavigation', true)
   },
-  metaInfo() {
+  metaInfo () {
     return {
-      title: "BFNA Documentaries",
+      title: 'BFNA Documentaries',
       meta: [
         {
-          vmid: "description",
-          name: "description",
-          content: (this.$store.getters.hasVideos ? this.$store.state.videoList[this.$store.state.currentVideo] : this.$store.getters.emptyEpisode).description,
+          vmid: 'description',
+          name: 'description',
+          content: (this.$store.getters.hasVideos ? this.$store.state.videoList[this.$store.state.currentVideo] : this.$store.getters.emptyEpisode).description
         },
         {
-          vmid: "og:title",
-          property: "og:title",
-          content:  `BFNA - Docs | ${(this.$store.getters.hasVideos ? this.$store.state.videoList[this.$store.state.currentVideo] : this.$store.getters.emptyEpisode).title}`  ,
+          vmid: 'og:title',
+          property: 'og:title',
+          content: 'Bertelsmann Foundation Documentaries | Films for Transatlanticists'
         },
         {
-          vmid: "og:description",
-          property: "og:description",
-          content: (this.$store.getters.hasVideos ? this.$store.state.videoList[this.$store.state.currentVideo] : this.$store.getters.emptyEpisode).description,
+          vmid: 'og:description',
+          property: 'og:description',
+          content: 'Our documentary films provide an intimate portrait of the economic, political, and social challenges facing the United States and Europe today.'
         }
-      ],
-    };
-  },
-};
+      ]
+    }
+  }
+}
 </script>

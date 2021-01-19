@@ -175,7 +175,7 @@ export default {
         {
           vmid: "og:title",
           property: "og:title",
-          content: "BFNA Documentaries",
+          content: utils.getDefaultTitle(),
         },
         {
           vmid: "og:description",

@@ -1,7 +1,7 @@
 <template>
   <div class="homepage">
     <VideoDescription />
-    <carousel
+    <!--<carousel
       class="homepage__slider"
       :per-page="1"
       :paginationEnabled="false"
@@ -10,24 +10,8 @@
       :navigateTo="currentIndex"
     >
       <slide v-for="(video, index) in videoList" :key="index" :video="video" />
-    </carousel>
+    </carousel>-->
     <navigation-bar />
-    <div
-      class="homepage__controls homepage__controls--left"
-      @click="previousSlide"
-      :class="{ hidden: videoListMenu }"
-      v-show="videoList.length > 1"
-    >
-      arrow_back
-    </div>
-    <div
-      class="homepage__controls homepage__controls--right"
-      @click="nextSlide"
-      :class="{ hidden: videoListMenu }"
-      v-show="videoList.length > 1"
-    >
-      arrow_forward
-    </div>
     <menu-ui />
     <div class="homepage__list-bar" :class="{ opened: videoListMenu }">
       <div class="homepage__list-bar__section button-section">

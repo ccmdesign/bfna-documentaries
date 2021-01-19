@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const defaultDescription = "[Set default description here.]";
+const defaultDescription = 'Our documentary films provide an intimate portrait of the economic, political, and social challenges facing the United States and Europe today.'
+const defaultTitle = 'Bertelsmann Foundation Documentaries | Films for Transatlanticists'
 
 const _default = {
   getVideoIdFromYoutubeUrl: function (videoUrl) {
@@ -10,6 +11,9 @@ const _default = {
   },
   getDefaultDescription: function () {
     return defaultDescription;
+  },
+  getDefaultTitle: function () {
+    return defaultTitle;
   },
 };
 
