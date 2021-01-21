@@ -1,16 +1,10 @@
 <template>
   <div class="homepage">
+    <div
+      class="homepage__slider__background--large"
+      :style="`background-image: url('${currentVideo.backgroundImage}')`"
+    ></div>
     <VideoDescription />
-    <!--<carousel
-      class="homepage__slider"
-      :per-page="1"
-      :paginationEnabled="false"
-      @pageChange="onPageChange"
-      :value="currentIndex"
-      :navigateTo="currentIndex"
-    >
-      <slide v-for="(video, index) in videoList" :key="index" :video="video" />
-    </carousel>-->
     <navigation-bar />
     <menu-ui />
     <div class="homepage__list-bar" :class="{ opened: videoListMenu }">
@@ -20,7 +14,7 @@
           :class="{ opened: videoListMenu }"
           @click="toggleVideoList"
         >
-          arrow_upward
+          More
         </div>
         <div class="homepage__list-bar__by">
           by

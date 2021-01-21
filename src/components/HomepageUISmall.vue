@@ -1,16 +1,9 @@
 <template>
   <div class="homepage">
-    <carousel
-      ref="carousel"
-      class="homepage__slider"
-      :per-page="1"
-      :paginationEnabled="false"
-      @pageChange="onPageChange"
-      :value="currentIndex"
-      :navigateTo="currentIndex"
-    >
-      <slide v-for="(video, index) in videoList" :key="index" :video="video" />
-    </carousel>
+    <div
+      class="homepage__slider__background--large"
+      :style="`background-image: url('${currentVideo.backgroundImage}')`"
+    ></div>
     <div class="homepage__info">
       <div class="homepage__header">
         <div class="homepage__header__logos">
