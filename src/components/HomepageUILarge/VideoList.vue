@@ -30,61 +30,41 @@
         <h2>Digital Economy</h2>
       </div>
     </div>
+    <perfect-scrollbar class="scroll-container">
+      <div class="video-list__list">
+        <div class="video-list__episode" v-for="(video, index) in videoList" :key="index" @click="selectEpisode(index)">
+          <div
+            class="video-list__episode-thumbnail"
+            :style="{ backgroundImage: `url('${video.backgroundImage}')` }"
+          />
 
-    <carousel
-      ref="videoList"
-      class="video-list__carousel"
-      :perPage="4"
-      :paginationEnabled="false"
-      :loop="true"
-      :scrollPerPage="false"
-    >
-      <slide
-        class="video-list__episode"
-        v-for="(video, index) in videoList"
-        :key="index"
-        @slideclick="selectEpisode(index)"
-      >
-        <div
-          class="video-list__episode-thumbnail"
-          :style="{ backgroundImage: `url('${video.backgroundImage}')` }"
-        />
-
-        <div class="video-list__episode-info">
-          <h4>{{ video.title }}</h4>
-          <h3>{{ video.subtitle }}</h3>
+          <div class="video-list__episode-info">
+            <h4>{{ video.title }}</h4>
+            <h3>{{ video.subtitle }}</h3>
+          </div>
         </div>
-      </slide>
-    </carousel>
-
-    <div
-      class="video-list__controls video-list__controls--left"
-      @click="previousEpisode"
-      v-show="videoList.length > 4"
-    >
-      arrow_back
-    </div>
-    <div
-      class="video-list__controls video-list__controls--right"
-      @click="nextEpisode"
-      v-show="videoList.length > 4"
-    >
-      arrow_forward
-    </div>
+      </div>
+    </perfect-scrollbar>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .video-list {
   position: relative;
-  padding: 32px 80px 64px 80px;
+  padding: 12px 47px 64px 47px;
+  height: 75vh;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
 
   &__episode {
     cursor: pointer;
     box-shadow: 0px 8px 32px #00000026;
     border: 1px solid #ffffff33;
     width: 20vw;
-    margin-left: 2vw;
 
     &:first-child {
       margin-left: 0;
@@ -108,9 +88,6 @@
       font-weight: 700;
       letter-spacing: 0.21px;
       line-height: 18px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
     }
 
     h3 {
@@ -178,14 +155,19 @@
     }
   }
 }
+
+.scroll-container {
+  height: calc(75vh - 110px);
+}
 </style>
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
 import utils from "../../utils";
+import { PerfectScrollbar } from 'vue2-perfect-scrollbar'
 
 export default {
-  components: { Carousel, Slide },
+  components: { Carousel, Slide, PerfectScrollbar },
   data() {
     return {
       currentEpisode: 0,
@@ -270,3 +252,4 @@ export default {
   },
 };
 </script>
+<style src="vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css"/>
