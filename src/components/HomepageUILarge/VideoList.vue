@@ -64,7 +64,7 @@
     cursor: pointer;
     box-shadow: 0px 8px 32px #00000026;
     border: 1px solid #ffffff33;
-    width: 20vw;
+    //width: 20vw;
 
     &:first-child {
       margin-left: 0;

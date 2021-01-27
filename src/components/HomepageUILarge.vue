@@ -12,9 +12,9 @@
         <div
           class="homepage__list-bar__button"
           :class="{ opened: videoListMenu }"
+          :data-text="getButtonText()"
           @click="toggleVideoList"
         >
-          More
         </div>
         <div class="homepage__list-bar__by">
           by
@@ -71,6 +71,7 @@
       &.button-section {
         position: relative;
         text-align: center;
+        height: 60px;
       }
 
       &.videos-section {
@@ -93,16 +94,26 @@
     }
 
     &__button {
-      @extend .material-icons;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       display: inline-block;
-      background-color: #08415c;
       padding: 12px;
       cursor: pointer;
-      transform: translateY(-50%);
-      transition: transform 0.33s ease-in-out;
-
+      transition: all 0.33s ease-in-out;
+      &:before {
+        content: attr(data-text);
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
       &.opened {
-        transform: translateY(-50%) rotateZ(179deg);
+        transform: translate(-50%, -50%) rotateZ(179deg) scale(1.2);
+        &:before {
+          @extend .material-icons;
+          width: 24px;
+        }
       }
     }
 
@@ -225,6 +236,13 @@ export default {
     closeVideoList() {
       this.videoListMenu = false;
     },
+    getButtonText() {
+      if(this.videoListMenu) {
+        return 'keyboard_arrow_upward'
+      } else {
+        return 'More'
+      }
+    }
   },
   mounted() {
     requestAnimationFrame(() => {
