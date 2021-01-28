@@ -9,9 +9,9 @@
         <h2 class="video__title">{{ currentVideo.title }}</h2>
         <p class="video__subtitle">{{ currentVideo.subtitle }}</p>
       </div>
-      <div class="video__excerpt">
+      <perfect-scrollbar class="video__excerpt">
         <p>{{ currentVideo.description }}</p>
-      </div>
+      </perfect-scrollbar>
       <button class="video__play" @click="openVideo(currentVideo)">play</button>
     </div>
   </div>
@@ -28,18 +28,22 @@
   left: 0;
   overflow: hidden;
   background-color: rgba(17, 24, 41, 0.65);
-  padding: 70px 100px;
+  padding: 70px 170px;
 }
 
 .video {
   &__description {
     max-width: 70ch;
+    height: 60vh;
+    position: absolute;
+    bottom: 90px;
+    left: 170px;
   }
   &__heading {
     padding-bottom: 60px;
   }
   &__title {
-    font-size: 48px;
+    font-size: 5vh;
     font-weight: 500;
     margin-bottom: 0;
   }
@@ -47,7 +51,13 @@
     opacity: 1;
   }
   &__excerpt {
-    
+    height: 20vh;
+    margin-bottom: 6vh;
+    p {
+      font-size: 1.25em;
+      font-weight: 300;
+      letter-spacing: 0.015em;
+    }
   }
   &__workstream__tag {
     display: inline-block;
@@ -63,9 +73,11 @@
     color: #ffffff;
     text-transform: uppercase;
     padding: 10px 32px;
+    border-radius: 3px;
     cursor: pointer;
     user-select: none;
     font-weight: bold;
+    font-size: 1.5em;
 
     &:hover {
       background-color: lighten(#fc8b00, 9);
@@ -121,6 +133,7 @@
 <script>
 import HomeHeader from "@/components/HomepageUILarge/HomeHeader";
 import utils from "../../utils";
+import { PerfectScrollbar } from 'vue2-perfect-scrollbar'
 
 export default {
   computed: {
@@ -137,7 +150,7 @@ export default {
     },
   },
   name: "VideoDescription",
-  components: { HomeHeader },
+  components: { HomeHeader, PerfectScrollbar },
   methods: {
     openVideo(video) {
       const videoId = utils.getVideoIdFromYoutubeUrl(video.videoUrl);
@@ -154,3 +167,4 @@ export default {
   },
 };
 </script>
+<style src="vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css"/>

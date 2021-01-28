@@ -1,10 +1,11 @@
 <template>
   <div class="large-navigation-bar" :class="{ hasMenu }">
     <div class="large-navigation-bar__button-wrapper" @click="toggleMenu">
-      <div class="large-navigation-bar__button">menu</div>
+      <div class="large-navigation-bar__button">sort</div>
     </div>
     <ul class="large-navigation-bar__menu">
       <li><a href="https://www.bfna.org">Visit Our Homepage</a></li>
+      <li><a href="#">About</a></li>
     </ul>
   </div>
 </template>
@@ -56,6 +57,11 @@
     pointer-events: none;
     margin: 0;
     padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+
     // transform-origin: left top;
     
     // margin-top: 60vh;
@@ -68,8 +74,8 @@
     li {
       padding: 16px 32px;
       display: inline-block;
-      transform-origin: 1px 0;
-      transform: rotate(-90deg);
+      //transform-origin: 1px 0;
+      //transform: rotate(-90deg);
       align-self: center;
       cursor: pointer;
       font-weight: bold;

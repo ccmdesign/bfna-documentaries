@@ -1,21 +1,28 @@
 <template>
   <div class="header">
-    <img src="../../assets/bertelsmann-logo.png" width="150" />
-    <div class="header__title">
-      <h3>Documentaries</h3>
-    </div>
+    <img src="../../assets/bertelsmann-logo.png" alt="Bertelsman Foundation" class="bertelsmann" />
+    <img src="../../assets/bfna-documentaries-logo.svg" alt="Documentaries" class="documentaries" />
   </div>
 </template>
 
 <style lang="scss">
 .header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   width: fit-content;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   max-width: 540px;
   width: 100%;  
+  gap: 35px;
+  
+  .bertelsmann {
+    height: 4vh;
+  }
+
+  .documentaries {
+    height: 7vh;
+  }
 
   &__title {
     color: #fc8b00;
