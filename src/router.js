@@ -7,6 +7,7 @@ import store from "./store";
 import Home from "./views/Home.vue";
 import watchView from "./views/Watch.vue";
 import documentariesView from "./views/Documentaries.vue";
+import AboutUs from "./views/AboutUs.vue";
 
 Vue.use(Router);
 Vue.use(Meta);
@@ -34,6 +35,11 @@ const router = new Router({
       path: "/documentaries",
       name: "documentaries",
       component: documentariesView,
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: AboutUs,
     },
   ],
 });

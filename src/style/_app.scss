@@ -11,7 +11,7 @@ body {
       position: fixed;
       width: 48px;
       height: 48px;
-      background-color: #fc8b00;
+      background-color: #4f8d71;
       top: 0;
       right: 0;
       cursor: pointer;
@@ -58,7 +58,7 @@ body {
       &::after {
         position: absolute;
         content: "";
-        background-color: $colors-orange;
+        background-color: $colors-green;
         width: 4px;
         height: 48px;
         top: calc(100% - 24px);

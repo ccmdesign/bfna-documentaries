@@ -35,7 +35,7 @@
   overflow: scroll;
 
   > div { height: auto; }
-  > div > :first-child { margin-top: 25vh; }
+  > div > :first-child { margin-top: 5vh; }
 }
 
 .dots {
@@ -81,6 +81,8 @@
 
   &__excerpt {
     margin-top: 2rem;
+    height: 35vh;
+    overflow: auto;
   }
 
   &__workstream__tag {

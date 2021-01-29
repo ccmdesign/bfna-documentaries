@@ -24,6 +24,11 @@
 </template>
 
 <style lang="scss" scoped>
+
+.homepage__slider__background--large {
+  z-index: -1;
+  position: relative;
+}
 .homepage {
   position: relative;
   width: 100%;
