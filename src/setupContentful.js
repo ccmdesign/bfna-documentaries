@@ -9,6 +9,7 @@ export default function (instance) {
         return {
           title: fields.title,
           subtitle: fields.subtitle,
+          by: fields.by,
           description: fields.description,
           videoUrl: fields.video_url,
           workstream: fields.workstream,

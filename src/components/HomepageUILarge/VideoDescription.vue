@@ -8,6 +8,7 @@
       <div class="video__heading">
         <h2 class="video__title">{{ currentVideo.title }}</h2>
         <p class="video__subtitle">{{ currentVideo.subtitle }}</p>
+        <p class="video__subtitle" v-if="currentVideo.by">By {{ currentVideo.by }}</p>
       </div>
       <perfect-scrollbar class="video__excerpt">
         <p>{{ currentVideo.description }}</p>
@@ -51,7 +52,7 @@
     opacity: 1;
   }
   &__excerpt {
-    height: 20vh;
+    height: 17vh;
     margin-bottom: 6vh;
     p {
       font-size: 1.25em;

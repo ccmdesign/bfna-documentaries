@@ -5,6 +5,7 @@
       <div class="video__heading">
         <h2 class="video__title">{{ currentVideo.title }}</h2>
         <p class="video__subtitle">{{ currentVideo.subtitle }}</p>
+        <p class="video__subtitle" v-if="currentVideo.by">By {{ currentVideo.by }}</p>
         <span class="video__workstream__tag">
         {{ currentVideo.workstream }}
       </span>
@@ -81,7 +82,7 @@
 
   &__excerpt {
     margin-top: 2rem;
-    height: 35vh;
+    height: 30vh;
     overflow: auto;
   }
 
