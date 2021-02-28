@@ -8,28 +8,18 @@
     <router-link tag="div" to="/" class="app-window__close-button"></router-link>
     <div class="app-page__content app-page__padding">
       <div class="app-window__logo app-window__logo--center">
-        <img alt="How To Fix Democracy's Logo" src="../assets/bertelsmann-logo.png" />
+        <img alt="Bertelsman Foundation Documentaries" src="../assets/bfna-documentaries-logo.png" class="logo" />
       </div>
-      <p class="about-us-view__title">
+      <!--<p class="about-us-view__title">
         Since its origins, <span class="highlight">democracy</span> has been a work in progress. <span class="highlight">Today, many question its resilience.</span>
-      </p>
+      </p>-->
       <section class="about-us-view__text flex columns">
         <div class="column">
           <p>
-            In 2019 the Bertelsmann Foundation and Humanity in Action teamed up with Andrew Keen, author of How to Fix the Future, to launch this video and podcast series exploring practical responses to the threats facing democracies around the world.
+            Why documentary films? The Bertelsmann Foundation believes in the power of film to bring the critical stories of our complicated times to life. The potential of the documentary medium extends far beyond offering a convenient replacement for the written word. As a think tank, we try to present research and data in new and innovative ways to a wider audience. In the information age rife with opinion and fake news, our cinematic approach values honesty and insight. Our films do not project a specific agenda, but rather offer candid perspectives that allow the viewer to draw their own conclusions.
           </p>
           <p>
-            Since then, this series has explored why democracy is not delivering in Europe and North America and how it can be reinvigorated. These interviews bring our audience face to face with the origins, controversies, triumphs, and failures of democracy in the 21st century. Our goal is to analyze what is wrong with democracy and spark conversations about how to fix it.
-          </p>
-          <p>
-            In season two in 2020, How to Fix Democracy focused on the relationship between economics, inequality, and capitalism to learn if fixing democracy means reforming our economic systems.
-          </p>
-          <p>For season three, we are turning to the meaning of citizenship, exploring questions like: how are good citizens formed; what does the concept of citizenship mean to different people; and how can positive, inclusive concepts of citizenship be encouraged?</p>
-          <p>How to Fix Democracy is brought to you by the Bertelsmann Foundation, Humanity in Action, and the Institute for Canadian Citizenship, and is made possible with kind support from the William H. Donner Foundation.</p>
-        </div>
-        <div class="column">
-          <p>
-            <strong>Disclaimer:</strong> How to Fix Democracy is meant to provoke discussion and curiosity. The opinions and views expressed in this series are solely those of the participants and do not necessarily represent those of the Bertelsmann Foundation, Humanity in Action, the Institute for Canadian Citizenship or their employees.
+            Bertelsmann Foundation documentaries focus on governance, economics, elections, social issues, the digital revolution, and most importantly, where these issues intersect.
           </p>
         </div>
       </section>
@@ -54,6 +44,10 @@
 </template>
 
 <style lang="scss" scoped>
+.logo {
+  max-width: 350px;
+}
+
 .about-us-view {
   &__title {
     font-size: 2em;

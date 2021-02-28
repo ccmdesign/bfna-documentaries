@@ -82,7 +82,7 @@
 
   &__excerpt {
     margin-top: 2rem;
-    height: 30vh;
+    height: 20vh;
     overflow: auto;
   }
 

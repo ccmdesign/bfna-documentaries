@@ -1,7 +1,6 @@
 <template>
   <div class="header">
-    <img src="../../assets/bertelsmann-logo.png" alt="Bertelsman Foundation" class="bertelsmann" />
-    <img src="../../assets/bfna-documentaries-logo.svg" alt="Documentaries" class="documentaries" />
+    <img src="../../assets/bfna-documentaries-logo.png" alt="Bertelsman Foundation Documentaries" class="documentaries" />
   </div>
 </template>
 
@@ -21,7 +20,7 @@
   }
 
   .documentaries {
-    height: 7vh;
+    height: 30vh;
   }
 
   &__title {

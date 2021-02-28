@@ -29,19 +29,19 @@
   left: 0;
   overflow: hidden;
   background-color: rgba(17, 24, 41, 0.65);
-  padding: 70px 170px;
+  padding: 35px 170px 70px;
 }
 
 .video {
   &__description {
     max-width: 70ch;
-    height: 60vh;
+    height: 53vh;
     position: absolute;
     bottom: 90px;
     left: 170px;
   }
   &__heading {
-    padding-bottom: 60px;
+    padding-bottom: 2vh;
   }
   &__title {
     font-size: 5vh;

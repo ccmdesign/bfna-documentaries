@@ -8,10 +8,7 @@
       <div class="homepage__header">
         <div class="homepage__header__logos">
           <div class="homepage__header__logo">
-            <img src="../assets/bertelsmann-logo.png" width="80" />
-          </div>
-          <div class="homepage__header__title">
-            <h3>Documentaries</h3>
+            <img src="../assets/bfna-documentaries-logo.png" alt="Bertelsman Foundation Documentaries" class="documentaries" />
           </div>
         </div>
       </div>
@@ -67,6 +64,9 @@
     &__logo {
       display: block;
       width: 100%;
+      img {
+        width: 60%;
+      }
 
       & + & {
         margin-top: 10px;

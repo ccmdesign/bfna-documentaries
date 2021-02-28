@@ -34,11 +34,11 @@ body {
       }
 
       img {
-        max-width: 160px;
+        max-width: 240px;
         padding: 0 0 48px 0;
 
         @include media-breakpoint-large {
-          max-width: 240px;
+          max-width: 350px;
         }
       }
     }
