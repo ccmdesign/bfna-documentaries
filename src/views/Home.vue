@@ -3,6 +3,16 @@
     <div class="homepage__video-load" :class="{ show: showVideoLoad }"></div>
     <ui-small v-if="getUIType() === 'small'" />
     <ui-large v-if="getUIType() === 'large'" />
+
+    <input id="cookie-trigger" type="checkbox">
+    <div class="floating-message">  
+      <div class="wrapper">
+        <div class="floating-message__content">  
+          <p>We use cookies to ensure you get the best experience on our website. <a class="link" href="https://www.bfna.org/privacy-policy/">More information</a></p>
+          <label for="cookie-trigger"><i class="material-icons">close</i></label>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

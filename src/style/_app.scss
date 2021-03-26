@@ -94,3 +94,42 @@ body {
     }
   }
 }
+
+.floating-message {
+  position: fixed;
+  z-index: 100;
+  bottom: 40px;
+  transition: all .3s ease;
+  width: min(90%, 1200px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+}
+
+.floating-message__content {
+  background-color: #000000;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin: 0 auto;
+  padding: 0 24px 4px;
+}
+
+.floating-message__content > p { 
+  flex: 1; 
+  padding: 0 2rem;
+  margin: 1em 0;
+}
+.floating-message__content > label { 
+  margin-top: 8px; 
+  cursor: pointer;
+  margin-bottom: 0;
+}
+.floating-message__content a { color: #4f8d71; }
+
+#cookie-trigger { display: none; }
+#cookie-trigger:checked + .floating-message { bottom: -150px; }
