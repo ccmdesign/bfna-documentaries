@@ -7,7 +7,18 @@ const _default = {
   getVideoIdFromYoutubeUrl: function (videoUrl) {
     const regex = /(?:youtube(?:-nocookie)?\.com\/(?:[^/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/g;
     const results = regex.exec(videoUrl);
+    console.log(results)
     return results.length > 1 ? results[1] : null;
+  },
+  getVideoIdFromVimeoUrl: function (videoUrl) {
+    let results = ''
+    let split = videoUrl.split('/')
+    if(split[split.length - 1].length >= 2) {
+      results = split[split.length - 1]
+    } else {
+      results = split[split.length - 2]
+    }
+    return results
   },
   getDefaultDescription: function () {
     return defaultDescription;

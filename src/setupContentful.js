@@ -6,6 +6,12 @@ export default function (instance) {
     })
     .then((documentaryEntries) => {
       const documentaries = documentaryEntries.items.map(({ fields }) => {
+        let source = ''
+        if (fields.video_url.includes("youtu")) {
+          source = 'youtube'
+        } else if(fields.video_url.includes("vimeo")){
+          source = 'vimeo'
+        }
         return {
           title: fields.title,
           subtitle: fields.subtitle,
@@ -15,6 +21,7 @@ export default function (instance) {
           workstream: fields.workstream,
           tags: fields.tags,
           backgroundImage: fields.background_image.fields.file.url,
+          source: source,
         };
       });
 

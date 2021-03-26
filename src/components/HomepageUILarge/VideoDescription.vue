@@ -154,7 +154,13 @@ export default {
   components: { HomeHeader, PerfectScrollbar },
   methods: {
     openVideo(video) {
-      const videoId = utils.getVideoIdFromYoutubeUrl(video.videoUrl);
+      let videoId = ''
+      const source = video.source
+      if(source == 'youtube'){
+        videoId = utils.getVideoIdFromYoutubeUrl(video.videoUrl)
+      } else if(source == 'vimeo'){
+        videoId = utils.getVideoIdFromVimeoUrl(video.videoUrl)
+      }
       if (!videoId) {
         alert(
           `Couldn't play video:\nvideo ID not found in "${video.videoUrl}".`
@@ -162,7 +168,7 @@ export default {
       }
       this.$store.commit("setHomepageVideoEffect", true);
       setTimeout(() => {
-        this.$router.push({ name: "watchVideoId", params: { videoId } });
+        this.$router.push({ name: "watchVideoId", params: { videoId, source } });
       }, 330);
     },
   },

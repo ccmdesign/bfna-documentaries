@@ -23,7 +23,8 @@
       @click="timeoutNavigation"
       @mouseover="timeoutNavigation"
     >
-      <youtube
+      <youtube 
+        v-if="this.source=='youtube'"
         class="watch-view__player"
         :video-id="videoId"
         ref="youtube"
@@ -34,6 +35,19 @@
         @paused="keepNavigation"
         @ended="endVideo"
       ></youtube>
+      <vimeo-player
+        v-if="this.source=='vimeo'"
+        class="watch-view__player"
+        :video-id="videoId"
+        ref="youtube"
+        @playing="showPlayer"
+        @mousemove="timeoutNavigation"
+        @click="timeoutNavigation"
+        @mouseover="timeoutNavigation"
+        @paused="keepNavigation"
+        @ended="endVideo"
+      ></vimeo-player>
+
     </div>
   </div>
 </template>
@@ -251,6 +265,10 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    iFrame { 
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>
@@ -262,6 +280,7 @@ export default {
   data() {
     return {
       videoId: "",
+      source: '',
       videoObject: null,
       show: false,
       navigationVisible: true,
@@ -318,11 +337,12 @@ export default {
       if (paramVideoId) {
         const matchedVideo = this.videoList.find(
           (video) =>
-            utils.getVideoIdFromYoutubeUrl(video.videoUrl) === paramVideoId
+            video.source == 'youtube' ? utils.getVideoIdFromYoutubeUrl(video.videoUrl) === paramVideoId : utils.getVideoIdFromVimeoUrl(video.videoUrl) === paramVideoId
         );
         if (matchedVideo) {
           this.videoObject = matchedVideo;
           this.videoId = paramVideoId;
+          this.source = matchedVideo.source;
         } else {
           this.$router.replace("/");
           return;
@@ -330,10 +350,11 @@ export default {
       } else {
         const currentVideo = this.videoList[this.currentVideo];
         if (currentVideo) {
-          const videoId = utils.getVideoIdFromYoutubeUrl(currentVideo.videoUrl);
+          const videoId = currentVideo.source == 'youtube' ? utils.getVideoIdFromYoutubeUrl(currentVideo.videoUrl) : utils.getVideoIdFromVimeoUrl(currentVideo.videoUrl);
           if (videoId) {
             this.videoObject = currentVideo;
             this.videoId = videoId;
+            this.source = currentVideo.source;
           } else {
             alert(
               `Couldn't play video:\nvideo ID not found in "${currentVideo.videoUrl}".`
@@ -354,14 +375,18 @@ export default {
       this.$store.commit("setHomepageVideoEffect", true);
       this.$store.commit("setNavigation", false);
       setTimeout(() => {
-        this.$refs.youtube.player.playVideo();
-        setTimeout(() => {
-          this.$refs.youtube.player.getPlayerState().then((status) => {
-            if (status !== 1) {
-              this.show = true;
-            }
-          });
-        }, 1000);
+        if(this.source == 'youtube') {
+          this.$refs.youtube.player.playVideo();
+          setTimeout(() => {
+            this.$refs.youtube.player.getPlayerState().then((status) => {
+              if (status !== 1) {
+                this.show = true;
+              }
+            });
+          }, 1000);
+        } else {
+          this.$refs.youtube.player.play();
+        }
       }, 1000);
     });
   },

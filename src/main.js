@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueCarousel from "vue-carousel";
 import VueYoutube from "vue-youtube";
+import vueVimeoPlayer from "vue-vimeo-player";
 
 import App from "./App.vue";
 import router from "./router";
@@ -13,6 +14,7 @@ Vue.config.productionTip = false;
 
 Vue.use(VueCarousel);
 Vue.use(VueYoutube);
+Vue.use(vueVimeoPlayer);
 
 const instance = new Vue({
   router,
