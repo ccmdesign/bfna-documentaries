@@ -5,7 +5,7 @@
         <li
           v-for="(video, index) in videoList"
           :key="index"
-          @click="setCurrentVideo(index)"
+          @click="setCurrentVideo(video.videoUrl)"
         >
           <div class="documentaries-view__documentary">
             <div class="documentaries-view__thumbnail-wrapper">
@@ -128,8 +128,8 @@ export default {
     },
   },
   methods: {
-    setCurrentVideo(index) {
-      this.$store.commit("setCurrentVideo", index);
+    setCurrentVideo(url) {
+      this.$store.commit("setCurrentVideo", url);
       this.$router.replace("/");
     },
   },

@@ -240,7 +240,7 @@ export default {
       if(this.videoListMenu) {
         return 'keyboard_arrow_upward'
       } else {
-        return 'More'
+        return 'All Films'
       }
     }
   },

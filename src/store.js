@@ -17,9 +17,14 @@ const store = new Vuex.Store({
     menuVisibility: false,
   },
   mutations: {
-    setCurrentVideo(state, index) {
-      state.currentVideo =
-        index > state.videoList.length || index < 0 ? 0 : index;
+    setCurrentVideo(state, url) {
+      let index = -1
+      state.videoList.find(function (item, i) {
+        if (item.videoUrl === url) {
+          index = i
+        }
+      })
+      state.currentVideo = index > state.videoList.length || index < 0 ? 0 : index;
     },
     setNavigation(state, navigation) {
       state.navigation = navigation;

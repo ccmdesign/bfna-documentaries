@@ -8,6 +8,7 @@
     <router-link tag="div" to="/" class="app-window__close-button"></router-link>
     <div class="app-page__content app-page__padding">
       <div class="app-window__logo app-window__logo--center">
+        <img src="../assets/bertelsmann-logo.png" alt="Bertelsman Foundation" class="logo">
         <img alt="Bertelsman Foundation Documentaries" src="../assets/bfna-documentaries-logo.png" class="logo" />
       </div>
       <!--<p class="about-us-view__title">
@@ -46,6 +47,7 @@
 <style lang="scss" scoped>
 .logo {
   max-width: 350px;
+  margin: 0 30px;
 }
 
 .about-us-view {

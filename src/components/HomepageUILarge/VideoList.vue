@@ -32,7 +32,7 @@
     </div>
     <perfect-scrollbar class="scroll-container">
       <div class="video-list__list">
-        <div class="video-list__episode" v-for="(video, index) in videoList" :key="index" @click="selectEpisode(index)">
+        <div class="video-list__episode" v-for="(video, index) in videoList" :key="index" @click="selectEpisode(video.videoUrl)">
           <div
             class="video-list__episode-thumbnail"
             :style="{ backgroundImage: `url('${video.backgroundImage}')` }"
@@ -211,7 +211,7 @@ export default {
   },
   methods: {
     getVideoThumbnail(video) {
-      const videoId = utils.getVideoIdFromYoutubeUrl(video.videoUrl);
+      const videoId = video.source == 'youtube' ? utils.getVideoIdFromYoutubeUrl(video.videoUrl) : utils.getVideoIdFromVimeoUrl(video.videoUrl);
       return videoId
         ? `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`
         : "";
@@ -222,8 +222,8 @@ export default {
     previousEpisode() {
       this.$refs.videoList.handleNavigation("backward");
     },
-    selectEpisode(index) {
-      this.$store.commit("setCurrentVideo", index);
+    selectEpisode(url) {
+      this.$store.commit("setCurrentVideo", url);
       if (this.closeAction) {
         this.closeAction();
       }
