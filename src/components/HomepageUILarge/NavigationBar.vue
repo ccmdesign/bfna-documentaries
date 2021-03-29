@@ -5,7 +5,7 @@
     </div>
     <ul class="large-navigation-bar__menu">
       <li><a href="https://www.bfna.org">Visit Our Homepage</a></li>
-      <li><a href="/about">About</a></li>
+      <li><router-link to="/about">About</router-link></li>
     </ul>
   </div>
 </template>
