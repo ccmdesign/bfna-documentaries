@@ -23,6 +23,12 @@
             class="menu-small__item"
             >Videos</a
           ><br />
+          <router-link
+            to="/about"
+            class="menu-small__item">
+            About
+          </router-link>
+          <br />
         </nav>
 
         <nav class="menu-small__nav menu-small--about">
