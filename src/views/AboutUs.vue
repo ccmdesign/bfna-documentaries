@@ -11,9 +11,6 @@
         <img src="../assets/bertelsmann-logo.png" alt="Bertelsman Foundation" class="logo">
         <img alt="Bertelsman Foundation Documentaries" src="../assets/bfna-documentaries-logo.png" class="logo" />
       </div>
-      <!--<p class="about-us-view__title">
-        Since its origins, <span class="highlight">democracy</span> has been a work in progress. <span class="highlight">Today, many question its resilience.</span>
-      </p>-->
       <section class="about-us-view__text flex columns">
         <div class="column">
           <p>
@@ -24,22 +21,6 @@
           </p>
         </div>
       </section>
-      <!--<section class="about-us-view__text">
-        <p>
-          This series is also available as a podcast.
-        </p>
-        <p>
-          <a class="about-us-view__podcast-icon" href="https://itunes.apple.com/us/podcast/how-to-fix-democracy/id1451517552" target="_blank" rel="noopener">
-            <img alt="iTunes" src="/img/icons/podcasts.svg" />
-          </a>
-          <a class="about-us-view__podcast-icon" href="https://open.spotify.com/show/2cR0EWlbC5CZcOXs3F59Yp" target="_blank" rel="noopener">
-            <img alt="Spotify" src="/img/icons/spotify.svg" />
-          </a>
-          <a class="about-us-view__podcast-icon" href="https://play.google.com/music/listen?u=0#/ps/Ihoqpn6tlf3foz3eqhg5s47uxcy" target="_blank" rel="noopener">
-            <img alt="Google Podcasts" src="/img/icons/google-podcasts.svg" />
-          </a>
-        </p>
-      </section>-->
     </div>
   </div>
 </template>
