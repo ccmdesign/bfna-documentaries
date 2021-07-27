@@ -20,7 +20,6 @@
 .homepage {
   position: relative;
   width: 100%;
-  height: 100%;
 
   &__video-load {
     position: absolute;

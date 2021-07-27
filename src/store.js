@@ -12,6 +12,7 @@ const store = new Vuex.Store({
   state: {
     currentVideo: 0,
     videoList: [],
+    featured: [],
     navigation: true,
     homepageVideoEffect: false,
     menuVisibility: false,
@@ -37,6 +38,9 @@ const store = new Vuex.Store({
     },
     setVideoList(state, videoList) {
       state.videoList = videoList;
+    },
+    setFeatured(state, featured) {
+      state.featured = featured;
     },
   },
   getters: {

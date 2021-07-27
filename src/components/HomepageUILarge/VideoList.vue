@@ -1,6 +1,21 @@
 <template>
   <div class="video-list">
+    <div class="video-list__featured-section">
+      <h3 class="section-title">Featured</h3>
+      <div class="featured-list">
+        <div v-for="(video, index) in featured
+        " :key="index" >
+          <div class="video-list__episode" @click="selectEpisode(video.videoUrl)" v-if="">
+            <div
+              class="video-list__episode-thumbnail"
+              :style="{ backgroundImage: `url('${video.backgroundImage}')` }"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="video-list__workstreams-section">
+      <h3 class="section-title | videolist-main-title">All documentaries</h3>
       <div
         class="child workstream--democracy"
         @click="selectWorkstream('democracy')"
@@ -30,29 +45,51 @@
         <h2>Digital Economy</h2>
       </div>
     </div>
-    <perfect-scrollbar class="scroll-container">
-      <div class="video-list__list">
-        <div class="video-list__episode" v-for="(video, index) in videoList" :key="index" @click="selectEpisode(video.videoUrl)">
-          <div
-            class="video-list__episode-thumbnail"
-            :style="{ backgroundImage: `url('${video.backgroundImage}')` }"
-          />
+    <div class="video-list__list">
+      <div class="video-list__episode" v-for="(video, index) in videoList" :key="index" @click="selectEpisode(video.videoUrl)">
+        <div
+          class="video-list__episode-thumbnail"
+          :style="{ backgroundImage: `url('${video.backgroundImage}')` }"
+        />
 
-          <div class="video-list__episode-info">
-            <h4>{{ video.title }}</h4>
-            <h3>{{ video.subtitle }}</h3>
-          </div>
+        <div class="video-list__episode-info">
+          <h4>{{ video.title }}</h4>
+          <h3>{{ video.subtitle }}</h3>
         </div>
       </div>
-    </perfect-scrollbar>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.video-list__featured-section {
+  padding-bottom: 128px;
+}
+
+.section-title {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.5em;
+  letter-spacing: 0.02em;
+  &.videolist-main-title {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    margin: 0;
+  }
+}
+
+.featured-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+
 .video-list {
   position: relative;
-  padding: 12px 47px 64px 47px;
-  height: 75vh;
+  padding: 12px 170px 64px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
 
   &__list {
     display: grid;
@@ -99,19 +136,20 @@
   }
 
   &__workstreams-section {
-    padding-bottom: 32px;
+    margin-bottom: 64px;
     display: flex;
     justify-content: center;
+    position: relative;
     .child + .child { margin-left: 2rem;}
 
     .child {
       --button-color: #ffffff;
-      --bg-color: transparent;
+      --bg-color: #000;
 
 
-      padding: .4rem .8rem .5rem;
+      padding: 0;
       cursor: pointer;
-      border: 2px solid var(--button-color);
+      border: 3px solid var(--button-color);
       background-color: var(--bg-color);
 
       &.workstream--democracy { --button-color: #4f8d71; }
@@ -121,11 +159,14 @@
 
       h2 {
         margin: 0;
-        padding: 2px 5px;
+        padding: 0;
+        line-height: 54px;
+        height: 54px;
+        width: 214px;
         color: white;
         font-size: 1em;
         letter-spacing: 0.23px;
-        line-height: 20px;
+        text-align: center;
         text-transform: uppercase;
       }
 
@@ -156,9 +197,6 @@
   }
 }
 
-.scroll-container {
-  height: calc(75vh - 110px);
-}
 </style>
 
 <script>
@@ -190,6 +228,9 @@ export default {
       };
 
       return this.$store.state.videoList.filter(filter);
+    },
+    featured() {
+      return this.$store.state.featured;
     },
     maxPages() {
       return Math.floor(this.videoList.length / 4);

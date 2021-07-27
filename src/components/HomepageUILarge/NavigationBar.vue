@@ -12,12 +12,13 @@
 
 <style lang="scss">
 .large-navigation-bar {
+  padding: 0 170px;
   z-index: 2;
-  position: absolute;
+  position: fixed;
   display: flex;
-  flex-direction: column;
-  width: 60px;
-  height: 100%;
+  flex-direction: row;
+  width: 100%;
+  height: 60px;
   background-color: rgba(0, 0, 0, 0.4);
   top: 0;
   left: 0;
@@ -25,19 +26,18 @@
   border-right: solid 1px grey;
 
   &.hasMenu {
-    transform: translateX(-100%);
+    transform: translateY(-100%);
   }
 
   &__button {
     @extend .material-icons;
-    width: 100%;
+    width: 60px;
     height: 60px;
     text-align: center;
     line-height: 60px;
     cursor: pointer;
     user-select: none;
     transition: background-color 0.13s ease-in-out;
-    border-bottom: solid 1px grey;
 
     &:hover {
       background-color: lighten(#08415c, 5);
@@ -52,15 +52,11 @@
     flex: 1;
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-end;
     width: max-content;
     pointer-events: none;
     margin: 0;
     padding: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-90deg);
 
     // transform-origin: left top;
     

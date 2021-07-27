@@ -4,36 +4,9 @@
       class="homepage__slider__background--large"
       :style="`background-image: url('${currentVideo.backgroundImage}')`"
     ></div>
-    <VideoDescription isOpened="false" />
+    <VideoDescription isOpened="true" />
     <navigation-bar />
     <menu-ui />
-    <div class="homepage__list-bar" :class="{ opened: videoListMenu }">
-      <!--<div class="homepage__list-bar__section button-section">
-        <div
-          class="homepage__list-bar__button"
-          :class="{ opened: videoListMenu }"
-          :data-text="getButtonText()"
-          @click="toggleVideoList"
-        >
-        </div>
-        <div class="homepage__list-bar__by">
-          by
-          <a href="https://www.ccmdesign.ca" target="_blank" rel="noopener"
-            >ccm.design</a
-          >
-        </div>
-      </div>-->
-
-      <div
-        class="homepage__list-bar__section videos-section"
-      >
-        <video-list
-          class="child"
-          ref="videoListWrapper"
-          :closeAction="closeVideoList"
-        />
-      </div>
-    </div>
   </div>
 </template>
 
@@ -162,7 +135,6 @@
 </style>
 
 <script>
-import { Carousel } from "vue-carousel";
 import Slide from "@/components/HomepageUILarge/Slide";
 import VideoList from "@/components/HomepageUILarge/VideoList";
 import NavigationBar from "@/components/HomepageUILarge/NavigationBar";
@@ -170,9 +142,8 @@ import MenuUI from "@/components/HomepageUILarge/Menu";
 import VideoDescription from "@/components/HomepageUILarge/VideoDescription";
 
 export default {
-  name: "HomepageUILargeComponent",
+  name: "documentaryLarge",
   components: {
-    Carousel,
     Slide,
     VideoList,
     NavigationBar,

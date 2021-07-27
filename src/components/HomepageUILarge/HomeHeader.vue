@@ -6,6 +6,7 @@
 
 <style lang="scss">
 .header {
+  position: relative;
   display: flex;
   align-items: center;
   width: fit-content;
@@ -20,7 +21,8 @@
   }
 
   .documentaries {
-    height: 30vh;
+    height: 15vh;
+    margin-top: calc(5vh + 60px);
   }
 
   &__title {

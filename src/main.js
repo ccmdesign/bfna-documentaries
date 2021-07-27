@@ -8,6 +8,7 @@ import router from "./router";
 import store from "./store";
 
 import setupContentful from "./setupContentful";
+import getList from "./getList";
 import "./registerServiceWorker";
 
 Vue.config.productionTip = false;
@@ -24,3 +25,4 @@ const instance = new Vue({
 }).$mount("#app");
 
 setupContentful(instance);
+getList(instance);
