@@ -264,6 +264,11 @@ export default {
       this.$refs.videoList.handleNavigation("backward");
     },
     selectEpisode(url) {
+      window.scroll({
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth'
+      });
       this.$store.commit("setCurrentVideo", url);
       if (this.closeAction) {
         this.closeAction();
