@@ -54,7 +54,6 @@
     align-items: flex-start;
     justify-content: center;
     width: max-content;
-    pointer-events: none;
     margin: 0;
     padding: 0;
     position: absolute;

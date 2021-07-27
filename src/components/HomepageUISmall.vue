@@ -47,7 +47,6 @@
     height: 100%;
     left: 0;
     top: 0;
-    pointer-events: none;
     user-select: none;
     background-color: rgba(0, 0, 0, 0.48);
   }
@@ -189,13 +188,12 @@
 </style>
 
 <script>
-import { Carousel } from "vue-carousel";
 import Slide from "@/components/HomepageUISmall/Slide";
 import VideoDescription from "@/components/HomepageUISmall/VideoDescription";
 
 export default {
   name: "HomepageUILargeComponent",
-  components: { Carousel, Slide, VideoDescription },
+  components: {  Slide, VideoDescription },
   computed: {
     videoList() {
       return this.$store.state.videoList;
