@@ -4,10 +4,10 @@
       class="homepage__slider__background--large"
       :style="`background-image: url('${currentVideo.backgroundImage}')`"
     ></div>
-    <VideoDescription isOpened="false" />
+    <VideoDescription open="false" @eventname="hideList" />
     <navigation-bar />
     <menu-ui />
-    <div class="homepage__list-bar" :class="{ opened: videoListMenu }">
+    <div class="homepage__list-bar" :class="{ animated : animate }">
       <!--<div class="homepage__list-bar__section button-section">
         <div
           class="homepage__list-bar__button"
@@ -51,7 +51,11 @@
   &__list-bar {
     width: 100%;
     z-index: 100;
-
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    &.animated {
+      opacity: 1;
+    }
     &.opened {
       background-color: #01121ad9;
     }
@@ -183,6 +187,7 @@ export default {
     return {
       videoListMenu: false,
       videoListHeight: 0,
+      animate: false,
     };
   },
   computed: {
@@ -234,6 +239,9 @@ export default {
       } else {
         return 'All Films'
       }
+    },
+    hideList() {
+      this.animate = false;
     }
   },
   mounted() {
@@ -244,6 +252,7 @@ export default {
           510
         ) + "px";
     });
+    this.animate = true;
   },
 };
 </script>

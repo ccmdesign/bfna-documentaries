@@ -1,16 +1,186 @@
 <template>
   <div class="homepage">
+    <h1 class="sr-only">{{ currentVideo.title }}</h1>
     <div
       class="homepage__slider__background--large"
       :style="`background-image: url('${currentVideo.backgroundImage}')`"
     ></div>
-    <VideoDescription isOpened="true" />
+    <VideoDescription open="true" />
     <navigation-bar />
     <menu-ui />
+    <div class="homepage__list-bar" :class="{ animated : animate }">
+      <div class="video-list__screenings-section" v-if="currentVideo.screenings && currentVideo.screenings.length > 0">
+        <h2 class="section-title">Upcoming Screenings</h2>
+        <div class="screenings-list">
+          <div class="screening-card" v-for="screen in currentVideo.screenings" :key="screen.id">
+            <div class="screening-card__info">
+              <div class="screening-card__title">
+                <span class="screening-card__badge screening-card__badge--available" v-if="screen.availability">Available</span>
+                <span class="screening-card__badge screening-card__badge--soldout" v-else>Sold out</span>
+                <p class="screening-card__day">{{ new Date(screen.dateStart).getUTCDate() }}</p>
+                <div class="screening-card__datebox">
+                  <p class="screening-card__month">
+                    {{ monthNames[new Date(screen.dateStart).getUTCMonth()] }}
+                  </p>
+                  <p class="screening-card__hours">
+                    {{ gimmeHours(new Date(screen.dateStart)) }} - {{ gimmeHours(new Date(screen.dateEnd)) }} 
+                  </p>
+                </div>
+              </div>
+              <div class="screening-card__description">
+                <a :href="screen.estabilishmentURL" target="_blank" class="screening-card__estabilishment" v-if="screen.estabilishmentURL">{{ screen.estabilishment }}</a>
+                <p class="screening-card__estabilishment" v-else>{{ screen.estabilishment }}</p>
+                <p class="screening-card__place">{{ screen.place }}</p>
+              </div>
+            </div>
+            <div class="screening-card__link">
+              <a :href="screen.ticketsURL" target="_blank" class="screening-card__button" v-if="screen.availability">Get tickets</a>
+              <a class="screening-card__button screening-card__button--disabled" disabled v-else>Sold out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+
+.video-list__screenings-section {
+  padding-bottom: 128px;
+}
+
+.screenings-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.screening-card {
+  background: #0B0D0E;
+  box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.2);
+  padding: 0;
+  color: #EAEBED;
+}
+
+  .screening-card__info {
+    padding: 24px 24px 40px;
+    border-bottom: 2px dashed #282F3A;
+  }
+
+  .screening-card__title {
+    position: relative;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #282F3A;
+    display: flex;
+    p {
+      margin: 0;
+    }
+    .screening-card__day {
+      margin-right: 24px;
+    }
+  }
+
+  .screening-card__badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #FFF;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    &.screening-card__badge--available {
+      color: #3CFF95;
+    }
+    &.screening-card__badge--soldout {
+      color: #FF8979;
+    }
+  }
+
+  .screening-card__datebox {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+  }
+
+  .screening-card__day {
+    font-weight: 700;
+    font-size: 3.5em;
+    line-height: 1em;
+  }
+
+  .screening-card__month {
+    color: #D2D4DA;
+    font-weight: 700;
+    font-size: 1.125em;
+    letter-spacing: 0.02em;
+  }
+
+  .screening-card__hours {
+    font-weight: 700;
+    font-size: 1.125em;
+    letter-spacing: 0.02em;
+  }
+
+  .screening-card__description {
+    padding-top: 24px;
+    p {
+      margin: 0;
+    }
+  }
+
+  .screening-card__estabilishment {
+    font-weight: bold;
+    color: #EAEBED;
+    &:hover, &:focus, &:active {
+      color: #EAEBED;
+    }
+  }
+
+  .screening-card__place {
+    font-weight: 400;
+    color: #D2D4DA;
+  }
+
+  .screening-card__link {
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .screening-card__button {
+    display: block;
+    width: 180px;
+    height: 46px;
+    line-height: 46px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 3.125px solid #C2C5CD;
+    text-align: center;
+    box-sizing: content-box;
+    &:not(.screening-card__button--disabled) {
+      color: #FCFCFC;
+      &:hover, &:focus, &:active {
+        outline: none;
+        text-decoration: none;
+        color: #000;
+        background: #FCFCFC;
+        border-color: #FCFCFC;
+      }
+    }
+    &.screening-card__button--disabled {
+      color: #D2D4DA;
+      border-color: #676A73;
+    }
+  }
+
+.section-title {
+  color: #FFF;
+  size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 42px;
+}
+
 .homepage {
   position: relative;
   width: 100%;
@@ -24,6 +194,13 @@
   &__list-bar {
     width: 100%;
     z-index: 100;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    padding: 0 170px;
+    position: relative;
+    &.animated {
+      opacity: 1;
+    }
 
     &.opened {
       background-color: #01121ad9;
@@ -154,6 +331,8 @@ export default {
     return {
       videoListMenu: false,
       videoListHeight: 0,
+      animate: false,
+      monthNames : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     };
   },
   computed: {
@@ -179,20 +358,6 @@ export default {
     setCurrentVideo(index) {
       this.$store.commit("setCurrentVideo", index);
     },
-    nextSlide() {
-      if (this.currentIndex + 1 >= this.videoList.length) {
-        this.setCurrentVideo(0);
-      } else {
-        this.setCurrentVideo(this.currentIndex + 1);
-      }
-    },
-    previousSlide() {
-      if (this.currentIndex - 1 < 0) {
-        this.setCurrentVideo(this.videoList.length - 1);
-      } else {
-        this.setCurrentVideo(this.currentIndex - 1);
-      }
-    },
     toggleVideoList() {
       this.videoListMenu = !this.videoListMenu;
     },
@@ -205,16 +370,13 @@ export default {
       } else {
         return 'All Films'
       }
+    },
+    gimmeHours(date) {
+      return date.getHours() + ":" + ('0' + date.getMinutes()).slice(-2);
     }
   },
   mounted() {
-    requestAnimationFrame(() => {
-      this.videoListHeight =
-        Math.max(
-          this.$refs.videoListWrapper.$el.getBoundingClientRect().height,
-          510
-        ) + "px";
-    });
+    this.animate = true;
   },
 };
 </script>

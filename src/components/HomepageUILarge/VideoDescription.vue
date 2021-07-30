@@ -25,7 +25,6 @@
   z-index: 1;
   //position: absolute;
   width: 100%;
-  height: 85vh;
   max-height: 100%;
   top: 0;
   left: 0;
@@ -37,7 +36,7 @@
 .video {
   &__description {
     max-width: 70ch;
-    height: 40vh;
+    margin-bottom: 64px;
     margin-top: 5vh;
     position: relative;
   }
@@ -96,6 +95,7 @@
     color: #ffffff;
     text-transform: uppercase;
     cursor: pointer;
+    box-sizing: content-box;
     border-radius: 2px;
     &:hover, &:active, &:visited, &:focus {
       text-decoration: none;
@@ -207,8 +207,13 @@ export default {
     },
   },
   props: [
-    'isOpened',
+    'open',
   ],
+  data(){
+    return {
+      isOpened: this.open
+    }
+  },
   name: "VideoDescription",
   components: { HomeHeader, PerfectScrollbar },
   methods: {
@@ -233,6 +238,7 @@ export default {
     moreInfo() {
       this.toTop();
       this.isOpened = true;
+      this.$emit('hideList', false);
       setTimeout(() => {
         this.$router.push({ name: "documentaryLarge", params: { id: this.currentVideo.title } });
       }, 800);

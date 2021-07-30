@@ -200,12 +200,11 @@
 </style>
 
 <script>
-import { Carousel, Slide } from "vue-carousel";
 import utils from "../../utils";
 import { PerfectScrollbar } from 'vue2-perfect-scrollbar'
 
 export default {
-  components: { Carousel, Slide, PerfectScrollbar },
+  components: { PerfectScrollbar },
   data() {
     return {
       currentEpisode: 0,
