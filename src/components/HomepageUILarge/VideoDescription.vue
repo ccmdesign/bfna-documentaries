@@ -245,6 +245,11 @@ export default {
     },
     returnButton() {
       this.isOpened = false;
+      window.scroll({
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth'
+      });
       setTimeout(() => {
         this.$router.go(-1);
       }, 800);

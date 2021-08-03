@@ -89,7 +89,7 @@
 .video-list {
   position: relative;
   padding: 12px 170px 64px;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,8,12,1) 30%, rgba(0,8,12,1) 100%);
 
   &__list {
     display: grid;

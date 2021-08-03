@@ -9,7 +9,7 @@
     <navigation-bar />
     <menu-ui />
     <div class="homepage__list-bar" :class="{ animated : animate }">
-      <div class="video-list__screenings-section" v-if="currentVideo.screenings && currentVideo.screenings.length > 0">
+      <div class="video-list__screenings-section | content-info" v-if="currentVideo.screenings && currentVideo.screenings.length > 0">
         <h2 class="section-title">Upcoming Screenings</h2>
         <div class="screenings-list">
           <div class="screening-card" v-for="screen in currentVideo.screenings" :key="screen.id">
@@ -40,11 +40,62 @@
           </div>
         </div>
       </div>
+      <div class="video-list__video-info | content-info" v-if="currentVideo.video_info">
+        <h2 class="section-title">Film Info</h2>
+        <div class="video-info">
+          <div class="video-info__media">
+            <a href="#" @click="openVideo(currentVideo.video_info.teaser_url, currentVideo.video_info.teaser_source)" class="video-info__trailer | trailer-thumb" :style="'background-image: url('+currentVideo.video_info.thumb+')'" v-if="currentVideo.video_info.teaser_url">{{ currentVideo.video_info.title }}</a>
+            <img class="video-info__screenshot" :src="currentVideo.video_info.screenshot" :alt="'Screenshot from '+currentVideo.title" v-if="currentVideo.video_info.screenshot">
+          </div>
+          <div class="video-info__description">
+            <h3 class="video_info__title">{{ currentVideo.video_info.column_1_title }}</h3>
+            <p class="video-info__text">{{ currentVideo.video_info.column_1_text }}</p>
+          </div>
+          <div class="video-info__description" v-if="currentVideo.video_info.column_2_title">
+            <h3 class="video_info__title">{{ currentVideo.video_info.column_2_title }}</h3>
+            <p class="video-info__text">{{ currentVideo.video_info.column_2_text }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="video-list__resources-section | content-info" v-if="currentVideo.resources">
+        <h2 class="section-title">Film Info</h2>
+        <div class="resource-list">
+          <div class="resource-list__resource | resource-card" v-for="resource in currentVideo.resources" :key="resource.id">
+            <div class="resource-card__header">
+              <template>
+                <img src="../assets/cicle_link.png" alt="Link" class="resource-card__icon" v-if="resource.type == 'link'">
+                <img src="../assets/cicle_pdf.png" alt="Link" class="resource-card__icon" v-else-if="resource.type == 'pdf'">
+                <img src="../assets/cicle_doc.png" alt="Link" class="resource-card__icon" v-else-if="resource.type == 'doc'">
+                <img src="../assets/cicle_img.png" alt="Link" class="resource-card__icon" v-else-if="resource.type == 'image'">
+                <img src="../assets/cicle_video.png" alt="Link" class="resource-card__icon" v-else-if="resource.type == 'video'">
+                <img src="../assets/cicle_zip.png" alt="Link" class="resource-card__icon" v-else-if="resource.type == 'zip'">
+                <img src="../assets/cicle_file.png" alt="Link" class="resource-card__icon" v-else>
+              </template>
+              <div class="resource-card__main">
+                <h3 class="resource-card__title">{{ resource.title }}</h3>
+                <div class="resource-card__extra" v-if="resource.type == 'link'">Weblink</div>
+                <div class="resource-card__extra" v-else>{{ resource.extension }} file, {{ resource.size }}</div>
+              </div>
+            </div>
+            <div class="resource-card__body">
+              <p class="resource-card__text">{{ resource.description }}</p>
+              <a :href="resource.url" target="_blank" class="resource-card__button" v-if="resource.type == 'link'">Access</a>
+              <a :href="resource.url" download class="resource-card__button" v-else>Download</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.section-title {
+  color: #FFF;
+  size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 42px;
+}
 
 .video-list__screenings-section {
   padding-bottom: 128px;
@@ -148,7 +199,8 @@
     justify-content: center;
   }
 
-  .screening-card__button {
+  .screening-card__button,
+  .resource-card__button {
     display: block;
     width: 180px;
     height: 46px;
@@ -174,12 +226,135 @@
     }
   }
 
-.section-title {
-  color: #FFF;
-  size: 2.5em;
-  font-weight: bold;
-  margin-bottom: 42px;
+.video-list__video-info {
+  padding-bottom: 128px;
 }
+
+.video-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px;
+}
+
+  .video-info__screenshot {
+    width: 100%;
+  }
+
+  .video_info__title {
+    font-weight: 700;
+    font-size: 2em;
+    line-height: 1em;
+    margin-bottom: 16px;
+  }
+
+  .video-info__text {
+    white-space: pre-wrap;
+    font-size: 1em;
+    font-weight: 400;
+  }
+
+.trailer-thumb {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: block;
+  padding: 26px 20px;
+  color: #FFF;
+  font-weight: 700;
+  font-size: 1.5em;
+  letter-spacing: 0.02em;
+  margin-bottom: 32px;
+  &:hover, &:active, &:focus {
+    color: #FFF;
+    text-decoration: none;
+    &:after {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+  &:after {
+    content: '';
+    width: 112px;
+    height: 112px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease-in-out;
+    background-image: url('../assets/play-icon.png');
+    background-position: center;
+    background-size: contain;
+  }
+}
+
+
+
+.video-list__resources-section {
+  padding-bottom: 128px;
+}
+
+.resource-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.resource-card {
+  background: #0B0D0E;
+  box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.2);
+  padding: 32px 24px 24px;
+  color: #EAEBED;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+  .resource-card__header {
+    border-bottom: 1px solid #282F3A;
+    padding-bottom: 16px;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .resource-card__icon {
+    width: 48px;
+    height: 48px;
+    margin-right: 15px;
+  }
+
+  .resource-card__main {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+  }
+
+  .resource-card__title {
+    font-size: 1.125em;
+    font-weight: 700;
+    line-height: 1em;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  .resource-card__extra {
+    font-size: 1.125em;
+    font-weight: 400;
+    line-height: 1em;
+    margin: 0;
+  }
+
+  .resource-card__body {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding-top: 16px;
+    flex-grow: 1;
+  }
+
+  .resource-card__text {
+    width: 100%;
+    flex-grow: 1;
+  }
 
 .homepage {
   position: relative;
@@ -198,6 +373,7 @@
     transition: opacity 0.5s ease-in-out;
     padding: 0 170px;
     position: relative;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,8,12,1) 30%, rgba(0,8,12,1) 100%);
     &.animated {
       opacity: 1;
     }
@@ -317,6 +493,7 @@ import VideoList from "@/components/HomepageUILarge/VideoList";
 import NavigationBar from "@/components/HomepageUILarge/NavigationBar";
 import MenuUI from "@/components/HomepageUILarge/Menu";
 import VideoDescription from "@/components/HomepageUILarge/VideoDescription";
+import utils from "../utils";
 
 export default {
   name: "documentaryLarge",
@@ -352,6 +529,23 @@ export default {
     },
   },
   methods: {
+    openVideo(url, source) {
+      let videoId = ''
+      if(source == 'youtube'){
+        videoId = utils.getVideoIdFromYoutubeUrl(url)
+      } else if(source == 'vimeo'){
+        videoId = utils.getVideoIdFromVimeoUrl(url)
+      }
+      if (!videoId) {
+        alert(
+          `Couldn't play video:\nvideo ID not found in "${url}".`
+        );
+      }
+      this.$store.commit("setHomepageVideoEffect", true);
+      setTimeout(() => {
+        this.$router.push({ name: "watchVideoId", params: { videoId, source } });
+      }, 330);
+    },
     onPageChange(newSlide) {
       this.setCurrentVideo(newSlide);
     },
@@ -373,10 +567,17 @@ export default {
     },
     gimmeHours(date) {
       return date.getHours() + ":" + ('0' + date.getMinutes()).slice(-2);
-    }
+    },
   },
   mounted() {
     this.animate = true;
+    window.setTimeout(() => {
+      window.scroll({
+        top: 300, 
+        left: 0, 
+        behavior: 'smooth'
+      });
+    }, 500);
   },
 };
 </script>
