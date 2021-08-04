@@ -99,6 +99,7 @@
         </div>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -571,10 +572,12 @@ import NavigationBar from "@/components/HomepageUILarge/NavigationBar";
 import MenuUI from "@/components/HomepageUILarge/Menu";
 import VideoDescription from "@/components/HomepageUILarge/VideoDescription";
 import utils from "../utils";
+import Footer from "@/components/Footer"
 
 export default {
   name: "documentaryLarge",
   components: {
+    Footer,
     Slide,
     VideoList,
     NavigationBar,

@@ -34,6 +34,7 @@
         />
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -172,6 +173,7 @@ import VideoList from "@/components/HomepageUILarge/VideoList";
 import NavigationBar from "@/components/HomepageUILarge/NavigationBar";
 import MenuUI from "@/components/HomepageUILarge/Menu";
 import VideoDescription from "@/components/HomepageUILarge/VideoDescription";
+import Footer from "@/components/Footer"
 
 export default {
   name: "HomepageUILargeComponent",
@@ -179,6 +181,7 @@ export default {
     Carousel,
     Slide,
     VideoList,
+    Footer,
     NavigationBar,
     "menu-ui": MenuUI,
     VideoDescription,
