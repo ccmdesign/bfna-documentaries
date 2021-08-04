@@ -104,6 +104,17 @@ export default function (instance) {
             resourcesList.push(resource);
           });
         }
+        let awardList = [];
+        if (fields.awards) {
+          fields.awards.forEach(aw => {
+            awardList.push({
+              id: aw.sys.id,
+              title: aw.fields.title,
+              institution: aw.fields.institution,
+              year: aw.fields.year,
+            })
+          });
+        }
         documentaries.push({
           id: doc.sys.id,
           title: fields.title,
@@ -117,7 +128,8 @@ export default function (instance) {
           source: source,
           screenings: screeningsList,
           video_info: videoInfo,
-          resources: resourcesList
+          resources: resourcesList,
+          awards: awardList
         });
       });
 

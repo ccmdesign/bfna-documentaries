@@ -6,6 +6,19 @@
       :style="`background-image: url('${currentVideo.backgroundImage}')`"
     ></div>
     <VideoDescription open="true" />
+    <div class="award-list">
+      <div class="award"  v-for="award in currentVideo.awards" :key="award.id">
+        <div class="award__tip"></div>
+        <div class="award__info">
+          <img src="../assets/award_icon.png" alt="Icon badge" class="award__icon">
+          <span class="award__separator"></span>
+          <div class="award__data">
+            <p class="award__title">{{ award.title }}</p>
+            <p class="award__text">{{ award.year }}<span v-if="award.institution"> - {{ award.institution }}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
     <navigation-bar />
     <menu-ui />
     <div class="homepage__list-bar" :class="{ animated : animate }">
@@ -58,7 +71,7 @@
         </div>
       </div>
       <div class="video-list__resources-section | content-info" v-if="currentVideo.resources">
-        <h2 class="section-title">Film Info</h2>
+        <h2 class="section-title">Resources</h2>
         <div class="resource-list">
           <div class="resource-list__resource | resource-card" v-for="resource in currentVideo.resources" :key="resource.id">
             <div class="resource-card__header">
@@ -356,6 +369,70 @@
     flex-grow: 1;
   }
 
+.award-list {
+  position: absolute;
+  top: 115px;
+  right: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+  .award {
+    margin-bottom: 10px;
+    min-width: 360px;
+    display: flex;
+    transform: translateX(calc(100% - 340px));
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+      transform: translateX(20px);
+    }
+  }
+
+    .award__tip {
+      width: 0; 
+      height: 0; 
+      border-top: 30px solid transparent;
+      border-bottom: 30px solid transparent; 
+      border-right: 22px solid #000; 
+    }
+
+    .award__info {
+      background: #000;
+      height: 60px;
+      flex-grow: 1;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      padding: 0 45px 0 10px;
+    }
+
+    .award__separator {
+      width: 1px;
+      height: 44px;
+      margin: 0 16px;
+      background: #464646;
+    }
+
+    .award__title {
+      font-size: 1.125em;
+      line-height: 1em;
+      color: #FCC500;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin: 0;
+    }
+
+    .award__text {
+      font-size: 0.875em;
+      font-weight: 400;
+      line-height: 1.62em;
+      color: #FFF;
+      margin: 0;
+    }
+
+
 .homepage {
   position: relative;
   width: 100%;
@@ -568,16 +645,33 @@ export default {
     gimmeHours(date) {
       return date.getHours() + ":" + ('0' + date.getMinutes()).slice(-2);
     },
+    getURL(slug) {
+      let url = false;
+      this.videoList.forEach(el => {
+        if(utils.slugify(el.title) == slug) {
+          url = el.videoUrl;
+        }
+      });
+      return url;
+    }
   },
   mounted() {
     this.animate = true;
     window.setTimeout(() => {
       window.scroll({
-        top: 300, 
+        top: 150, 
         left: 0, 
         behavior: 'smooth'
       });
     }, 500);
   },
+  watch: {
+    videoList: function () {
+      let url = this.getURL(this.$route.params.id);
+      if(url) {
+        this.$store.commit("setCurrentVideo", url);
+      }
+    },
+  }
 };
 </script>

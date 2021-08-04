@@ -240,7 +240,7 @@ export default {
       this.isOpened = true;
       this.$emit('hideList', false);
       setTimeout(() => {
-        this.$router.push({ name: "documentaryLarge", params: { id: this.currentVideo.title } });
+        this.$router.push({ name: "documentaryLarge", params: { id: utils.slugify(this.currentVideo.title) } });
       }, 800);
     },
     returnButton() {
@@ -251,7 +251,7 @@ export default {
         behavior: 'smooth'
       });
       setTimeout(() => {
-        this.$router.go(-1);
+        this.$router.replace('/');
       }, 800);
     },
     toTop() {
