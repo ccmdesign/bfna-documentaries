@@ -1,11 +1,12 @@
 <template>
-  <div class="video-list">
+<div>
+  <div class="video-list gradient">
     <div class="video-list__featured-section">
       <h3 class="section-title">Featured</h3>
       <div class="featured-list">
         <div v-for="(video, index) in featured
         " :key="index" >
-          <div class="video-list__episode" @click="selectEpisode(video.videoUrl)" v-if="">
+          <div class="video-list__episode video-list__episode--featured" @click="selectEpisode(video.videoUrl)" :data-title="video.title" :aria-label="video.title">
             <div
               class="video-list__episode-thumbnail"
               :style="{ backgroundImage: `url('${video.backgroundImage}')` }"
@@ -14,6 +15,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="video-list">
     <div class="video-list__workstreams-section">
       <h3 class="section-title | videolist-main-title">All documentaries</h3>
       <div
@@ -59,9 +62,36 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <style lang="scss" scoped>
+.video-list__episode--featured {
+  position: relative;
+  &:after {
+    content: attr(data-title);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
 .video-list__featured-section {
   padding-bottom: 128px;
 }
@@ -87,9 +117,12 @@
 }
 
 .video-list {
+  &.gradient{
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,8,12,1) 10%, rgba(0,8,12,1) 100%);
+  }
+  background: rgba(0,8,12,1);
   position: relative;
   padding: 12px 170px 64px;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,8,12,1) 30%, rgba(0,8,12,1) 100%);
 
   &__list {
     display: grid;
@@ -115,8 +148,11 @@
     }
 
     &-info {
-      padding: 16px 30px;
+      padding: 20px 24px;
       background-color: #00000059;
+      h3 {
+        margin: 0;
+      }
     }
 
     h4 {

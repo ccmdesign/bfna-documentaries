@@ -13,7 +13,7 @@
 <style lang="scss">
 .large-navigation-bar {
   padding: 0 170px;
-  z-index: 2;
+  z-index: 999;
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -24,6 +24,7 @@
   left: 0;
   transition: transform 0.33s ease-in-out;
   border-right: solid 1px grey;
+  backdrop-filter: blur(3px);
 
   &.hasMenu {
     transform: translateY(-100%);
@@ -38,6 +39,7 @@
     cursor: pointer;
     user-select: none;
     transition: background-color 0.13s ease-in-out;
+    transform: translateX(-20px);
 
     &:hover {
       background-color: lighten(#08415c, 5);

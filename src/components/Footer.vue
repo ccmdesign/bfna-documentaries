@@ -78,22 +78,22 @@
     </div>
   </div>
   <div class="ccm-footer">
-    <a href="https://www.ccmdesign.ca/" class="ccm-footer__link">By ccm.design</a>
+    <a href="https://www.ccmdesign.ca/" class="ccm-footer__link">by ccm.design</a>
   </div>
 </section>
 </template>
 
 <style lang="scss" scoped>
 .footer-section {
-  background: #FFF;
   position: relative;
 }
 
 .footer {
-  background: rgba(0,0,0,0.9);
-  padding: 90px 260px;
+  background: #0C0C0C;
+  padding: 90px 10%;
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
   a {
     color: #FFF;
     text-decoration: none;
@@ -133,7 +133,7 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    max-width: 630px;
+    width: 45%;
   }
 
     .footer__about-text {
@@ -143,12 +143,12 @@
     }
 
     .footer__bfna {
-      width: 177px;
+      width: min(177px, calc(49% - 15px));
       margin-right: 30px;
     }
 
     .footer__doc {
-      width: 233px;
+      width: min(233px, calc(49% - 15px));
     }
 
 .ccm-footer {

@@ -241,7 +241,7 @@ export default {
       this.$emit('hideList', false);
       setTimeout(() => {
         this.$router.push({ name: "documentaryLarge", params: { id: utils.slugify(this.currentVideo.title) } });
-      }, 800);
+      }, 100);
     },
     returnButton() {
       this.isOpened = false;
@@ -252,7 +252,7 @@ export default {
       });
       setTimeout(() => {
         this.$router.replace('/');
-      }, 800);
+      }, 100);
     },
     toTop() {
       window.scroll({

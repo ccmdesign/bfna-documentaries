@@ -6,7 +6,7 @@
       :style="`background-image: url('${currentVideo.backgroundImage}')`"
     ></div>
     <VideoDescription open="true" />
-    <div class="award-list">
+    <div class="award-list" :class="{ animated : animate }">
       <div class="award"  v-for="award in currentVideo.awards" :key="award.id">
         <div class="award__tip"></div>
         <div class="award__info">
@@ -30,10 +30,10 @@
               <div class="screening-card__title">
                 <span class="screening-card__badge screening-card__badge--available" v-if="screen.availability">Available</span>
                 <span class="screening-card__badge screening-card__badge--soldout" v-else>Sold out</span>
-                <p class="screening-card__day">{{ new Date(screen.dateStart).getUTCDate() }}</p>
+                <p class="screening-card__day">{{ new Date(screen.dateStart).getDate() }}</p>
                 <div class="screening-card__datebox">
                   <p class="screening-card__month">
-                    {{ monthNames[new Date(screen.dateStart).getUTCMonth()] }}
+                    {{ monthNames[new Date(screen.dateStart).getMonth()] }}
                   </p>
                   <p class="screening-card__hours">
                     {{ gimmeHours(new Date(screen.dateStart)) }} - {{ gimmeHours(new Date(screen.dateEnd)) }} 
@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      <div class="video-list__video-info | content-info" v-if="currentVideo.video_info">
+      <div class="video-list__video-info | content-info" v-if="currentVideo.video_info && Object.keys(currentVideo.video_info).length > 0 ">
         <h2 class="section-title">Film Info</h2>
         <div class="video-info">
           <div class="video-info__media">
@@ -70,7 +70,7 @@
           </div>
         </div>
       </div>
-      <div class="video-list__resources-section | content-info" v-if="currentVideo.resources">
+      <div class="video-list__resources-section | content-info" v-if="currentVideo.resources && currentVideo.resources.length > 0">
         <h2 class="section-title">Resources</h2>
         <div class="resource-list">
           <div class="resource-list__resource | resource-card" v-for="resource in currentVideo.resources" :key="resource.id">
@@ -384,10 +384,15 @@
     margin-bottom: 10px;
     min-width: 360px;
     display: flex;
-    transform: translateX(calc(100% - 340px));
     transition: transform 0.3s ease-in-out;
-    &:hover {
-      transform: translateX(20px);
+    transform: translateX(100%);
+  }
+  .award-list.animated{
+    .award {
+      transform: translateX(calc(100% - 340px));
+      &:hover {
+        transform: translateX(20px);
+      }
     }
   }
 
@@ -662,11 +667,11 @@ export default {
     this.animate = true;
     window.setTimeout(() => {
       window.scroll({
-        top: 150, 
+        top: 200, 
         left: 0, 
         behavior: 'smooth'
       });
-    }, 500);
+    }, 0);
   },
   watch: {
     videoList: function () {
