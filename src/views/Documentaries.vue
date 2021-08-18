@@ -130,7 +130,7 @@ export default {
   methods: {
     setCurrentVideo(url) {
       this.$store.commit("setCurrentVideo", url);
-      this.$router.replace("/");
+      this.$router.replace({ name: "documentaryInternal", params: { id: utils.slugify(this.currentVideo.title) } });
     },
   },
   metaInfo() {

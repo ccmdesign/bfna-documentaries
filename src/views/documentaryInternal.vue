@@ -1,5 +1,5 @@
 <template>
-  <div class="homepage">
+  <div class="homepage" :class="{ animated : animate }">
     <h1 class="sr-only">{{ currentVideo.title }}</h1>
     <div
       class="homepage__slider__background--large"
@@ -19,8 +19,8 @@
         </div>
       </div>
     </div>
-    <navigation-bar />
-    <menu-ui />
+    <navigation-bar v-if="getUIType() === 'large'" />
+    <menu-ui v-if="getUIType() === 'large'"  />
     <div class="homepage__list-bar" :class="{ animated : animate }">
       <div class="video-list__screenings-section | content-info" v-if="currentVideo.screenings && currentVideo.screenings.length > 0">
         <h2 class="section-title">Upcoming Screenings</h2>
@@ -106,19 +106,31 @@
 <style lang="scss" scoped>
 .section-title {
   color: #FFF;
-  size: 2.5em;
+  font-size: 2.5em;
   font-weight: bold;
   margin-bottom: 42px;
+  @media (max-width:768px) {
+    padding: 0 24px;
+    font-size: 2em;
+  }
 }
 
 .video-list__screenings-section {
   padding-bottom: 128px;
+  @media (max-width: 768px) {
+    padding-bottom: 64px;
+  }
 }
 
 .screenings-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
+    @media (max-width: 768px) {
+      scroll-snap-type: x mandatory;
+      overflow-x: auto;
+      padding: 0 24px;
+    }
 }
 
 .screening-card {
@@ -126,6 +138,10 @@
   box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.2);
   padding: 0;
   color: #EAEBED;
+  @media (max-width: 768px) {
+    width: calc(100vw - 75px);
+    scroll-snap-align: center;
+  }
 }
 
   .screening-card__info {
@@ -242,12 +258,19 @@
 
 .video-list__video-info {
   padding-bottom: 128px;
+  @media (max-width:768px) {
+    padding-bottom: 64px;
+  }
 }
 
 .video-info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 64px;
+    @media (max-width:768px) {
+      grid-template-columns: repeat(1, 1fr);
+      padding: 0 24px;
+    }
 }
 
   .video-info__screenshot {
@@ -259,6 +282,9 @@
     font-size: 2em;
     line-height: 1em;
     margin-bottom: 16px;
+    @media (max-width:768px) {
+      font-size: 1.5em;
+    }
   }
 
   .video-info__text {
@@ -306,12 +332,21 @@
 
 .video-list__resources-section {
   padding-bottom: 128px;
+  @media (max-width:768px) {
+    padding-bottom: 64px;
+  }
 }
 
 .resource-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
+    @media (max-width:768px) {
+      scroll-snap-type: x mandatory;
+      grid-template-columns: repeat(100, 1fr);
+      padding: 0 24px;
+      overflow-x: auto;
+    }
 }
 
 .resource-card {
@@ -321,6 +356,10 @@
   color: #EAEBED;
   display: flex;
   flex-flow: column nowrap;
+  @media (max-width: 768px) {
+    width: calc(100vw - 75px);
+    scroll-snap-align: center;
+  }
 }
 
   .resource-card__header {
@@ -378,6 +417,9 @@
   flex-flow: column nowrap;
   align-items: flex-end;
   overflow: hidden;
+  @media (max-width: 768px) {
+    display: none;    
+  } 
 }
 
   .award {
@@ -443,6 +485,13 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  @media (max-width: 768px) {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    &.animated {
+      opacity: 1;
+    }
+  }
 
   &__slider {
     width: 100%;
@@ -463,6 +512,11 @@
 
     &.opened {
       background-color: #01121ad9;
+    }
+    @media (max-width: 768px) {
+      padding: 0;
+      overflow: hidden;
+      background: rgba(0,8,12,1);
     }
 
     &__section {
@@ -568,6 +622,12 @@
     }
   }
 }
+@media (max-width: 768px) {
+  .full_content {
+    padding: 0 24px;
+    max-height: none;
+  }
+}
 </style>
 
 <script>
@@ -580,7 +640,7 @@ import utils from "../utils";
 import Footer from "@/components/Footer"
 
 export default {
-  name: "documentaryLarge",
+  name: "documentaryInternal",
   components: {
     Footer,
     Slide,
@@ -661,7 +721,10 @@ export default {
         }
       });
       return url;
-    }
+    },
+    getUIType () {
+      return document.documentElement.clientWidth >= 768 ? 'large' : 'small'
+    },
   },
   mounted() {
     this.animate = true;

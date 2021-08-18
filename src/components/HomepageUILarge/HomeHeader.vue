@@ -23,6 +23,9 @@
   .documentaries {
     height: 15vh;
     margin-top: calc(5vh + 60px);
+    @media (min-width: 768px) {
+      margin-top: 55px;
+    }
   }
 
   &__title {

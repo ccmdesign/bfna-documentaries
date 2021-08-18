@@ -1,6 +1,6 @@
 <template>
   <div class="homepage">
-    <div
+    <!--<div
       class="homepage__slider__background--large"
       :style="`background-image: url('${currentVideo.backgroundImage}')`"
     ></div>
@@ -16,12 +16,15 @@
       <VideoDescription />
       <div class="homepage__footer" v-show="hasVideos">
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 
 <style lang="scss" scoped>
-
+.homepage {
+  background: rgba(0,8,12,1);
+}
+/*
 .homepage__slider__background--large {
   z-index: -1;
   position: relative;
@@ -184,16 +187,14 @@
       }
     }
   }
-}
+}*/
 </style>
 
 <script>
-import Slide from "@/components/HomepageUISmall/Slide";
-import VideoDescription from "@/components/HomepageUISmall/VideoDescription";
+import utils from "../utils";
 
 export default {
   name: "HomepageUILargeComponent",
-  components: {  Slide, VideoDescription },
   computed: {
     videoList() {
       return this.$store.state.videoList;
@@ -232,5 +233,8 @@ export default {
       }
     },
   },
+  mounted() {
+    this.$router.replace({ name: "documentaryInternal", params: { id: utils.slugify(this.currentVideo.title) } });
+  }
 };
 </script>

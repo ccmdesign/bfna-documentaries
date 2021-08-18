@@ -86,6 +86,10 @@
 <style lang="scss" scoped>
 .footer-section {
   position: relative;
+  @media (max-width:768px) {
+    padding-bottom: 54px;
+    border-top: 1px solid #282F3A;
+  }
 }
 
 .footer {
@@ -94,6 +98,10 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  @media (max-width:768px) {
+    flex-direction: column;
+    padding: 32px 40px 77px;
+  }
   a {
     color: #FFF;
     text-decoration: none;
@@ -107,10 +115,17 @@
   .footer__map {
     display: flex;
     flex-flow: row nowrap;
+    @media (max-width:768px) {
+      flex-direction: column;
+    }
   }
 
     .footer__col {
       margin-right: 86px;
+      @media (max-width:768px) {
+        margin-right: 0;
+        margin-bottom: 42px;
+      }
     }
 
     .footer__heading {
@@ -134,21 +149,36 @@
     flex-flow: column nowrap;
     justify-content: space-between;
     width: 45%;
+    @media (max-width:768px) {
+      width: 100%;
+      border: none;
+      padding-left: 0;
+    }
   }
 
     .footer__about-text {
       font-size: 0.875em;
       line-height: 1.22em;
       font-weight: 400;
+      @media (max-width:768px) {
+        padding-bottom: 42px;
+      }
     }
 
     .footer__bfna {
       width: min(177px, calc(49% - 15px));
       margin-right: 30px;
+      @media (max-width:768px) {
+        width: min(177px, 60%);
+        padding-bottom: 34px;
+      }
     }
 
     .footer__doc {
       width: min(233px, calc(49% - 15px));
+      @media (max-width:768px) {
+        width: min(233px, 60%);
+      }
     }
 
 .ccm-footer {

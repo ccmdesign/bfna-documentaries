@@ -13,9 +13,21 @@
       <div class="video__excerpt" v-bind:class="{ opened : isOpened == 'true' || isOpened == true }">
         <p>{{ currentVideo.description }}</p>
       </div>
+      <div class="award-list award-list--mobile" v-if="getUIType() === 'small'">
+        <div class="award"  v-for="award in currentVideo.awards" :key="award.id">
+          <div class="award__info">
+            <img src="../../assets/award_icon.png" alt="Icon badge" class="award__icon">
+            <span class="award__separator"></span>
+            <div class="award__data">
+              <p class="award__title">{{ award.title }}</p>
+              <p class="award__text">{{ award.year }}<span v-if="award.institution"> - {{ award.institution }}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
       <button class="video__play" @click="openVideo(currentVideo)">play</button>
-      <button class="video__info video__info--borderless" @click="returnButton"  v-if="isOpened == 'true' || isOpened == true">Return</button>
-      <button class="video__info" @click="moreInfo" v-else>More info</button>
+      <button class="video__info video__info--borderless" @click="returnButton"  v-if="(isOpened == 'true' || isOpened == true) && getUIType() === 'large'">Return</button>
+      <button class="video__info" @click="moreInfo" v-else-if="getUIType() === 'large'">More info</button>
     </div>
   </div>
 </template>
@@ -31,6 +43,11 @@
   overflow: hidden;
   background-color: rgba(17, 24, 41, 0.65);
   padding: 35px 170px 0;
+  @media (max-width:768px) {
+    background: linear-gradient(180deg, rgba(17, 24, 41, 0) 0%, rgba(17, 24, 41, 0) 60vh, rgba(0,8,12,1) 80vh, rgba(0,8,12,1) 100%);
+    position: relative;
+  }
+  
 }
 
 .video {
@@ -39,6 +56,11 @@
     margin-bottom: 64px;
     margin-top: 5vh;
     position: relative;
+    @media (max-width:768px) {
+      align-items: flex-start;
+      max-width: 100%;
+      margin-top: 55px;
+    }
   }
   &__heading {
     padding-bottom: 2vh;
@@ -107,6 +129,11 @@
     user-select: none;
     line-height: 57px;
     border: 1.5px solid #fc8b00;
+    @media (max-width:768px) {
+      width: 100%;
+      box-sizing: border-box;  
+      padding: 0;
+    }
     &:hover {
       background-color: lighten(#fc8b00, 9);
       border-color: lighten(#fc8b00, 9);
@@ -185,6 +212,62 @@
     border-color: lighten(#631764, 9);
   }
 }
+.award-list--mobile {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+
+  .award {
+    margin-bottom: 10px;
+    width: 100%;
+    background: #000;
+    border-radius: 2px;
+    border: 1px solid #282F3A;
+    &:last-child {
+      margin-bottom: 24px;
+    }
+  }
+
+    .award__info {
+      flex-grow: 1;
+      display: flex;
+      flex-flow: row nowrap;
+      padding: 8px 16px;
+      background: none;
+    }
+
+    .award__icon {
+      margin: auto 0;
+      width: 32px;
+      height: 32px;
+    }
+
+    .award__separator {
+      width: 1px;
+      margin: 0 16px;
+      background: #464646;
+    }
+    .award__data {
+      flex-grow: 1;
+    }
+
+    .award__title {
+      font-size: 1.125em;
+      line-height: 1em;
+      color: #FCC500;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin: 0;
+    }
+
+    .award__text {
+      font-size: 0.875em;
+      font-weight: 400;
+      line-height: 1.62em;
+      color: #FFF;
+      margin: 0;
+    }
+}
 </style>
 
 <script>
@@ -240,7 +323,7 @@ export default {
       this.isOpened = true;
       this.$emit('hideList', false);
       setTimeout(() => {
-        this.$router.push({ name: "documentaryLarge", params: { id: utils.slugify(this.currentVideo.title) } });
+        this.$router.push({ name: "documentaryInternal", params: { id: utils.slugify(this.currentVideo.title) } });
       }, 100);
     },
     returnButton() {
@@ -260,7 +343,10 @@ export default {
         left: 0, 
         behavior: 'smooth'
       });
-    }
+    },
+    getUIType () {
+      return document.documentElement.clientWidth >= 768 ? 'large' : 'small'
+    },
   },
 };
 </script>

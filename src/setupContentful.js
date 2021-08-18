@@ -31,7 +31,6 @@ export default function (instance) {
               })
             }
           });
-          console.log(screeningsList)
           screeningsList.sort((a, b) =>  new Date(a.dateEnd) - new Date(b.dateEnd));
         }
         let videoInfo = {};

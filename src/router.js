@@ -8,7 +8,7 @@ import Home from "./views/Home.vue";
 import watchView from "./views/Watch.vue";
 import documentariesView from "./views/Documentaries.vue";
 import AboutUs from "./views/AboutUs.vue";
-import documentaryLarge from "./views/documentaryLarge.vue";
+import documentaryInternal from "./views/documentaryInternal.vue";
 
 
 Vue.use(Router);
@@ -45,8 +45,8 @@ const router = new Router({
     },
     {
       path: "/:id",
-      name: "documentaryLarge",
-      component: documentaryLarge,
+      name: "documentaryInternal",
+      component: documentaryInternal,
     }
   ],
 });
