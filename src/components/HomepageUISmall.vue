@@ -1,5 +1,6 @@
 <template>
   <div class="homepage">
+    <img src="../assets/loader.gif" alt="Loading website" class="loader">
     <!--<div
       class="homepage__slider__background--large"
       :style="`background-image: url('${currentVideo.backgroundImage}')`"
@@ -22,7 +23,20 @@
 
 <style lang="scss" scoped>
 .homepage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0,8,12,1);
+}
+
+.loader {
+  position: absolute;
+  width: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 /*
 .homepage__slider__background--large {

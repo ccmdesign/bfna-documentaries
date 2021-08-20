@@ -141,6 +141,7 @@
   @media (max-width: 768px) {
     width: calc(100vw - 75px);
     scroll-snap-align: center;
+    border: 1px solid rgba(255,255,255,0.25)
   }
 }
 
@@ -176,6 +177,9 @@
     &.screening-card__badge--soldout {
       color: #FF8979;
     }
+    @media (max-width: 768px) {
+      font-size: 0.625em;
+    }
   }
 
   .screening-card__datebox {
@@ -188,6 +192,9 @@
     font-weight: 700;
     font-size: 3.5em;
     line-height: 1em;
+    @media (max-width: 768px) {
+      font-size: 2.875em;
+    }
   }
 
   .screening-card__month {
@@ -195,12 +202,18 @@
     font-weight: 700;
     font-size: 1.125em;
     letter-spacing: 0.02em;
+    @media (max-width: 768px) {
+      font-size: 0.875em;
+    }
   }
 
   .screening-card__hours {
     font-weight: 700;
     font-size: 1.125em;
     letter-spacing: 0.02em;
+    @media (max-width: 768px) {
+      font-size: 0.875em;
+    }
   }
 
   .screening-card__description {
@@ -213,6 +226,9 @@
   .screening-card__estabilishment {
     font-weight: bold;
     color: #EAEBED;
+    @media (max-width: 768px) {
+      font-size: 0.875em;
+    }
     &:hover, &:focus, &:active {
       color: #EAEBED;
     }
@@ -221,6 +237,9 @@
   .screening-card__place {
     font-weight: 400;
     color: #D2D4DA;
+    @media (max-width: 768px) {
+      font-size: 0.875em;
+    }
   }
 
   .screening-card__link {
@@ -240,6 +259,12 @@
     border: 3.125px solid #C2C5CD;
     text-align: center;
     box-sizing: content-box;
+    @media (max-width: 768px) {
+      font-size: 0.875em;
+      height: 37px;
+      line-height: 37px;
+      width: 140px;
+    }
     &:not(.screening-card__button--disabled) {
       color: #FCFCFC;
       &:hover, &:focus, &:active {
@@ -359,6 +384,7 @@
   @media (max-width: 768px) {
     width: calc(100vw - 75px);
     scroll-snap-align: center;
+    border: 1px solid rgba(255,255,255,0.25)
   }
 }
 
@@ -373,6 +399,11 @@
     width: 48px;
     height: 48px;
     margin-right: 15px;
+    @media (max-width: 768px) {
+      width: 40px;
+      height: 40px;
+      margin-right: 13px;
+    }
   }
 
   .resource-card__main {
@@ -387,6 +418,9 @@
     line-height: 1em;
     letter-spacing: 0.02em;
     margin: 0;
+    @media (max-width: 768px) {
+      font-size: 1em;
+    }
   }
 
   .resource-card__extra {
@@ -394,6 +428,9 @@
     font-weight: 400;
     line-height: 1em;
     margin: 0;
+    @media (max-width: 768px) {
+      font-size: 1em;
+    }
   }
 
   .resource-card__body {
@@ -407,6 +444,9 @@
   .resource-card__text {
     width: 100%;
     flex-grow: 1;
+    @media (max-width: 768px) {
+      font-size: 0.875em;
+    }
   }
 
 .award-list {
