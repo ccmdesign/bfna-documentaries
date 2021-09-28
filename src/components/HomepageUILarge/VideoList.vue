@@ -69,6 +69,7 @@
 .video-list__episode--featured {
   position: relative;
   &:after {
+    text-align: center;
     content: attr(data-title);
     position: absolute;
     top: 0;
@@ -208,6 +209,17 @@
 
       &.selected {
         --bg-color: var(--button-color);
+      }
+    }
+    @media (max-width: 1800px) { 
+      flex-flow: row wrap;
+      .section-title {
+        &.videolist-main-title {
+          width: 100%;
+          padding-bottom: 15px;
+          position: relative;
+          transform: translateY(0)
+        }
       }
     }
   }

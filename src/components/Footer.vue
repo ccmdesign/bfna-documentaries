@@ -149,6 +149,9 @@
     flex-flow: column nowrap;
     justify-content: space-between;
     width: 45%;
+    @media (max-width: 1460px) {
+      width: 37%;
+    }
     @media (max-width:768px) {
       width: 100%;
       border: none;

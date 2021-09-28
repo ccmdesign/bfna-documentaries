@@ -126,6 +126,9 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
+    @media (max-width: 1660px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
     @media (max-width: 768px) {
       scroll-snap-type: x mandatory;
       overflow-x: auto;
