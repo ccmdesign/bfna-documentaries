@@ -64,9 +64,9 @@
             <h3 class="video_info__title">{{ currentVideo.video_info.column_1_title }}</h3>
             <p class="video-info__text">{{ currentVideo.video_info.column_1_text }}</p>
           </div>
-          <div class="video-info__description" v-if="currentVideo.video_info.column_2_title">
-            <h3 class="video_info__title">{{ currentVideo.video_info.column_2_title }}</h3>
-            <p class="video-info__text">{{ currentVideo.video_info.column_2_text }}</p>
+          <div class="video-info__description" v-if="currentVideo.video_info.column_2_title || currentVideo.video_info.column_2_text">
+            <h3 class="video_info__title" v-if="currentVideo.video_info.column_2_title">{{ currentVideo.video_info.column_2_title }}</h3>
+            <p class="video-info__text" v-if="currentVideo.video_info.column_2_text">{{ currentVideo.video_info.column_2_text }}</p>
           </div>
         </div>
       </div>
