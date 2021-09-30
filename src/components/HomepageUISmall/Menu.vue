@@ -62,13 +62,13 @@
           <a href="https://www.bfna.org/democracy" class="menu-small__item"
             >Democracy</a
           ><br />
-          <a href="https://www.bfna.org/future-of-work" class="menu-small__item"
-            >Future of Work</a
+          <a href="https://www.bfna.org/future-leadership/" class="menu-small__item"
+            >Future Leadership</a
           ><br />
           <a
-            href="https://www.bfna.org/digital-economy"
+            href="https://www.bfna.org/digital-world/"
             class="menu-small__item"
-            >Digital Economy</a
+            >Digital World</a
           ><br />
           <a
             href="https://www.bfna.org/politics-society"

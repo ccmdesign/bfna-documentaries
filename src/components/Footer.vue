@@ -5,19 +5,19 @@
       <div class="footer__col">
         <nav class="footer__nav footer--topics">
           <h2 class="footer__heading">Topics</h2>
-          <a href="https://www.bfna.org/democracy" class="footer__item"
+          <a href="https://www.bfna.org/democracy/" class="footer__item"
             >Democracy</a
           ><br />
-          <a href="https://www.bfna.org/future-of-work" class="footer__item"
-            >Future of Work</a
+          <a href="https://www.bfna.org/future-leadership/" class="footer__item"
+            >Future Leadership</a
           ><br />
           <a
-            href="https://www.bfna.org/digital-economy"
+            href="https://www.bfna.org/digital-world/"
             class="footer__item"
-            >Digital Economy</a
+            >Digital World</a
           ><br />
           <a
-            href="https://www.bfna.org/politics-society"
+            href="https://www.bfna.org/politics-society/"
             class="footer__item"
             >Politics & Society</a
           ><br />

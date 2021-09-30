@@ -36,16 +36,16 @@
       <div
         class="child workstream--future-of-work"
         @click="selectWorkstream('future-of-work')"
-        :class="{ selected: isWorkstreamSelected('future-of-work') }"
+        :class="{ selected: isWorkstreamSelected('future-leadership') }"
       >
-        <h2>Future of Work</h2>
+        <h2>Future Leadership</h2>
       </div>
       <div
         class="child workstream--digital-economy"
         @click="selectWorkstream('digital-economy')"
-        :class="{ selected: isWorkstreamSelected('digital-economy') }"
+        :class="{ selected: isWorkstreamSelected('digital-world') }"
       >
-        <h2>Digital Economy</h2>
+        <h2>Digital World</h2>
       </div>
     </div>
     <div class="video-list__list">
@@ -216,7 +216,7 @@
       .section-title {
         &.videolist-main-title {
           width: 100%;
-          padding-bottom: 15px;
+          padding-bottom: 30px;
           position: relative;
           transform: translateY(0)
         }

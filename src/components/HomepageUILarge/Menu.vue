@@ -60,13 +60,13 @@
           <a href="https://www.bfna.org/democracy" class="menu-large__item"
             >Democracy</a
           ><br />
-          <a href="https://www.bfna.org/future-of-work" class="menu-large__item"
-            >Future of Work</a
+          <a href="https://www.bfna.org/future-leadership/" class="menu-large__item"
+            >Future Leadership</a
           ><br />
           <a
-            href="https://www.bfna.org/digital-economy"
+            href="https://www.bfna.org/digital-world/"
             class="menu-large__item"
-            >Digital Economy</a
+            >Digital World</a
           ><br />
           <a
             href="https://www.bfna.org/politics-society"
@@ -85,7 +85,7 @@
 
 <style lang="scss" scoped>
 .menu-large {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
