@@ -54,6 +54,17 @@ export default function (instance) {
           if(fields.video_info.fields.screenshot) {
             videoInfo.screenshot = fields.video_info.fields.screenshot.fields.file.url
           }
+          videoInfo.screenshot_extras = []
+          if (fields.video_info.fields.screenshot_extras) {
+            fields.video_info.fields.screenshot_extras.forEach(element => {
+              let screenshotfields = element.fields
+              videoInfo.screenshot_extras.push({
+                id: element.sys.id,
+                url: screenshotfields.file.url,
+                title: screenshotfields.title
+              })
+            });
+          }
         }
         let resourcesList = [];
         if (fields.resources) {

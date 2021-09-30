@@ -72,8 +72,8 @@
     <div class="footer__half | footer__about">
       <p class="footer__about-text">Bertelsmann Foundation documentaries focus on governance, economics, elections, social issues, the digital revolution, and most importantly, where these issues intersect.</p>
       <div class="footer__logos">
-        <img src="../assets/bertelsmann-logo.png" alt="Bertelsmann Foundation" class="footer__bfna" />
-        <img src="../assets/bfna-documentaries-logo.png" alt="Bertelsmann Foundation Documentaries" class="footer__doc" />
+        <a href="https://www.bfna.org/" target="_blank" class="router-link-exact-active router-link-active"><img src="../assets/bertelsmann-logo.png" alt="Bertelsmann Foundation" class="footer__bfna" /></a>
+        <router-link to="/"><img src="../assets/bfna-documentaries-logo.png" alt="Bertelsmann Foundation Documentaries" class="footer__doc" /></router-link>
       </div>
     </div>
   </div>

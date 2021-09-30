@@ -1,6 +1,8 @@
 <template>
   <div class="header">
-    <img src="../../assets/bfna-documentaries-logo.png" alt="Bertelsman Foundation Documentaries" class="documentaries" />
+    <router-link to="/">
+      <img src="../../assets/bfna-documentaries-logo.png" alt="Bertelsman Foundation Documentaries" class="documentaries" />
+    </router-link>
   </div>
 </template>
 

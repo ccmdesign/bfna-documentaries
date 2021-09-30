@@ -59,6 +59,7 @@
           <div class="video-info__media">
             <a href="#" @click="openVideo(currentVideo.video_info.teaser_url, currentVideo.video_info.teaser_source)" class="video-info__trailer | trailer-thumb" :style="'background-image: url('+currentVideo.video_info.thumb+')'" v-if="currentVideo.video_info.teaser_url">{{ currentVideo.video_info.title }}</a>
             <img class="video-info__screenshot" :src="currentVideo.video_info.screenshot" :alt="'Screenshot from '+currentVideo.title" v-if="currentVideo.video_info.screenshot">
+            <img v-for="shot in currentVideo.video_info.screenshot_extras" :key="shot.id" class="video-info__screenshot" :src="shot.url" :alt="shot.title">
           </div>
           <div class="video-info__description">
             <h3 class="video_info__title">{{ currentVideo.video_info.column_1_title }}</h3>
@@ -303,6 +304,9 @@
 
   .video-info__screenshot {
     width: 100%;
+    &:not(:last-child) {
+      margin-bottom: 32px;
+    }
   }
 
   .video_info__title {
