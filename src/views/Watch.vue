@@ -339,10 +339,24 @@ export default {
           (video) =>
             video.source == 'youtube' ? utils.getVideoIdFromYoutubeUrl(video.videoUrl) === paramVideoId : utils.getVideoIdFromVimeoUrl(video.videoUrl) === paramVideoId
         );
+        let trailerVideo
+        let trailerVideoId
+        const currentVideo = this.videoList[this.currentVideo];
+        if(currentVideo.video_info) {
+          console.log(currentVideo)
+          trailerVideoId = currentVideo.video_info.teaser_source == 'youtube' ? utils.getVideoIdFromYoutubeUrl(currentVideo.video_info.teaser_url) : utils.getVideoIdFromVimeoUrl(currentVideo.video_info.teaser_url)
+          if(paramVideoId == trailerVideoId) {
+            trailerVideo = currentVideo.video_info
+          }
+        }
         if (matchedVideo) {
           this.videoObject = matchedVideo;
           this.videoId = paramVideoId;
           this.source = matchedVideo.source;
+        } else if (trailerVideo) { 
+          this.videoObject = trailerVideo;
+          this.videoId = trailerVideoId;
+          this.source = trailerVideo.teaser_source;
         } else {
           this.$router.replace("/");
           return;

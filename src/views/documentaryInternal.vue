@@ -57,7 +57,7 @@
         <h2 class="section-title">Film Info</h2>
         <div class="video-info">
           <div class="video-info__media">
-            <a href="#" @click="openVideo(currentVideo.video_info.teaser_url, currentVideo.video_info.teaser_source)" class="video-info__trailer | trailer-thumb" :style="'background-image: url('+currentVideo.video_info.thumb+')'" v-if="currentVideo.video_info.teaser_url">{{ currentVideo.video_info.title }}</a>
+            <a href="#" @click.prevent="openVideo(currentVideo.video_info.teaser_url, currentVideo.video_info.teaser_source)" class="video-info__trailer | trailer-thumb" :style="'background-image: url('+currentVideo.video_info.thumb+')'" v-if="currentVideo.video_info.teaser_url">{{ currentVideo.video_info.title }}</a>
             <img class="video-info__screenshot" :src="currentVideo.video_info.screenshot" :alt="'Screenshot from '+currentVideo.title" v-if="currentVideo.video_info.screenshot">
             <img v-for="shot in currentVideo.video_info.screenshot_extras" :key="shot.id" class="video-info__screenshot" :src="shot.url" :alt="shot.title">
           </div>
@@ -728,6 +728,7 @@ export default {
       } else if(source == 'vimeo'){
         videoId = utils.getVideoIdFromVimeoUrl(url)
       }
+      console.log(videoId)
       if (!videoId) {
         alert(
           `Couldn't play video:\nvideo ID not found in "${url}".`
