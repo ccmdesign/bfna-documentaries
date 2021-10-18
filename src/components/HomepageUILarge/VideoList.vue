@@ -177,7 +177,9 @@
     display: flex;
     justify-content: center;
     position: relative;
-    .child + .child { margin-left: 2rem;}
+    .child + .child { 
+      margin-left: 2rem;
+    }
 
     .child {
       --button-color: #ffffff;
@@ -209,6 +211,13 @@
 
       &.selected {
         --bg-color: var(--button-color);
+      }
+
+      @media (max-width: 1350px) { 
+        h2 {
+          font-size: 0.875em;
+          width: 176px;
+        }
       }
     }
     @media (max-width: 1800px) { 
