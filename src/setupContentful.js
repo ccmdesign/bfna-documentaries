@@ -37,13 +37,13 @@ export default function (instance) {
         if (fields.video_info) {
           videoInfo.title = fields.video_info.fields.title
           videoInfo.teaser_url = fields.video_info.fields.teaser_url
-          let source = ''
+          let teaserSource = ''
           if (videoInfo.teaser_url && videoInfo.teaser_url.includes("youtu")) {
-            source = 'youtube'
+            teaserSource = 'youtube'
           } else if(videoInfo.teaser_url && videoInfo.teaser_url.includes("vimeo")){
-            source = 'vimeo'
+            teaserSource = 'vimeo'
           }
-          videoInfo.teaser_source = source
+          videoInfo.teaser_source = teaserSource
           if(fields.video_info.fields.teaser_thumbnail) {
             videoInfo.thumb = fields.video_info.fields.teaser_thumbnail.fields.file.url
           }
