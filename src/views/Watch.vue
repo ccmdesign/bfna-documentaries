@@ -39,7 +39,7 @@
         v-if="this.source=='vimeo'"
         class="watch-view__player"
         :video-id="videoId"
-        ref="youtube"
+        ref="player"
         @playing="showPlayer"
         @mousemove="timeoutNavigation"
         @click="timeoutNavigation"
@@ -336,15 +336,18 @@ export default {
     this.holdLoading(() => {
       if (paramVideoId) {
         const matchedVideo = this.videoList.find(
-          (video) =>
-            video.source == 'youtube' ? utils.getVideoIdFromYoutubeUrl(video.videoUrl) === paramVideoId : utils.getVideoIdFromVimeoUrl(video.videoUrl) === paramVideoId
+          (video) => {
+            return video.source == 'youtube' ? utils.getVideoIdFromYoutubeUrl(video.videoUrl) === paramVideoId : utils.getVideoIdFromVimeoUrl(video.videoUrl) === paramVideoId
+            }
         );
         let trailerVideo
         let trailerVideoId
         const currentVideo = this.videoList[this.currentVideo];
         if(currentVideo.video_info) {
-          console.log(currentVideo)
-          trailerVideoId = currentVideo.video_info.teaser_source == 'youtube' ? utils.getVideoIdFromYoutubeUrl(currentVideo.video_info.teaser_url) : utils.getVideoIdFromVimeoUrl(currentVideo.video_info.teaser_url)
+          console.log(currentVideo.video_info)
+          if(currentVideo.video_info.teaser_url){
+            trailerVideoId = currentVideo.video_info.teaser_source == 'youtube' ? utils.getVideoIdFromYoutubeUrl(currentVideo.video_info.teaser_url) : utils.getVideoIdFromVimeoUrl(currentVideo.video_info.teaser_url)
+          }
           if(paramVideoId == trailerVideoId) {
             trailerVideo = currentVideo.video_info
           }
@@ -399,7 +402,7 @@ export default {
             });
           }, 1000);
         } else {
-          this.$refs.youtube.player.play();
+          this.$refs.player.play();
         }
       }, 1000);
     });
