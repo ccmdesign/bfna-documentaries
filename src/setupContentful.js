@@ -171,8 +171,11 @@ export default function (instance) {
         let item = documentaries.filter((doc) => {
           return docId === doc.id
         })
-        tempDocs.push(item[0])
-        documentaries.splice(documentaries.indexOf(item[0]), 1)
+
+        if(item.length > 0) {
+          tempDocs.push(item[0])
+          documentaries.splice(documentaries.indexOf(item[0]), 1)    
+        }
       }
       documentaries = tempDocs.concat(documentaries)
 
