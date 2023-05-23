@@ -22,28 +22,28 @@
       <div
         class="child workstream--democracy"
         @click="selectWorkstream('democracy')"
-        :class="{ selected: isWorkstreamSelected('democracy') }"
+        :class="{ selected: isWorkstreamSelected('democracy'), disabled:  !workstreamVideos('democracy') }"
       >
         <h2>Democracy</h2>
       </div>
       <div
         class="child workstream--politics-society"
         @click="selectWorkstream('politics-society')"
-        :class="{ selected: isWorkstreamSelected('politics-society') }"
+        :class="{ selected: isWorkstreamSelected('politics-society'), disabled:  !workstreamVideos('politics-society') }"
       >
         <h2>Politics &amp; Society</h2>
       </div>
       <div
         class="child workstream--future-of-work"
         @click="selectWorkstream('future-of-work')"
-        :class="{ selected: isWorkstreamSelected('future-leadership') }"
+        :class="{ selected: isWorkstreamSelected('future-of-work'), disabled:  !workstreamVideos('future-of-work')  }"
       >
         <h2>Future Leadership</h2>
       </div>
       <div
         class="child workstream--digital-economy"
         @click="selectWorkstream('digital-economy')"
-        :class="{ selected: isWorkstreamSelected('digital-world') }"
+        :class="{ selected: isWorkstreamSelected('digital-economy'), disabled:  !workstreamVideos('digital-economy') }"
       >
         <h2>Digital World</h2>
       </div>
@@ -187,7 +187,6 @@
 
 
       padding: 0;
-      cursor: pointer;
       border: 3px solid var(--button-color);
       background-color: var(--bg-color);
 
@@ -211,6 +210,13 @@
 
       &.selected {
         --bg-color: var(--button-color);
+      }
+      &:not(.disabled) {
+        cursor: pointer;
+      }
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.3;
       }
 
       @media (max-width: 1350px) { 
@@ -285,6 +291,9 @@ export default {
 
       return this.$store.state.videoList.filter(filter);
     },
+    fullVideoList() {
+      return this.$store.state.videoList;
+    },
     featured() {
       return this.$store.state.featured;
     },
@@ -351,6 +360,12 @@ export default {
     isWorkstreamSelected(workstream) {
       return this.selectedWorkstreams.includes(workstream);
     },
+    workstreamVideos(workstream) {
+      const qtd = this.fullVideoList.filter((item) => {
+        return item.workstream == workstream
+      }).length;
+      return qtd >= 1;
+    }
   },
 };
 </script>
