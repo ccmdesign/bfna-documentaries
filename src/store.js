@@ -42,6 +42,9 @@ const store = new Vuex.Store({
     setFeatured(state, featured) {
       state.featured = featured;
     },
+    setTrailer(state, trailer) {
+      state.trailer = trailer;
+    },
   },
   getters: {
     hasVideos(state) {

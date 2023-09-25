@@ -4,6 +4,7 @@
       <div class="large-navigation-bar__button">sort</div>
     </div>
     <ul class="large-navigation-bar__menu">
+      <li><a href="#" @click.prevent="openVideo(trailer)">Trailer</a></li>
       <li><a href="https://www.bfna.org">Visit Our Homepage</a></li>
       <li><router-link to="/about">About</router-link></li>
     </ul>
@@ -110,15 +111,37 @@
 </style>
 
 <script>
+import utils from "../../utils";
 export default {
   computed: {
     hasMenu() {
       return this.$store.state.menuVisibility;
     },
+    trailer() {
+      return this.$store.state.trailer;
+    }
   },
   methods: {
     toggleMenu() {
       this.$store.commit("setMenuVisibility", !this.hasMenu);
+    },
+    openVideo(video) {
+      let videoId = ''
+      const source = video.source
+      if(source == 'youtube'){
+        videoId = utils.getVideoIdFromYoutubeUrl(video.videoUrl)
+      } else if(source == 'vimeo'){
+        videoId = utils.getVideoIdFromVimeoUrl(video.videoUrl)
+      }
+      if (!videoId) {
+        alert(
+          `Couldn't play video:\nvideo ID not found in "${video.videoUrl}".`
+        );
+      }
+      this.$store.commit("setHomepageVideoEffect", true);
+      setTimeout(() => {
+        this.$router.push({ name: "watchVideoId", params: { videoId, source } });
+      }, 330);
     },
   },
 };
