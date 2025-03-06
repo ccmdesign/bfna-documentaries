@@ -327,7 +327,7 @@
 
 .trailer-thumb {
   width: 100%;
-  height: 300px;
+  aspect-ratio: 16/9;
   background-size: cover;
   background-position: center;
   position: relative;
