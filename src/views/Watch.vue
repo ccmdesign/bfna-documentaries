@@ -27,6 +27,9 @@
         v-if="this.source=='youtube'"
         class="watch-view__player"
         :video-id="videoId"
+        :autoplay="true"
+        playsinline
+        allowfullscreen
         ref="youtube"
         @playing="showPlayer"
         @mousemove="timeoutNavigation"
@@ -39,6 +42,9 @@
         v-if="this.source=='vimeo'"
         class="watch-view__player"
         :video-id="videoId"
+        :autoplay="true"
+        playsinline
+        allowfullscreen
         ref="player"
         @playing="showPlayer"
         @mousemove="timeoutNavigation"
@@ -223,12 +229,6 @@
   &__wrapper {
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-
-    &.show {
-      opacity: 1;
-    }
   }
 
   &__back {
