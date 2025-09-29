@@ -93,7 +93,7 @@ export default function (instance) {
           fields.resources.forEach(element => {
             let resource = {}
             let resourceType
-            if (element.sys.contentType.sys.id === 'resource_link') {
+            if (element.sys && element.sys.contentType && element.sys.contentType.sys && element.sys.contentType.sys.id === 'resource_link') {
               resourceType = 'link'
               resource = {
                 id: element.sys.id,
@@ -102,7 +102,7 @@ export default function (instance) {
                 description: element.fields.description,
                 type: resourceType
               }
-            } else {
+            } else if(element.fields && element.fields.file) {
               let fileFields = element.fields.file.fields.file
               if (fileFields.contentType.includes('pdf')) {
                 resourceType = 'pdf'
